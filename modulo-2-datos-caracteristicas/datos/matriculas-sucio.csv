@@ -1,0 +1,621 @@
+id_solicitud,fecha_solicitud,programa,modalidad,edad,estado_civil,promedio_pregrado,experiencia_anios,puntaje_examen,ingresos_hogar,nota_entrevista,admitido,admitido_texto
+S00565,10/11/2025,Sistemas,Presencial,37,Soltero,"3,50",6.1,257,1540000.0,3.3,0,No admitido
+S00142,28/10/2025,Industrial,Virtual,26,Casado,"2,76",5.7,,2410000.0,3.4,0,No admitido
+S00436,06/10/2025,Sistemas,Virtual,34,union libre,"4,31",5.6,317,-999.0,4.1,1,Admitido
+S00071,19/12/2025,Industrial,Presencial,31,soltero,"4,24",7.5,256,-999.0,,1,Admitido
+S00292,15/12/2025,Sistemas,Virtual,29,Soltero,"3,88",4.1,326,4690000.0,,1,Admitido
+S00259,10/10/2025,Industrial,Virtual,21,Casado,"4,11",,345,1090000.0,,1,Admitido
+S90001,20/12/2025,Industrial,Presencial,21,Soltero,"3,45",3.4,334,2360000.0,,1,Admitido
+S00230,24/12/2025,Electrica,Presencial,21,Casado,"3,43",5.4,,2830000.0,,1,Admitido
+S00250,07/12/2025,Sistemas,Presencial,27,Soltero,"4,46",1.3,296,4240000.0,,1,Admitido
+S00384,12/10/2025,Sistemas,Presencial,22,Soltero,"4,47",4.6,323,2390000.0,,1,Admitido
+S00338,26/12/2025,Sistemas,Presencial,21,Soltero,"4,17",3.1,325,-999.0,3.4,1,Admitido
+S00111,16/12/2025,Industrial,Virtual,24,casado,"4,30",,228,1760000.0,,1,Admitido
+S00295,26/10/2025,Industrial,Presencial,26,Soltero ,"3,96",0.9,-,9890000.0,,1,Admitido
+S00388,23/09/2025,Industrial,Presencial,36,Soltero,"3,47",4.1,362,5190000.0,,1,Admitido
+S00456,08/10/2025,Sistemas,Presencial,30,Union libre,"3,82",2.4,,5040000.0,,0,No admitido
+S00201,20/09/2025,Electrica,Virtual,30,Soltero,"3,61",2.6,286,1800000.0,,0,No admitido
+S00334,21/10/2025,Sistemas,Presencial,23,Soltero ,"3,34",,217,1710000.0,3.5,0,No admitido
+S00160,28/10/2025,Sistemas,Presencial,21,Soltero,"4,41",1.7,291,2250000.0,,1,Admitido
+S00442,04/12/2025,Sistemas,Presencial,22,Soltero,"3,49",2.9,271,1780000.0,4.5,0,No admitido
+S00322,21/11/2025,Sistemas,Presencial,25,Casado,"4,16",2.7,250,2360000.0,,0,No admitido
+S00054,20/12/2025,Sistemas,Presencial,38,Unión libre,"3,97",7.0,248,1690000.0,2.4,0,No admitido
+S00558,09/12/2025,Sistemas,Virtual,39,Soltero,"3,08",6.3,295,1210000.0,,0,No admitido
+S00452,09/10/2025,Industrial,Presencial,26,Soltero,"3,91",4.5,317,4560000.0,,1,Admitido
+S00249,26/11/2025,Electrica,Virtual,24,Union libre,"3,33",,327,1920000.0,,0,No admitido
+S00281,18/10/2025,Industrial,Virtual,34,Union libre,"4,96",,331,1000000.0,,1,Admitido
+S00102,20/10/2025,Industrial,Virtual,31,Casado,"4,23",1.7,272,1000000.0,,0,No admitido
+S00423,05/09/2025,Sistemas,Presencial,26,Casado,"3,73",0.0,N/D,1380000.0,4.2,1,Admitido
+S00508,02/10/2025,Industrial,Presencial,26,Union libre,"3,68",4.4,283,3190000.0,,1,Admitido
+S00427,27/12/2025,Industrial,Virtual,30,Soltero ,"3,83",,311,2810000.0,,1,Admitido
+S00328,16/09/2025,Electrica,Presencial,27,Casado,"4,60",3.4,296,1000000.0,3.7,1,Admitido
+S00447,09/12/2025,Industrial,Presencial,25,Soltero,"3,98",4.5,317,2540000.0,3.5,1,Admitido
+S00155,09/11/2025,Industrial,Presencial,38,Casado,"4,98",5.0,229,3280000.0,,1,Admitido
+S00500,25/09/2025,Sistemas,Presencial,27,Soltero,"3,41",1.6,287,-999.0,4.2,1,Admitido
+S00527,07/09/2025,Sistemas,Virtual,35,Soltero ,"2,99",,253,1490000.0,,0,No admitido
+S00530,07/12/2025,Sistemas,Presencial,26,Soltero,"3,52",,309,-999.0,,0,No admitido
+S00386,07/10/2025,Industrial,Presencial,24,Soltero ,"4,52",5.2,322,3150000.0,,1,Admitido
+S00325,05/09/2025,Electrica,Presencial,26,Soltero,"3,34",4.6,310,1060000.0,,1,Admitido
+S00156,10/09/2025,Electrica,Presencial,30,soltero,"4,15",0.1,393,2520000.0,,1,Admitido
+S00237,01/12/2025,Industrial,Virtual,39,Soltero,"3,52",0.0,336,1060000.0,,1,Admitido
+S00294,12/10/2025,Industrial,Presencial,38,Casado,"3,55",5.4,243,1220000.0,,1,Admitido
+S00486,29/12/2025,Sistemas,Presencial,31,Casado,"3,69",3.6,293,1320000.0,,0,No admitido
+S00371,27/10/2025,Sistemas,Presencial,33,Soltero,"4,52",7.6,345,3960000.0,,1,Admitido
+S00389,09/09/2025,Electrica,Presencial,21,Soltero,"3,82",4.6,385,1000000.0,,1,Admitido
+S00537,03/11/2025,Sistemas,Presencial,35,Union libre,"4,37",5.1,277,2220000.0,4.1,1,Admitido
+S00418,23/10/2025,Sistemas,Presencial,37,CASADO ,"3,48",5.7,309,4190000.0,,1,Admitido
+S00355,16/10/2025,Sistemas,Virtual,31,soltero,"4,03",7.2,274,1220000.0,,1,Admitido
+S00372,26/09/2025,Sistemas,Virtual,24,Soltero,"3,46",2.2,350,1660000.0,,1,Admitido
+S00133,28/11/2025,Sistemas,Virtual,31,Soltero,"3,93",0.0,398,48720000.0,,1,Admitido
+S00385,20/11/2025,Sistemas,Virtual,35,Soltero,"3,90",7.8,-,1830000.0,2.7,0,No admitido
+S90008,06/12/2025,Industrial,Presencial,28,Casado,"3,94",4.7,340,1000000.0,,1,Admitido
+S00516,30/10/2025,Sistemas,Virtual,28,Casado,"3,68",3.3,376,-999.0,3.9,1,Admitido
+S00499,03/10/2025,Industrial,Virtual,31,Soltero,"4,35",6.8,290,1500000.0,,1,Admitido
+S00510,15/10/2025,Sistemas,Presencial,26,Soltero ,"3,63",2.0,238,1000000.0,4.2,0,No admitido
+S00575,07/11/2025,Industrial,Virtual,29,Casado,"4,20",0.0,389,4020000.0,3.6,1,Admitido
+S00240,15/09/2025,Electrica,Presencial,32,Casado,"3,33",2.8,312,1000000.0,4.0,1,Admitido
+S00135,16/09/2025,Electrica,Presencial,29,Casado,"3,83",3.7,299,5960000.0,3.7,0,No admitido
+S00203,07/10/2025,Industrial,Virtual,30,Casado,"3,73",,306,2240000.0,,1,Admitido
+S00273,14/10/2025,Sistemas,Presencial,27,Soltero ,"4,57",5.0,280,2500000.0,,1,Admitido
+S00109,02/12/2025,Sistemas,Presencial,34,Soltero,"4,44",4.2,385,2000000.0,3.8,1,Admitido
+S00099,23/12/2025,Sistemas,Presencial,28,Soltero,"3,83",3.2,335,46800000.0,4.0,1,Admitido
+S00143,08/09/2025,Sistemas,Virtual,29,Soltero,"3,53",5.3,343,6780000.0,,0,No admitido
+S00505,27/11/2025,Industrial,Presencial,28,Union libre,"3,23",7.1,315,1000000.0,,1,Admitido
+S00596,12/10/2025,Industrial,Presencial,31,Soltero,"3,39",2.9,289,1000000.0,,0,No admitido
+S00274,20/12/2025,Electrica,Virtual,21,Soltero,"4,21",8.1,245,-999.0,,1,Admitido
+S00448,05/09/2025,Industrial,Virtual,37,Casado,"3,47",,339,1000000.0,,0,No admitido
+S00221,18/11/2025,Electrica,Presencial,28,Casado,"4,47",5.9,266,-999.0,,1,Admitido
+S00260,08/12/2025,Sistemas,Presencial,30,Soltero,"3,61",0.1,321,1450000.0,,1,Admitido
+S00100,15/09/2025,Sistemas,Presencial,26,Soltero,"3,80",4.6,283,1260000.0,,0,No admitido
+S00343,12/12/2025,Industrial,Virtual,29,Soltero,"3,56",5.4,282,2070000.0,,0,No admitido
+S00214,25/11/2025,Industrial,Presencial,39,Soltero,"4,11",6.5,269,2720000.0,,1,Admitido
+S00572,13/10/2025,Sistemas,Virtual,29,Soltero,"3,13",4.0,285,4940000.0,,0,No admitido
+S00567,04/12/2025,Sistemas,Presencial,21,Soltero,"3,73",3.9,233,2460000.0,3.5,1,Admitido
+S00180,07/12/2025,Sistemas,Presencial,29,Soltero,"3,22",0.0,255,1870000.0,4.3,0,No admitido
+S00147,20/11/2025,Sistemas,Virtual,29,Soltero,"3,96",,389,2130000.0,3.8,1,Admitido
+S00169,24/11/2025,Sistemas,Virtual,30,CASADO ,"3,88",,335,2920000.0,,1,Admitido
+S00317,09/09/2025,Electrica,Virtual,34,union libre,"3,49",,260,1190000.0,,0,No admitido
+S00271,16/09/2025,Industrial,Presencial,28,Soltero,"3,45",5.9,307,2270000.0,3.6,1,Admitido
+S00110,22/11/2025,Industrial,Presencial,27,Soltero,"4,03",3.3,244,1630000.0,,0,No admitido
+S00014,20/12/2025,Sistemas,Presencial,31,Casado,"3,95",5.6,317,2290000.0,,0,No admitido
+S00410,18/11/2025,Electrica,Virtual,23,Soltero,"4,38",2.4,275,1000000.0,,1,Admitido
+S00061,19/09/2025,Industrial,Presencial,37,Soltero,"3,21",1.5,236,53600000.0,,0,No admitido
+S00506,19/12/2025,Industrial,Virtual,-5,Soltero,"3,12",3.3,325,1450000.0,,0,No admitido
+S00570,16/09/2025,Sistemas,Presencial,35,Union libre,"4,57",3.1,299,2210000.0,,1,Admitido
+S00284,03/12/2025,Industrial,Presencial,32,Soltero,"3,92",0.4,347,1000000.0,,1,Admitido
+S00262,23/12/2025,Industrial,Presencial,24,Casado,"3,13",7.3,304,1420000.0,,1,Admitido
+S00451,20/09/2025,Industrial,Presencial,22,Soltero,"3,54",6.3,354,1300000.0,3.2,1,Admitido
+S00309,06/10/2025,Sistemas,Presencial,21,Soltero,"3,47",4.8,324,2540000.0,3.8,1,Admitido
+S00004,05/11/2025,Sistemas,Presencial,32,Soltero,"3,94",3.1,332,2070000.0,,1,Admitido
+S00420,08/09/2025,Sistemas,Presencial,23,Casado,"3,78",2.4,331,2910000.0,3.6,1,Admitido
+S00262,23/12/2025,Industrial,Presencial,24,Casado,"3,13",7.3,304,1420000.0,,1,Admitido
+S00561,21/09/2025,Industrial,Virtual,40,Soltero,"4,19",8.7,255,1630000.0,4.4,0,No admitido
+S00188,08/11/2025,Sistemas,Presencial,36,Union libre,"3,30",1.7,N/D,-999.0,4.5,1,Admitido
+S00321,24/09/2025,Electrica,Presencial,32,Soltero,"3,67",3.6,381,-999.0,5.0,1,Admitido
+S00053,29/11/2025,Sistemas,Virtual,30,union libre,"3,71",0.9,365,2290000.0,3.5,1,Admitido
+S00018,16/09/2025,Electrica,Presencial,35,soltero,"4,24",6.3,361,4800000.0,3.1,1,Admitido
+S00398,19/11/2025,Sistemas,Presencial,26,Casado,"3,36",5.0,339,3740000.0,,1,Admitido
+S00051,27/09/2025,Sistemas,Virtual,25,Casado,"3,70",,289,5310000.0,4.0,1,Admitido
+S00192,01/12/2025,Industrial,Presencial,34,Casado,"3,44",4.8,293,4640000.0,,1,Admitido
+S00116,24/11/2025,Industrial,Presencial,24,Soltero,"3,25",4.5,403,1000000.0,,1,Admitido
+S90007,27/09/2025,Sistemas,Virtual,25,Casado,"3,70",,289,5310000.0,4.0,1,Admitido
+S00464,06/09/2025,Sistemas,Virtual,33,Casado,"3,93",1.9,383,2790000.0,,1,Admitido
+S00545,23/10/2025,Industrial,Presencial,31,Soltero,"3,30",5.8,311,3900000.0,,0,No admitido
+S00592,21/10/2025,Industrial,Presencial,27,Soltero,"3,64",2.2,223,1160000.0,,0,No admitido
+S00054,20/12/2025,Sistemas,Presencial,38,Unión libre,"3,97",7.0,248,1690000.0,2.4,0,No admitido
+S00058,26/12/2025,Sistemas,Presencial,36, SOLTERO,"4,35",3.7,260,1950000.0,3.3,0,No admitido
+S00241,15/09/2025,Sistemas,Presencial,38,Casado,"3,73",8.2,349,1040000.0,4.8,1,Admitido
+S00524,26/09/2025,Industrial,Presencial,25,Soltero,"3,52",3.4,334,1840000.0,5.0,1,Admitido
+S00031,31/10/2025,Industrial,Presencial,27,Soltero,"3,84",1.1,319,3990000.0,,1,Admitido
+S00282,16/10/2025,Sistemas,Presencial,33,soltero,"4,51",2.9,347,1460000.0,,1,Admitido
+S00056,29/11/2025,Sistemas,Virtual,26,Soltero,"4,35",4.6,296,1620000.0,3.4,1,Admitido
+S00382,26/09/2025,Sistemas,Presencial,31,Soltero,"3,37",5.5,259,1000000.0,,0,No admitido
+S00453,12/09/2025,Electrica,Presencial,27,Casado,"4,55",2.6,265,1000000.0,,1,Admitido
+S00023,07/10/2025,Industrial,Virtual,39,Casado,"3,78",3.5,320,4000000.0,,1,Admitido
+S00380,23/12/2025,Electrica,Virtual,29,Soltero,"3,66",,308,-999.0,,1,Admitido
+S00215,08/09/2025,Electrica,Presencial,21,Soltero ,"3,55",6.1,290,-999.0,,1,Admitido
+S00441,23/11/2025,Industrial,Presencial,25,Soltero ,"2,90",3.2,303,2960000.0,,0,No admitido
+S00052,17/09/2025,Industrial,Presencial,31,Casado,"3,57",4.8,357,2840000.0,,1,Admitido
+S00047,08/11/2025,Sistemas,Virtual,31,Soltero,"3,95",2.0,323,3700000.0,,1,Admitido
+S00210,16/11/2025,Sistemas,Virtual,22,Soltero,"4,37",6.5,242,2430000.0,,1,Admitido
+S00522,04/11/2025,Industrial,Presencial,29,Union libre,"4,09",1.8,338,1370000.0,3.5,1,Admitido
+S00141,19/11/2025,Industrial,Presencial,28,Soltero,"3,93",9.2,335,1180000.0,3.1,1,Admitido
+S00559,07/12/2025,Sistemas,Virtual,24,Casado,"4,14",3.9,304,1270000.0,,1,Admitido
+S00515,16/11/2025,Electrica,Virtual,32,Soltero,"3,57",5.0,331,1550000.0,3.7,1,Admitido
+S00443,08/10/2025,Sistemas,Presencial,32,Union libre,"3,42",4.5,386,2770000.0,,1,Admitido
+S00398,19/11/2025,Sistemas,Presencial,26,Casado,"3,36",5.0,339,3740000.0,,1,Admitido
+S00466,23/12/2025,Sistemas,Presencial,28,Casado,"3,50",1.1,345,1830000.0,4.0,1,Admitido
+S00467,08/11/2025,Electrica,Virtual,30,Soltero,"3,63",2.2,382,1270000.0,,1,Admitido
+S00253,03/12/2025,Sistemas,Presencial,33,Casado,"3,55",0.6,300,-999.0,,0,No admitido
+S00223,09/12/2025,Industrial,Virtual,32,Union libre,"4,50",6.9,347,3270000.0,,1,Admitido
+S00393,16/10/2025,Industrial,Virtual,29,Soltero,"3,87",1.5,274,4690000.0,,0,No admitido
+S00454,08/11/2025,Industrial,Presencial,27,Union libre,"3,99",4.4,276,5940000.0,4.2,0,No admitido
+S00098,20/09/2025,Sistemas,Presencial,21,CASADO ,"4,43",6.4,239,4880000.0,4.6,0,No admitido
+S00468,31/10/2025,Electrica,Presencial,29,Union libre,"4,76",5.6,297,1260000.0,3.6,1,Admitido
+S00562,07/11/2025,Sistemas,Presencial,29,soltero,"3,46",2.8,315,3920000.0,,1,Admitido
+S00459,14/11/2025,Industrial,Presencial,28,Soltero,"4,22",2.3,316,2240000.0,3.0,0,No admitido
+S00024,30/11/2025,Sistemas,Presencial,23,casado,"4,20",2.6,350,6610000.0,,1,Admitido
+S00488,19/11/2025,Industrial,Presencial,38,CASADO ,"3,74",4.6,326,1740000.0,,1,Admitido
+S00356,07/10/2025,Sistemas,Presencial,32,Casado,"3,13",3.8,332,2150000.0,3.9,1,Admitido
+S00293,12/11/2025,Electrica,Presencial,25,Soltero,"4,84",6.6,345,4630000.0,4.2,1,Admitido
+S00301,28/12/2025,Industrial,Presencial,28,Soltero,"3,82",2.9,377,2250000.0,4.0,1,Admitido
+S00581,15/12/2025,Electrica,Presencial,41,Soltero,"4,26",3.4,312,3090000.0,4.7,1,Admitido
+S00243,28/10/2025,Industrial,Presencial,30,Casado,"3,90",3.6,308,3890000.0,3.6,0,No admitido
+S00589,22/11/2025,Industrial,Presencial,23,Soltero,"3,34",4.3,306,-999.0,,1,Admitido
+S00307,02/12/2025,Sistemas,Presencial,26,Casado,"4,12",4.8,409,3850000.0,,1,Admitido
+S00285,27/11/2025,Industrial,Presencial,27,Casado,"3,76",3.0,230,1750000.0,,0,No admitido
+S00193,27/12/2025,Sistemas,Virtual,30,Soltero,"4,07",3.2,283,2410000.0,3.5,1,Admitido
+S00599,27/09/2025,Industrial,Presencial,30,Casado,"3,97",,229,-999.0,,0,No admitido
+S00083,01/12/2025,Industrial,Presencial,21,Soltero,"3,66",9.5,299,1800000.0,,1,Admitido
+S00577,11/11/2025,Industrial,Presencial,26,Soltero,"3,49",,323,2290000.0,4.7,1,Admitido
+S00233,06/12/2025,Electrica,Presencial,27,Soltero,"4,66",1.7,390,3800000.0,,1,Admitido
+S00402,02/09/2025,Electrica,Virtual,31,Union libre,"3,79",2.9,289,2370000.0,,1,Admitido
+S00039,09/11/2025,Electrica,Presencial,29,Union libre,"4,10",2.6,367,-999.0,,1,Admitido
+S00550,07/12/2025,Sistemas,Presencial,27,Soltero,"3,81",2.2,362,1440000.0,3.6,1,Admitido
+S00011,14/09/2025,Sistemas,Virtual,30,Soltero,"3,79",3.6,343,1600000.0,,1,Admitido
+S00566,30/10/2025,Electrica,Virtual,29, SOLTERO,"3,55",9.9,306,4810000.0,2.8,1,Admitido
+S00033,14/11/2025,Sistemas,Presencial,21,Union libre,"4,27",0.7,292,3320000.0,3.0,1,Admitido
+S00205,12/09/2025,Industrial,Virtual,33,Soltero,"4,51",2.6,291,3910000.0,,0,No admitido
+S00381,16/12/2025,Sistemas,Presencial,31,Soltero,"4,51",3.4,321,1400000.0,3.6,1,Admitido
+S00432,06/11/2025,Sistemas,Virtual,34,Casado,"3,75",0.7,263,4210000.0,,1,Admitido
+S00415,07/11/2025,Sistemas,Presencial,27,Casado,"3,70",4.3,311,3930000.0,3.8,1,Admitido
+S00026,06/12/2025,Industrial,Presencial,28,Casado,"3,94",4.7,340,1000000.0,,1,Admitido
+S00306,02/11/2025,Sistemas,Presencial,22,Union libre,"4,17",8.6,281,1380000.0,3.0,1,Admitido
+S00587,14/11/2025,Electrica,Presencial,32,Soltero,"4,61",,364,1830000.0,3.8,1,Admitido
+S00305,30/10/2025,Industrial,Presencial,32,Casado,"3,65",4.8,362,-999.0,,1,Admitido
+S00323,16/09/2025,Industrial,Presencial,30,CASADO ,"3,68",,276,1570000.0,,0,No admitido
+S00455,18/09/2025,Industrial,Virtual,26,Soltero ,"3,58",3.1,353,1500000.0,,1,Admitido
+S00581,15/12/2025,Electrica,Presencial,41,Soltero,"4,26",3.4,312,3090000.0,4.7,1,Admitido
+S00090,29/11/2025,Sistemas,Virtual,31,Casado,"3,46",1.6,293,2220000.0,,0,No admitido
+S00066,20/12/2025,Sistemas,Presencial,21,Union libre,"3,70",,381,2910000.0,,1,Admitido
+S00378,18/12/2025,Industrial,Virtual,21,CASADO ,"3,85",6.0,299,-999.0,,1,Admitido
+S00341,27/11/2025,Sistemas,Presencial,29,Soltero,"4,03",4.1,295,2580000.0,,1,Admitido
+S00194,15/12/2025,Industrial,Presencial,24,Casado,"4,09",9.4,324,4090000.0,3.7,1,Admitido
+S00290,11/11/2025,Electrica,Presencial,28,Soltero,"3,94",5.5,305,4860000.0,,1,Admitido
+S00431,20/11/2025,Industrial,Presencial,35,Soltero,"3,33",3.6,210,-999.0,4.9,0,No admitido
+S00337,06/11/2025,Industrial,Virtual,36,Soltero,"4,03",,322,2870000.0,4.0,0,No admitido
+S00229,07/12/2025,Electrica,Presencial,41,Casado,"3,89",2.8,310,1250000.0,4.2,1,Admitido
+S00358,13/12/2025,Industrial,Virtual,23,Soltero,"5,00",3.8,338,1630000.0,5.0,1,Admitido
+S00376,01/09/2025,Electrica,Virtual,210,Soltero,"3,80",2.7,418,1360000.0,,1,Admitido
+S00041,26/10/2025,Sistemas,Presencial,38,Unión libre,"3,84",4.2,378,3650000.0,4.5,1,Admitido
+S00450,11/11/2025,Electrica,Presencial,30,Casado,"4,02",0.0,264,2200000.0,,1,Admitido
+S00236,07/11/2025,Sistemas,Presencial,31,Casado,"4,36",4.8,323,8120000.0,,1,Admitido
+S00319,09/09/2025,Sistemas,Presencial,21,Soltero,"3,43",4.1,290,1540000.0,,1,Admitido
+S00173,17/10/2025,Industrial,Presencial,31,Soltero,"3,64",2.9,249,1000000.0,2.9,0,No admitido
+S00278,08/09/2025,Industrial,Presencial,21,Soltero,"4,48",1.0,309,3500000.0,,1,Admitido
+S00526,02/12/2025,Industrial,Virtual,37,Union libre,"4,04",2.6,252,-999.0,3.8,0,No admitido
+S00573,12/10/2025,Electrica,Presencial,25,Soltero,"4,34",2.6,264,3150000.0,,1,Admitido
+S00330,01/12/2025,Sistemas,Virtual,29,casado,"4,48",7.6,312,1150000.0,5.0,1,Admitido
+S00245,19/10/2025,Sistemas,Presencial,21,Union libre,"3,53",3.0,369,-999.0,,1,Admitido
+S00057,06/12/2025,Electrica,Presencial,23,Soltero,"4,36",,257,2330000.0,,1,Admitido
+S00218,23/09/2025,Electrica,Presencial,30,Soltero,"4,15",5.6,293,3670000.0,,1,Admitido
+S00072,08/11/2025,Sistemas,Presencial,26, SOLTERO,"4,30",4.8,299,4140000.0,,1,Admitido
+S00417,01/11/2025,Electrica,Presencial,30,Union libre,"4,03",0.0,330,1550000.0,,1,Admitido
+S00405,06/10/2025,Sistemas,Presencial,30,Soltero,"3,13",5.8,380,1830000.0,5.0,1,Admitido
+S00091,21/12/2025,Sistemas,Presencial,31,Soltero,"3,93",2.0,269,2460000.0,,0,No admitido
+S00167,29/10/2025,Industrial,Presencial,21,Union libre,"3,53",6.7,368,2510000.0,,1,Admitido
+S00286,20/09/2025,Sistemas,Presencial,29,Unión libre,"3,89",5.1,275,2910000.0,,1,Admitido
+S00171,24/12/2025,Industrial,Virtual,23,Soltero,"3,30",4.8,209,-999.0,,0,No admitido
+S00055,04/09/2025,Sistemas,Presencial,25,Soltero,"4,12",1.7,287,1000000.0,4.9,1,Admitido
+S00395,09/12/2025,Sistemas,Virtual,24,Soltero,"3,60",5.1,217,1450000.0,,0,No admitido
+S00331,11/12/2025,Industrial,Presencial,21,Soltero,"3,75",2.5,347,3160000.0,,1,Admitido
+S00246,08/11/2025,Sistemas,Presencial,25,Soltero,"3,94",6.8,-,3370000.0,3.8,1,Admitido
+S00067,18/12/2025,Sistemas,Virtual,30,Soltero,"3,46",,369,-999.0,5.0,1,Admitido
+S00272,07/11/2025,Sistemas,Presencial,34,Soltero,"4,16",5.0,350,3880000.0,,1,Admitido
+S00379,21/11/2025,Industrial,Presencial,34,CASADO ,"3,39",2.2,294,1000000.0,,1,Admitido
+S00426,16/11/2025,Electrica,Presencial,31, SOLTERO,"3,70",3.0,288,1490000.0,,1,Admitido
+S00544,20/10/2025,Industrial,Presencial,21,casado,"4,18",1.2,251,2720000.0,3.8,0,No admitido
+S00560,30/11/2025,Sistemas,Presencial,32,Soltero,"3,75",9.1,295,-999.0,4.5,1,Admitido
+S00121,21/10/2025,Sistemas,Presencial,28,Soltero,"4,57",4.6,348,4950000.0,,1,Admitido
+S00320,26/09/2025,Industrial,Virtual,32,Casado,"3,68",,255,2180000.0,,1,Admitido
+S00088,27/11/2025,Sistemas,Presencial,26,Soltero,"4,18",1.8,334,4350000.0,,0,No admitido
+S00189,20/12/2025,Sistemas,Presencial,31,Casado,"3,99",4.2,341,3630000.0,4.1,1,Admitido
+S00344,04/11/2025,Industrial,Virtual,36,Casado,"3,58",,244,2350000.0,3.1,0,No admitido
+S00174,13/12/2025,Sistemas,Virtual,21,Casado,"3,07",5.2,359,5030000.0,,1,Admitido
+S00490,09/09/2025,Electrica,Presencial,21, SOLTERO,"4,02",2.5,395,1810000.0,,1,Admitido
+S00478,16/12/2025,Industrial,Virtual,21,Union libre,"3,97",,317,2280000.0,,1,Admitido
+S00531,18/12/2025,Sistemas,Presencial,30,Soltero,"3,99",1.9,280,-999.0,3.8,1,Admitido
+S00440,28/09/2025,Sistemas,Presencial,210,Casado,"4,30",6.2,407,-999.0,,1,Admitido
+S00119,16/12/2025,Sistemas,Virtual,29,Soltero,"4,37",0.4,231,2530000.0,4.5,1,Admitido
+S00120,28/10/2025,Electrica,Presencial,21,Soltero,"4,10",,321,1000000.0,,1,Admitido
+S00329,19/09/2025,Sistemas,Virtual,22,Soltero,"4,18",2.2,293,-999.0,,1,Admitido
+S00455,18/09/2025,Industrial,Virtual,26,Soltero ,"3,58",3.1,353,1500000.0,,1,Admitido
+S00244,08/11/2025,Industrial,Presencial,32,Soltero,"4,54",5.9,395,1810000.0,,1,Admitido
+S00139,01/10/2025,Industrial,Presencial,29,casado,"3,60",1.1,283,4340000.0,,0,No admitido
+S00146,14/11/2025,Electrica,Presencial,30,Soltero,"3,97",6.5,291,2280000.0,,1,Admitido
+S00149,06/10/2025,Industrial,Virtual,30,Casado,"4,45",3.8,392,1910000.0,,1,Admitido
+S00345,14/12/2025,Sistemas,Presencial,32,Casado,"3,79",10.5,296,1830000.0,4.3,1,Admitido
+S00529,07/12/2025,Sistemas,Virtual,21,Soltero ,"3,65",2.6,286,1160000.0,,0,No admitido
+S00163,26/12/2025,Electrica,Presencial,31,Soltero,"3,97",1.5,278,7430000.0,4.2,0,No admitido
+S00598,29/09/2025,Industrial,Virtual,23,Casado,"3,53",,291,3690000.0,,1,Admitido
+S00115,06/12/2025,Sistemas,Presencial,32,Soltero,"3,35",7.8,344,3320000.0,4.0,1,Admitido
+S90005,28/10/2025,Sistemas,Presencial,23,Casado,"3,97",,296,1000000.0,,1,Admitido
+S00151,17/09/2025,Sistemas,Presencial,29,Soltero,"3,86",2.6,281,3160000.0,3.5,0,No admitido
+S00584,07/11/2025,Sistemas,Presencial,26,Soltero,"3,88",4.9,326,1230000.0,,1,Admitido
+S00391,10/12/2025,Industrial,Presencial,27,Soltero,"4,26",4.5,285,2010000.0,,1,Admitido
+S00383,21/11/2025,Industrial,Virtual,37,Soltero,"3,39",,221,7780000.0,,0,No admitido
+S00032,04/10/2025,Sistemas,Virtual,30,Soltero,"4,22",6.6,308,4330000.0,,1,Admitido
+S00569,19/12/2025,Sistemas,Presencial,34,Union libre,"4,35",,265,3330000.0,4.1,1,Admitido
+S00222,02/10/2025,Sistemas,Presencial,26,casado,"4,52",4.6,352,1180000.0,4.3,0,No admitido
+S00336,07/10/2025,Sistemas,Presencial,39,Casado,"4,56",1.4,353,1000000.0,3.7,1,Admitido
+S00021,15/09/2025,Sistemas,Presencial,31,Soltero,"4,43",7.4,416,-999.0,,1,Admitido
+S00474,23/09/2025,Industrial,Presencial,29,Casado,"3,93",4.0,270,1000000.0,3.4,0,No admitido
+S00114,23/11/2025,Electrica,Virtual,30, SOLTERO,"3,23",3.3,316,3720000.0,,1,Admitido
+S00373,31/10/2025,Electrica,Virtual,29,Soltero,"4,23",2.9,328,71580000.0,,1,Admitido
+S00001,31/10/2025,Industrial,Virtual,32,Casado,"4,53",2.9,273,1880000.0,,1,Admitido
+S00257,28/10/2025,Sistemas,Presencial,23,Casado,"3,97",,296,1000000.0,,1,Admitido
+S00446,09/09/2025,Industrial,Presencial,27,Soltero,"3,49",,364,3850000.0,,1,Admitido
+S00314,23/12/2025,Industrial,Presencial,36,Soltero,"4,20",1.2,309,1650000.0,,1,Admitido
+S00075,18/09/2025,Sistemas,Presencial,28,casado,"3,57",0.7,196,4060000.0,,0,No admitido
+S00359,24/09/2025,Sistemas,Presencial,35,Casado,"3,05",1.1,295,3200000.0,,1,Admitido
+S00541,28/12/2025,Electrica,Presencial,26,Casado,"3,89",2.5,393,5200000.0,,1,Admitido
+S00003,17/09/2025,Industrial,Presencial,29,Casado,"3,71",6.3,348,2300000.0,,1,Admitido
+S00593,29/09/2025,Electrica,Virtual,27,Union libre,"3,53",0.1,344,4080000.0,,0,No admitido
+S00059,14/12/2025,Electrica,Presencial,22,Casado,"4,42",4.7,314,2340000.0,,1,Admitido
+S00520,15/09/2025,Industrial,Presencial,30,Casado,"3,84",4.4,353,1020000.0,4.5,1,Admitido
+S00404,05/11/2025,Industrial,Presencial,26,Soltero,"3,86",0.2,-,1810000.0,,0,No admitido
+S00340,26/12/2025,Sistemas,Presencial,30,Soltero,"3,57",3.7,265,6090000.0,,1,Admitido
+S00005,01/10/2025,Sistemas,Presencial,25,Casado,"3,69",6.3,295,7230000.0,,0,No admitido
+S00279,28/11/2025,Industrial,Presencial,23,Soltero,"3,57",0.1,325,3500000.0,,1,Admitido
+S00081,21/11/2025,Sistemas,Presencial,31,Casado,"3,37",1.6,332,2560000.0,3.8,1,Admitido
+S00027,03/09/2025,Industrial,Virtual,28,Soltero,"3,63",0.5,318,3090000.0,,1,Admitido
+S00217,28/10/2025,Electrica,Presencial,23,Soltero,"5,00",3.2,305,2770000.0,,1,Admitido
+S00411,17/11/2025,Industrial,Virtual,24,Union libre,"4,13",0.3,346,2640000.0,,1,Admitido
+S00512,16/11/2025,Industrial,Presencial,26,Soltero,"2,95",5.5,223,2070000.0,,0,No admitido
+S00148,19/10/2025,Sistemas,Presencial,30,Casado,"3,26",1.1,379,1830000.0,,1,Admitido
+S00015,26/10/2025,Industrial,Presencial,35, SOLTERO,"4,12",4.3,289,1850000.0,4.2,1,Admitido
+S00175,28/11/2025,Sistemas,Presencial,21,Soltero,"3,28",8.6,240,1960000.0,4.3,1,Admitido
+S00087,10/12/2025,Industrial,Virtual,32,Soltero,"3,55",3.4,317,2140000.0,,1,Admitido
+S00166,16/12/2025,Industrial,Virtual,30,Casado,"4,01",5.6,271,2940000.0,,1,Admitido
+S00540,13/09/2025,Industrial,Presencial,30,Soltero,"3,92",2.8,358,3480000.0,,1,Admitido
+S00060,28/12/2025,Industrial,Presencial,33,Casado,"4,13",4.4,301,3380000.0,,1,Admitido
+S00534,21/12/2025,Industrial,Presencial,27,Soltero,"4,29",,292,2560000.0,,1,Admitido
+S00165,23/11/2025,Industrial,Presencial,32,Soltero,"4,02",0.4,288,4390000.0,3.4,0,No admitido
+S00361,20/09/2025,Sistemas,Presencial,32,Soltero,"4,01",3.3,306,2800000.0,,1,Admitido
+S00042,16/12/2025,Electrica,Virtual,26,soltero,"3,22",0.6,278,-999.0,3.2,0,No admitido
+S00347,09/10/2025,Electrica,Presencial,25,Soltero,"4,04",,288,6630000.0,,1,Admitido
+S00080,25/10/2025,Sistemas,Virtual,33,Soltero,"3,65",2.8,233,3530000.0,,1,Admitido
+S00368,22/12/2025,Electrica,Presencial,34,Soltero,"3,67",3.1,344,1370000.0,,1,Admitido
+S00029,02/11/2025,Industrial,Presencial,33,Casado,"3,12",6.2,368,1000000.0,,1,Admitido
+S00481,18/10/2025,Sistemas,Virtual,22, SOLTERO,"3,80",1.9,-,7370000.0,,0,No admitido
+S00407,23/10/2025,Industrial,Presencial,38,Union libre,"4,19",,,1510000.0,,1,Admitido
+S00542,04/10/2025,Industrial,Virtual,24,Casado,"3,46",3.7,332,-999.0,4.3,1,Admitido
+S00352,20/11/2025,Sistemas,Presencial,29,Soltero,"3,70",6.4,255,1300000.0,,0,No admitido
+S00085,20/12/2025,Electrica,Presencial,35,Soltero,"3,95",3.1,330,6050000.0,,1,Admitido
+S00063,09/12/2025,Industrial,Presencial,33,Casado,"3,98",4.3,333,-999.0,,1,Admitido
+S00600,02/12/2025,Sistemas,Presencial,25,Union libre,"3,90",3.6,269,1700000.0,,1,Admitido
+S00137,12/12/2025,Electrica,Presencial,44,Casado,"3,18",7.1,354,1350000.0,,0,No admitido
+S00112,07/11/2025,Electrica,Presencial,28,Soltero,"4,49",8.0,298,3200000.0,3.9,1,Admitido
+S00195,09/09/2025,Sistemas,Presencial,29,union libre,"3,58",,223,2710000.0,,0,No admitido
+S00480,02/11/2025,Sistemas,Virtual,23,Casado,"3,24",2.4,335,4670000.0,,0,No admitido
+S00044,18/12/2025,Electrica,Virtual,21,Casado,"3,24",0.7,393,2460000.0,,0,No admitido
+S00396,27/09/2025,Sistemas,Virtual,32,Soltero,"4,68",,313,2460000.0,,1,Admitido
+S00130,24/12/2025,Sistemas,Presencial,32,CASADO ,"3,14",3.7,232,1600000.0,,0,No admitido
+S00317,09/09/2025,Electrica,Virtual,34,union libre,"3,49",,260,1190000.0,,0,No admitido
+S00219,29/12/2025,Sistemas,Presencial,23,Soltero,"4,61",0.0,407,1790000.0,,1,Admitido
+S00097,03/10/2025,Sistemas,Virtual,28,soltero,"3,55",3.5,349,2540000.0,,0,No admitido
+S00125,12/09/2025,Industrial,Presencial,38,Soltero,"3,89",4.5,378,1870000.0,3.7,1,Admitido
+S00583,05/12/2025,Sistemas,Presencial,23,Soltero,"4,81",3.2,334,1470000.0,,1,Admitido
+S00227,03/10/2025,Industrial,Presencial,29,Casado,"2,92",5.7,358,1470000.0,4.0,0,No admitido
+S00178,14/10/2025,Electrica,Presencial,26,Soltero,"4,02",2.3,329,2880000.0,,1,Admitido
+S00493,28/09/2025,Electrica,Virtual,31,Union libre,"3,97",3.3,361,3200000.0,2.8,1,Admitido
+S00595,20/12/2025,Sistemas,Presencial,31,Union libre,"3,91",1.6,301,1660000.0,4.6,1,Admitido
+S00582,27/11/2025,Electrica,Presencial,40,Soltero,"3,57",3.3,365,2130000.0,,1,Admitido
+S00104,08/09/2025,Industrial,Virtual,32,union libre,"3,99",10.9,347,1770000.0,4.3,1,Admitido
+S00082,18/12/2025,Electrica,Presencial,28,Soltero,"4,70",5.4,342,1000000.0,4.3,1,Admitido
+S00360,18/11/2025,Industrial,Presencial,31,Soltero,"4,28",3.7,242,1230000.0,,1,Admitido
+S00507,07/10/2025,Sistemas,Presencial,22,Casado,"3,31",1.8,343,4890000.0,3.7,1,Admitido
+S00265,13/12/2025,Sistemas,Presencial,24,Union libre,"3,79",4.0,362,6610000.0,3.9,1,Admitido
+S00324,31/10/2025,Electrica,Presencial,30,Union libre,"3,77",4.8,296,2270000.0,4.3,1,Admitido
+S00228,11/12/2025,Industrial,Presencial,29,Soltero,"3,14",2.0,361,1730000.0,3.8,1,Admitido
+S00302,02/12/2025,Sistemas,Presencial,22,Casado,"3,41",10.4,,4100000.0,,0,No admitido
+S00276,16/12/2025,Industrial,Presencial,23,Soltero,"4,47",3.9,321,2120000.0,4.1,1,Admitido
+S00586,20/12/2025,Electrica,Virtual,23,Soltero,"4,19",3.6,,4330000.0,3.8,1,Admitido
+S00264,02/11/2025,Sistemas,Presencial,25,Soltero,"3,25",3.5,289,1850000.0,4.3,1,Admitido
+S00548,10/11/2025,Sistemas,Presencial,23,Soltero,"3,97",9.6,-,2580000.0,,1,Admitido
+S00491,14/12/2025,Sistemas,Presencial,27,Unión libre,"3,32",2.0,364,1980000.0,,0,No admitido
+S00254,02/09/2025,Sistemas,Presencial,30,Soltero,"4,15",3.9,-,1470000.0,4.2,0,No admitido
+S00172,26/12/2025,Industrial,Virtual,26, SOLTERO,"3,32",2.8,335,3370000.0,,0,No admitido
+S00238,08/09/2025,Sistemas,Virtual,36,Casado,"3,71",2.1,383,4500000.0,,1,Admitido
+S00412,03/12/2025,Industrial,Presencial,25,Union libre,"3,86",2.1,315,1000000.0,4.3,0,No admitido
+S00140,03/11/2025,Electrica,Presencial,24,Union libre,"4,11",4.4,341,2040000.0,4.0,1,Admitido
+S00304,01/11/2025,Industrial,Virtual,41,Union libre,"3,63",8.8,371,1950000.0,,1,Admitido
+S00268,03/09/2025,Sistemas,Presencial,44,Casado,"4,04",4.3,324,1240000.0,3.6,1,Admitido
+S00556,08/10/2025,Sistemas,Presencial,28,Casado,"3,57",1.2,400,1500000.0,,1,Admitido
+S00479,18/11/2025,Sistemas,Presencial,33,Union libre,"4,10",1.7,371,1920000.0,4.4,1,Admitido
+S00213,08/12/2025,Sistemas,Virtual,24,Casado,"3,36",1.1,314,2080000.0,,1,Admitido
+S00199,04/11/2025,Electrica,Virtual,35,Soltero,"3,72",5.6,248,3060000.0,,0,No admitido
+S00539,27/09/2025,Industrial,Virtual,22,Casado,"4,45",5.3,404,1810000.0,3.0,1,Admitido
+S00016,30/10/2025,Industrial,Virtual,36,Soltero,"4,23",5.2,336,1940000.0,4.8,1,Admitido
+S00164,19/11/2025,Sistemas,Presencial,36,Soltero,"4,22",2.1,365,1550000.0,,1,Admitido
+S00458,23/10/2025,Sistemas,Presencial,28,Casado,"3,97",5.1,339,1030000.0,,1,Admitido
+S00514,06/10/2025,Industrial,Presencial,26,Soltero,"3,25",,228,2660000.0,,0,No admitido
+S00430,30/10/2025,Industrial,Presencial,34,Soltero,"4,12",5.8,316,3290000.0,,1,Admitido
+S00038,14/09/2025,Sistemas,Presencial,39,Soltero,"3,75",3.0,387,1010000.0,,1,Admitido
+S00528,25/09/2025,Electrica,Presencial,26,Soltero,"4,37",6.5,414,1000000.0,5.0,1,Admitido
+S00207,23/09/2025,Electrica,Virtual,26,soltero,"4,95",5.7,,2500000.0,4.3,1,Admitido
+S00296,19/10/2025,Electrica,Virtual,33,Soltero,"3,05",0.6,332,-999.0,3.9,0,No admitido
+S90006,06/12/2025,Sistemas,Presencial,27,Soltero,"4,23",4.8,268,2210000.0,,0,No admitido
+S00074,18/09/2025,Industrial,Virtual,21,Casado,"2,82",,335,1340000.0,,1,Admitido
+S00409,08/12/2025,Sistemas,Presencial,31,Soltero,"4,01",3.3,374,1590000.0,,0,No admitido
+S00105,30/10/2025,Electrica,Presencial,35,Soltero,"3,60",2.0,278,1550000.0,,0,No admitido
+S00465,14/10/2025,Electrica,Presencial,25,Soltero,"3,41",5.8,326,3180000.0,,1,Admitido
+S00017,29/10/2025,Electrica,Presencial,24,union libre,"3,64",6.4,356,-999.0,5.0,0,No admitido
+S00092,22/10/2025,Electrica,Presencial,26,Soltero,"4,17",3.9,322,1000000.0,4.6,1,Admitido
+S00089,06/11/2025,Sistemas,Presencial,21,Soltero,"3,65",4.9,308,2120000.0,,1,Admitido
+S00434,24/11/2025,Industrial,Presencial,27,Union libre,"3,55",1.7,209,2910000.0,,0,No admitido
+S00206,24/11/2025,Sistemas,Virtual,32,Soltero,"2,93",4.4,375,3540000.0,4.5,0,No admitido
+S00103,24/10/2025,Sistemas,Presencial,26,Soltero,"4,38",1.8,365,1000000.0,,1,Admitido
+S00239,21/12/2025,Industrial,Presencial,27,Casado,"4,23",2.2,231,4360000.0,3.9,0,No admitido
+S00387,04/09/2025,Electrica,Presencial,33,Casado,"3,99",5.9,316,-999.0,,1,Admitido
+S00247,26/11/2025,Sistemas,Presencial,31,union libre,"3,47",5.4,192,2440000.0,,0,No admitido
+S00158,12/12/2025,Sistemas,Presencial,36,Soltero,"4,08",2.3,331,2770000.0,4.2,1,Admitido
+S00327,16/11/2025,Sistemas,Virtual,25,Casado,"4,06",,347,2170000.0,,1,Admitido
+S00134,09/09/2025,Sistemas,Presencial,39,Casado,"4,20",9.0,308,1240000.0,3.6,1,Admitido
+S00419,11/11/2025,Industrial,Presencial,28,Union libre,"3,88",3.7,293,2360000.0,,1,Admitido
+S00438,20/11/2025,Industrial,Presencial,29,Soltero,"3,72",4.6,305,-999.0,2.2,0,No admitido
+S00019,25/09/2025,Industrial,Virtual,33,Soltero,"4,34",2.5,301,2900000.0,,1,Admitido
+S00535,14/11/2025,Industrial,Virtual,37,Soltero ,"3,91",,256,2760000.0,,0,No admitido
+S00150,19/10/2025,Electrica,Presencial,32,Casado,"4,61",5.6,258,4020000.0,4.4,1,Admitido
+S00462,20/12/2025,Industrial,Presencial,38,Soltero,"4,33",1.9,352,-999.0,,1,Admitido
+S00275,24/09/2025,Sistemas,Presencial,36,Soltero,"3,70",2.2,335,2720000.0,,0,No admitido
+S00485,07/09/2025,Sistemas,Presencial,22,Soltero,"4,22",1.1,290,1600000.0,,1,Admitido
+S00549,11/09/2025,Industrial,Presencial,27,Union libre,"2,92",2.4,326,3610000.0,3.1,0,No admitido
+S00312,08/10/2025,Sistemas,Virtual,41,Soltero,"4,28",7.2,,-999.0,3.6,1,Admitido
+S00424,12/10/2025,Industrial,Presencial,29,Casado,"3,66",3.1,243,2270000.0,,1,Admitido
+S00133,28/11/2025,Sistemas,Virtual,31,Soltero,"3,93",0.0,398,48720000.0,,1,Admitido
+S00269,15/10/2025,Sistemas,Presencial,21,Soltero,"3,25",0.8,399,1390000.0,3.3,1,Admitido
+S00035,16/11/2025,Industrial,Virtual,28,Soltero,"3,77",2.4,259,8920000.0,,0,No admitido
+S00182,11/09/2025,Electrica,Presencial,32,Soltero,"4,23",2.7,244,-999.0,3.4,0,No admitido
+S00185,09/12/2025,Electrica,Virtual,32,Casado,"4,57",6.3,293,2790000.0,3.1,0,No admitido
+S00208,11/12/2025,Electrica,Presencial,24,Casado,"3,38",6.5,264,2610000.0,,1,Admitido
+S00579,01/09/2025,Industrial,Presencial,34,Casado,"3,27",1.1,307,3150000.0,3.8,0,No admitido
+S00095,20/11/2025,Sistemas,Presencial,26,Union libre,"3,81",4.2,352,-999.0,,1,Admitido
+S00532,19/10/2025,Sistemas,Presencial,33,Casado,"4,28",6.0,317,1070000.0,,1,Admitido
+S00564,19/10/2025,Sistemas,Presencial,21,Soltero,"4,79",6.2,328,2070000.0,,1,Admitido
+S00354,14/10/2025,Industrial,Presencial,25,Soltero,"4,09",3.2,329,1710000.0,3.6,1,Admitido
+S00123,20/11/2025,Electrica,Virtual,36,Soltero,"3,81",7.4,363,1610000.0,3.4,1,Admitido
+S00370,09/12/2025,Sistemas,Virtual,35,Soltero,"3,66",1.0,330,3300000.0,,1,Admitido
+S00494,23/09/2025,Industrial,Virtual,35,Soltero,"3,91",3.8,370,4230000.0,,1,Admitido
+S00365,02/09/2025,Industrial,Presencial,26,CASADO ,"3,92",6.7,292,2500000.0,,1,Admitido
+S00079,05/10/2025,Industrial,Virtual,26,Casado,"4,35",,303,3910000.0,,1,Admitido
+S00351,01/10/2025,Sistemas,Presencial,23,Soltero,"4,16",5.1,305,2400000.0,,1,Admitido
+S00062,03/11/2025,Industrial,Presencial,28,soltero,"3,79",4.2,-,2610000.0,,0,No admitido
+S00252,25/11/2025,Industrial,Presencial,28,Soltero,"4,05",7.4,449,5740000.0,,1,Admitido
+S00126,31/10/2025,Sistemas,Presencial,33,Casado,"3,92",4.1,325,1490000.0,3.3,1,Admitido
+S00588,28/09/2025,Electrica,Presencial,23,Soltero,"4,05",4.5,218,2740000.0,4.5,0,No admitido
+S00460,14/12/2025,Sistemas,Virtual,27,soltero,"3,50",3.7,-,-999.0,,0,No admitido
+S00338,26/12/2025,Sistemas,Presencial,21,Soltero,"4,17",3.1,325,-999.0,3.4,1,Admitido
+S00348,04/10/2025,Electrica,Virtual,27,Soltero,"3,24",3.5,311,1000000.0,,0,No admitido
+S00509,16/10/2025,Sistemas,Virtual,25,Union libre,"3,71",,305,1000000.0,,1,Admitido
+S00563,28/10/2025,Industrial,Virtual,37,Soltero,"3,59",,-,1090000.0,,1,Admitido
+S00408,16/11/2025,Electrica,Presencial,30,Soltero,"3,64",2.0,266,1160000.0,,1,Admitido
+S00068,08/10/2025,Sistemas,Virtual,29,Soltero,"4,46",1.8,237,-999.0,3.1,1,Admitido
+S00025,21/09/2025,Sistemas,Virtual,32,Soltero ,"3,28",7.3,317,2270000.0,,1,Admitido
+S00501,09/10/2025,Sistemas,Virtual,23,Soltero,"4,49",2.9,298,7570000.0,3.9,1,Admitido
+S00106,24/11/2025,Sistemas,Presencial,30,Unión libre,"3,62",1.6,259,1940000.0,,1,Admitido
+S90003,11/11/2025,Sistemas,Presencial,26,Casado,"4,54",2.0,346,1000000.0,3.6,1,Admitido
+S00127,19/11/2025,Sistemas,Virtual,26,Union libre,"3,63",4.0,262,2990000.0,,0,No admitido
+S00554,11/09/2025,Sistemas,Virtual,30,Soltero,"2,85",6.3,293,3610000.0,,0,No admitido
+S00335,26/11/2025,Electrica,Presencial,33,Union libre,"4,34",7.5,406,1130000.0,,1,Admitido
+S00492,18/12/2025,Sistemas,Presencial,31,Casado,"3,46",3.8,356,1530000.0,,1,Admitido
+S00179,09/12/2025,Industrial,Virtual,21,Soltero,"4,69",,315,1960000.0,4.3,1,Admitido
+S00553,06/12/2025,Sistemas,Presencial,31,CASADO ,"3,89",7.4,289,2600000.0,,1,Admitido
+S00571,25/10/2025,Electrica,Presencial,35,Union libre,"3,55",7.5,291,1640000.0,,1,Admitido
+S00136,02/09/2025,Sistemas,Presencial,41,Soltero,"4,17",2.7,260,3710000.0,,1,Admitido
+S00224,16/09/2025,Industrial,Presencial,37,Soltero,"3,84",2.8,365,1430000.0,,1,Admitido
+S00440,28/09/2025,Sistemas,Presencial,210,Casado,"4,30",6.2,407,-999.0,,1,Admitido
+S00574,17/09/2025,Electrica,Virtual,26,Casado,"4,32",1.8,232,5490000.0,4.6,1,Admitido
+S00518,19/12/2025,Industrial,Presencial,37,soltero,"3,27",4.9,383,1490000.0,,1,Admitido
+S00094,17/12/2025,Industrial,Presencial,30,Soltero,"3,99",4.0,299,2850000.0,,1,Admitido
+S00502,17/09/2025,Electrica,Virtual,34,casado,"4,20",5.2,254,2610000.0,3.4,0,No admitido
+S00070,10/10/2025,Sistemas,Presencial,34,soltero,"3,94",3.4,327,3560000.0,3.5,1,Admitido
+S00037,09/12/2025,Sistemas,Presencial,31,soltero,"4,02",5.6,387,2140000.0,,1,Admitido
+S00297,19/09/2025,Electrica,Virtual,30,Soltero,"3,32",4.5,330,1960000.0,3.1,0,No admitido
+S00161,16/10/2025,Sistemas,Presencial,28,soltero,"3,33",3.8,292,3890000.0,,0,No admitido
+S00363,25/12/2025,Sistemas,Presencial,27,Union libre,"4,44",4.0,340,2780000.0,,1,Admitido
+S00012,15/09/2025,Sistemas,Virtual,24,Union libre,"3,49",0.5,267,1390000.0,,0,No admitido
+S00145,16/10/2025,Sistemas,Virtual,34,Soltero,"4,50",5.1,292,3080000.0,,1,Admitido
+S00406,16/11/2025,Electrica,Presencial,24,Soltero ,"3,29",3.4,317,1670000.0,,0,No admitido
+S00519,11/09/2025,Sistemas,Virtual,31,Union libre,"3,43",,393,-999.0,4.2,0,No admitido
+S00128,11/09/2025,Sistemas,Virtual,34,Unión libre,"3,84",4.1,281,1760000.0,4.4,0,No admitido
+S00471,05/10/2025,Sistemas,Presencial,32,Soltero,"3,61",1.1,345,1350000.0,4.6,0,No admitido
+S00303,29/11/2025,Industrial,Virtual,30,Soltero,"3,70",,258,2540000.0,,1,Admitido
+S00010,27/10/2025,Industrial,Presencial,30,Soltero,"3,06",,331,2020000.0,4.6,0,No admitido
+S00061,19/09/2025,Industrial,Presencial,37,Soltero,"3,21",1.5,236,53600000.0,,0,No admitido
+S00177,20/11/2025,Industrial,Presencial,30,Soltero ,"3,93",8.0,324,-999.0,,1,Admitido
+S00232,29/12/2025,Industrial,Presencial,21,Union libre,"3,80",8.8,284,2030000.0,,1,Admitido
+S00211,18/11/2025,Sistemas,Virtual,22,soltero,"4,26",,343,5350000.0,,1,Admitido
+S00129,24/09/2025,Sistemas,Presencial,28,Soltero,"4,53",8.6,241,1040000.0,,1,Admitido
+S00144,11/10/2025,Electrica,Presencial,34,Casado,"3,94",6.2,316,1000000.0,4.6,1,Admitido
+S00242,02/12/2025,Sistemas,Presencial,30,Soltero,"3,30",6.9,251,-999.0,,1,Admitido
+S00008,23/09/2025,Electrica,Presencial,28, SOLTERO,"3,85",5.0,402,-999.0,,1,Admitido
+S90002,01/12/2025,Sistemas,Virtual,28,Casado,"4,84",,307,1490000.0,,1,Admitido
+S00299,20/12/2025,Industrial,Presencial,21,Soltero,"3,45",3.4,334,2360000.0,,1,Admitido
+S00311,11/12/2025,Industrial,Virtual,27,Soltero,"3,81",4.7,208,2420000.0,2.9,0,No admitido
+S00255,19/12/2025,Sistemas,Virtual,30,Soltero,"3,71",,321,3260000.0,,0,No admitido
+S00429,23/10/2025,Industrial,Virtual,28,Union libre,"3,36",3.6,234,1670000.0,,0,No admitido
+S00533,27/09/2025,Sistemas,Presencial,28,Soltero,"3,99",,300,1200000.0,,1,Admitido
+S00576,28/09/2025,Sistemas,Presencial,31, SOLTERO,"4,34",2.3,323,3260000.0,4.1,0,No admitido
+S00009,04/12/2025,Electrica,Virtual,27,Soltero,"3,82",4.4,282,1550000.0,,0,No admitido
+S00157,28/11/2025,Sistemas,Presencial,21,Casado,"4,38",6.5,358,4400000.0,,1,Admitido
+S00028,23/11/2025,Electrica,Presencial,35,casado,"3,70",8.5,344,1610000.0,,1,Admitido
+S00437,29/11/2025,Industrial,Presencial,22,Soltero,"3,68",1.6,313,1050000.0,,1,Admitido
+S00267,30/10/2025,Electrica,Presencial,29,Casado,"3,89",2.7,265,1200000.0,4.1,1,Admitido
+S00315,04/11/2025,Sistemas,Presencial,25,Soltero,"3,84",5.5,262,2870000.0,4.1,1,Admitido
+S00065,06/12/2025,Sistemas,Presencial,27,Soltero,"4,23",4.8,268,2210000.0,,0,No admitido
+S00483,11/09/2025,Sistemas,Virtual,42,casado,"3,75",,343,3730000.0,,1,Admitido
+S00256,05/11/2025,Industrial,Presencial,21,Union libre,"4,19",7.5,296,2930000.0,4.1,1,Admitido
+S00473,13/12/2025,Electrica,Presencial,21,Soltero,"4,13",3.6,,4190000.0,,1,Admitido
+S00154,11/11/2025,Industrial,Presencial,33,Soltero,"4,22",2.4,278,1110000.0,,1,Admitido
+S00049,27/10/2025,Industrial,Presencial,28,Soltero,"4,12",6.8,271,2220000.0,3.2,0,No admitido
+S00209,20/12/2025,Electrica,Presencial,28,Soltero,"4,25",4.0,332,2430000.0,,1,Admitido
+S00469,20/10/2025,Sistemas,Presencial,24,Soltero,"3,68",3.1,388,3210000.0,,0,No admitido
+S00288,02/12/2025,Industrial,Presencial,32,Casado,"3,56",,389,1230000.0,2.9,1,Admitido
+S00002,09/11/2025,Electrica,Virtual,22,Casado,"2,93",,293,2230000.0,,1,Admitido
+S00428,15/10/2025,Sistemas,Presencial,24,Soltero ,"3,89",6.9,363,1670000.0,,1,Admitido
+S00342,15/09/2025,Sistemas,Presencial,26,Union libre,"3,48",4.6,300,2590000.0,3.1,1,Admitido
+S00270,01/11/2025,Electrica,Presencial,29,Soltero,"3,51",2.0,380,2440000.0,3.6,1,Admitido
+S00266,02/11/2025,Sistemas,Presencial,25,Soltero,"3,45",4.0,-,2160000.0,,1,Admitido
+S00557,11/11/2025,Electrica,Presencial,32,Soltero,"4,22",4.9,278,1680000.0,,1,Admitido
+S00521,18/10/2025,Sistemas,Virtual,29,Soltero ,"4,10",5.5,417,2440000.0,3.5,1,Admitido
+S00497,02/09/2025,Electrica,Presencial,28,Casado,"3,50",,325,2180000.0,4.3,1,Admitido
+S00369,20/11/2025,Electrica,Presencial,23,Soltero,"3,90",4.8,357,2410000.0,,1,Admitido
+S00096,17/09/2025,Industrial,Presencial,31,Casado,"5,00",1.8,332,1200000.0,,1,Admitido
+S00591,12/12/2025,Industrial,Presencial,33,casado,"4,43",3.6,298,1780000.0,3.9,1,Admitido
+S00353,13/09/2025,Sistemas,Virtual,27,Soltero,"3,81",5.4,232,1990000.0,,0,No admitido
+S00043,08/12/2025,Industrial,Presencial,26,Casado,"3,49",4.2,308,2160000.0,3.0,1,Admitido
+S00362,07/10/2025,Industrial,Virtual,26,Union libre,"3,80",3.4,295,1570000.0,,1,Admitido
+S00472,21/12/2025,Sistemas,Virtual,31,Casado,"3,78",9.2,393,1020000.0,4.2,1,Admitido
+S00586,20/12/2025,Electrica,Virtual,23,Soltero,"4,19",3.6,,4330000.0,3.8,1,Admitido
+S00117,05/11/2025,Electrica,Presencial,27,Unión libre,"4,52",6.0,295,1300000.0,,1,Admitido
+S00425,08/11/2025,Sistemas,Virtual,27,Casado,"3,14",4.2,280,1000000.0,4.2,0,No admitido
+S00046,08/12/2025,Industrial,Virtual,30,Casado,"4,40",,348,3870000.0,,1,Admitido
+S00162,13/10/2025,Electrica,Presencial,32,Soltero ,"3,76",4.4,338,2750000.0,,1,Admitido
+S00543,22/12/2025,Industrial,Virtual,21,Union libre,"3,73",,307,1840000.0,,1,Admitido
+S00118,04/12/2025,Sistemas,Presencial,28,Soltero,"3,49",4.0,286,1900000.0,3.6,0,No admitido
+S00289,27/11/2025,Industrial,Presencial,26,Soltero,"4,05",3.4,321,5950000.0,4.0,0,No admitido
+S00078,17/09/2025,Electrica,Presencial,31,Soltero,"3,93",3.8,356,-999.0,,1,Admitido
+S00547,14/11/2025,Sistemas,Virtual,30,Union libre,"4,00",3.3,297,1410000.0,,1,Admitido
+S00390,22/11/2025,Industrial,Presencial,31,Soltero,"4,38",6.2,327,1060000.0,3.9,1,Admitido
+S90004,18/12/2025,Sistemas,Virtual,30,Soltero,"3,46",,369,-999.0,5.0,1,Admitido
+S00413,04/12/2025,Electrica,Presencial,30,Casado,"4,77",3.1,267,6650000.0,3.4,1,Admitido
+S00064,08/10/2025,Sistemas,Presencial,21,Casado,"3,69",3.6,256,2490000.0,3.3,1,Admitido
+S00339,27/09/2025,Industrial,Presencial,36,Soltero,"4,39",5.0,287,3410000.0,3.8,0,No admitido
+S00316,26/11/2025,Electrica,Presencial,24,Casado,"3,78",7.4,325,2120000.0,,0,No admitido
+S00300,02/11/2025,Sistemas,Presencial,40, SOLTERO,"4,07",5.3,243,69020000.0,3.3,1,Admitido
+S00400,24/11/2025,Industrial,Presencial,41,Soltero,"4,16",4.0,315,7230000.0,,1,Admitido
+S00231,29/09/2025,Sistemas,Virtual,25,Soltero,"3,78",6.8,175,5190000.0,,0,No admitido
+S00298,08/09/2025,Electrica,Presencial,36,Casado,"4,41",2.9,259,1240000.0,,1,Admitido
+S00187,29/10/2025,Sistemas,Virtual,33,Soltero,"3,36",,281,1000000.0,,1,Admitido
+S00504,16/11/2025,Industrial,Virtual,43,Soltero,"4,18",4.4,309,3260000.0,,1,Admitido
+S00200,11/12/2025,Industrial,Virtual,27,soltero,"4,02",,310,1420000.0,,1,Admitido
+S00421,27/12/2025,Industrial,Virtual,29,casado,"3,00",4.6,292,1440000.0,,0,No admitido
+S00366,17/10/2025,Industrial,Presencial,23, SOLTERO,"4,48",6.6,349,1280000.0,,1,Admitido
+S00511,23/09/2025,Industrial,Presencial,24,Union libre,"3,89",8.3,210,3390000.0,,0,No admitido
+S00397,17/09/2025,Industrial,Virtual,33,Union libre,"3,85",,309,2940000.0,,1,Admitido
+S00122,08/11/2025,Industrial,Virtual,22,Soltero,"4,27",6.5,298,2670000.0,,1,Admitido
+S00594,23/12/2025,Industrial,Presencial,34,Casado,"4,28",3.6,273,2470000.0,4.1,1,Admitido
+S00248,30/11/2025,Industrial,Presencial,32,Soltero,"3,37",5.3,304,2590000.0,,1,Admitido
+S00308,19/12/2025,Sistemas,Virtual,36,Soltero,"3,61",0.6,265,1910000.0,3.1,0,No admitido
+S00590,14/11/2025,Industrial,Virtual,27,CASADO ,"4,01",5.2,293,1360000.0,,1,Admitido
+S00477,24/11/2025,Industrial,Presencial,30,casado,"4,46",3.1,329,1000000.0,,1,Admitido
+S00364,19/09/2025,Industrial,Presencial,31,Union libre,"3,34",2.9,290,2280000.0,,0,No admitido
+S00159,30/09/2025,Sistemas,Presencial,27,Union libre,"3,44",2.7,320,4070000.0,,1,Admitido
+S00086,24/12/2025,Industrial,Presencial,28,Casado,"4,03",2.8,364,2790000.0,,1,Admitido
+S00470,28/11/2025,Industrial,Virtual,210,Soltero,"3,63",2.3,388,3290000.0,,1,Admitido
+S00226,17/09/2025,Sistemas,Virtual,34,Soltero,"3,78",4.1,268,2470000.0,,1,Admitido
+S00377,12/11/2025,Sistemas,Presencial,22,Soltero,"2,73",1.7,311,1510000.0,4.2,0,No admitido
+S00263,24/12/2025,Sistemas,Virtual,32,Casado,"3,66",2.7,331,67440000.0,,0,No admitido
+S00332,13/12/2025,Sistemas,Presencial,29,casado,"4,15",2.7,,1150000.0,,1,Admitido
+S00234,07/11/2025,Electrica,Presencial,28,Soltero,"4,40",,230,1360000.0,3.7,1,Admitido
+S00077,14/11/2025,Electrica,Presencial,25,Soltero,"3,44",6.9,255,2400000.0,,0,No admitido
+S00476,16/10/2025,Industrial,Virtual,25,Soltero,"3,94",,325,1370000.0,,1,Admitido
+S00546,17/12/2025,Sistemas,Presencial,27, SOLTERO,"4,12",0.0,214,-999.0,,0,No admitido
+S00422,18/11/2025,Industrial,Presencial,37,Casado,"3,78",5.5,313,3840000.0,,1,Admitido
+S00183,25/11/2025,Electrica,Presencial,28,Soltero,"3,76",3.1,289,4260000.0,,1,Admitido
+S00333,14/11/2025,Industrial,Virtual,28,Soltero,"4,99",2.3,287,2600000.0,,1,Admitido
+S00439,11/11/2025,Industrial,Virtual,21,Casado,"3,95",,274,1190000.0,,1,Admitido
+S00050,22/12/2025,Electrica,Virtual,25,Soltero,"4,38",,329,2640000.0,,1,Admitido
+S00006,20/11/2025,Electrica,Presencial,24,Soltero,"3,51",5.7,311,2840000.0,,1,Admitido
+S00235,02/11/2025,Sistemas,Presencial,50,Soltero,"3,83",,286,2710000.0,,0,No admitido
+S00487,25/09/2025,Sistemas,Presencial,30,Soltero ,"3,67",0.1,283,-999.0,,0,No admitido
+S00552,12/12/2025,Industrial,Presencial,21, SOLTERO,"3,53",3.8,249,2810000.0,,1,Admitido
+S00498,15/10/2025,Sistemas,Presencial,33,Casado,"3,83",5.0,304,1000000.0,,1,Admitido
+S00107,04/12/2025,Industrial,Presencial,21,Union libre,"4,06",4.2,311,1670000.0,,1,Admitido
+S00444,28/09/2025,Electrica,Presencial,25,Casado,"3,38",6.1,338,1320000.0,,1,Admitido
+S00489,03/09/2025,Electrica,Presencial,22,soltero,"3,75",2.7,356,2100000.0,,1,Admitido
+S00013,09/10/2025,Sistemas,Virtual,25,Casado,"3,62",,319,-999.0,4.8,1,Admitido
+S00191,23/12/2025,Sistemas,Virtual,26,Soltero,"3,27",,258,3560000.0,,0,No admitido
+S00283,16/09/2025,Sistemas,Presencial,26,Casado,"3,42",6.3,307,2650000.0,2.9,1,Admitido
+S00030,24/10/2025,Industrial,Presencial,23,Soltero,"3,48",3.2,300,1590000.0,4.0,0,No admitido
+S00170,19/10/2025,Electrica,Presencial,33,Soltero,"3,55",5.1,291,1010000.0,,1,Admitido
+S00181,24/12/2025,Electrica,Virtual,22,Soltero ,"3,56",2.6,350,2130000.0,2.9,1,Admitido
+S00101,06/09/2025,Electrica,Presencial,24,Soltero,"4,15",6.7,274,2850000.0,,1,Admitido
+S00198,10/10/2025,Sistemas,Presencial,29,Soltero,"3,10",3.5,302,1820000.0,4.1,0,No admitido
+S00496,19/09/2025,Sistemas,Presencial,24,Soltero,"3,61",5.7,341,1000000.0,,1,Admitido
+S00597,20/09/2025,Sistemas,Presencial,34,casado,"3,69",4.0,236,1940000.0,3.0,0,No admitido
+S00374,12/11/2025,Electrica,Presencial,29,casado,"3,31",5.1,313,1000000.0,,1,Admitido
+S00461,20/11/2025,Industrial,Virtual,43,Soltero,"3,76",2.1,339,2860000.0,,1,Admitido
+S00414,11/10/2025,Sistemas,Presencial,27, SOLTERO,"4,14",8.8,356,5450000.0,,1,Admitido
+S00132,21/12/2025,Industrial,Presencial,26,Union libre,"3,47",2.0,349,1250000.0,5.0,1,Admitido
+S00040,15/10/2025,Sistemas,Virtual,27,Soltero,"4,59",0.9,267,2860000.0,,1,Admitido
+S00435,12/12/2025,Electrica,Presencial,27,Union libre,"3,63",3.4,226,2810000.0,3.6,1,Admitido
+S00216,30/10/2025,Sistemas,Virtual,31,Soltero,"2,79",,318,1250000.0,3.8,0,No admitido
+S00475,05/10/2025,Industrial,Presencial,36,Soltero,"4,71",1.0,361,2320000.0,,1,Admitido
+S00457,14/09/2025,Industrial,Presencial,37,Soltero,"3,46",2.1,312,2080000.0,,0,No admitido
+S00261,10/10/2025,Sistemas,Presencial,25,Soltero,"3,68",3.3,,3520000.0,,1,Admitido
+S00036,14/11/2025,Sistemas,Presencial,30,Soltero,"3,50",3.8,344,1170000.0,,1,Admitido
+S00310,02/12/2025,Electrica,Presencial,28,Soltero,"3,97",1.6,363,2300000.0,2.5,1,Admitido
+S00277,08/12/2025,Sistemas,Virtual,29,Soltero ,"3,21",5.3,333,2670000.0,,0,No admitido
+S00394,01/09/2025,Industrial,Virtual,23,Casado,"3,80",1.1,312,1000000.0,,1,Admitido
+S00108,22/09/2025,Industrial,Presencial,25,Soltero,"4,09",4.0,289,2710000.0,3.6,0,No admitido
+S00578,06/12/2025,Industrial,Virtual,29,Union libre,"3,78",,406,-999.0,,1,Admitido
+S00525,25/11/2025,Industrial,Virtual,35,casado,"3,46",3.1,290,3840000.0,,1,Admitido
+S00048,24/09/2025,Industrial,Presencial,30,Casado,"3,21",2.5,303,1800000.0,,1,Admitido
+S00204,15/12/2025,Sistemas,Presencial,35,Union libre,"4,17",5.3,343,-999.0,,1,Admitido
+S00022,09/11/2025,Sistemas,Presencial,33,Soltero,"3,79",7.3,260,2670000.0,,1,Admitido
+S00403,28/12/2025,Sistemas,Presencial,23,Soltero,"3,56",2.3,230,3450000.0,,0,No admitido
+S00084,20/12/2025,Sistemas,Virtual,26,Soltero,"3,33",3.2,295,2390000.0,,0,No admitido
+S00131,04/11/2025,Electrica,Presencial,24,Casado,"3,96",8.1,322,2130000.0,,1,Admitido
+S00416,12/12/2025,Industrial,Presencial,31,Soltero,"4,17",2.3,318,1910000.0,,1,Admitido
+S00287,18/10/2025,Sistemas,Presencial,30,Casado,"3,23",3.8,375,1660000.0,,1,Admitido
+S00124,01/10/2025,Industrial,Presencial,37,casado,"3,77",7.2,311,2480000.0,,1,Admitido
+S00034,07/09/2025,Sistemas,Presencial,34,Soltero,"3,82",9.3,309,1260000.0,,1,Admitido
+S00517,01/10/2025,Sistemas,Presencial,29,Union libre,"3,36",5.0,289,3310000.0,3.2,0,No admitido
+S00020,26/12/2025,Electrica,Virtual,29,Casado,"4,33",,319,4140000.0,,0,No admitido
+S00568,02/09/2025,Industrial,Virtual,33,Soltero ,"3,42",4.2,N/D,1740000.0,,0,No admitido
+S00220,13/09/2025,Industrial,Presencial,29,Soltero,"3,47",3.8,310,1000000.0,3.1,0,No admitido
+S00482,17/12/2025,Sistemas,Presencial,27,Soltero,"3,82",1.9,332,1920000.0,,1,Admitido
+S00357,06/11/2025,Electrica,Presencial,21,Soltero,"4,17",3.7,291,1760000.0,,1,Admitido
+S00225,13/10/2025,Industrial,Virtual,26,Union libre,"3,34",,390,6090000.0,4.0,1,Admitido
+S00093,12/10/2025,Industrial,Presencial,27,Soltero,"3,58",5.4,296,3820000.0,,0,No admitido
+S00152,04/09/2025,Electrica,Virtual,32,Soltero,"3,76",,351,1310000.0,,1,Admitido
+S00576,28/09/2025,Sistemas,Presencial,31, SOLTERO,"4,34",2.3,323,3260000.0,4.1,0,No admitido
+S00318,07/10/2025,Sistemas,Virtual,32,Soltero,"3,47",,266,1530000.0,,1,Admitido
+S00449,01/10/2025,Industrial,Virtual,26,Casado,"3,90",4.7,321,3040000.0,,1,Admitido
+S00523,22/11/2025,Sistemas,Virtual,32,Soltero ,"3,43",,277,2990000.0,,0,No admitido
+S00280,18/09/2025,Electrica,Virtual,26,Soltero,"2,68",,287,1680000.0,,0,No admitido
+S00350,02/11/2025,Sistemas,Virtual,39,Union libre,"4,35",4.7,301,2820000.0,,1,Admitido
+S00375,05/10/2025,Sistemas,Presencial,32,Soltero,"4,14",1.0,316,1000000.0,,1,Admitido
+S00401,10/10/2025,Sistemas,Virtual,35,Union libre,"4,13",0.5,277,1660000.0,,1,Admitido
+S00258,10/12/2025,Industrial,Virtual,31,Casado,"3,97",3.9,306,2580000.0,3.8,1,Admitido
+S00073,05/12/2025,Electrica,Presencial,26,Soltero,"3,99",2.8,290,2290000.0,,1,Admitido
+S00196,18/10/2025,Industrial,Presencial,26,Union libre,"4,11",2.2,N/D,1000000.0,4.3,1,Admitido
+S00484,10/12/2025,Electrica,Presencial,26,Casado,"2,95",2.3,277,3770000.0,,0,No admitido
+S00138,18/10/2025,Industrial,Virtual,22,casado,"4,31",,328,2440000.0,,1,Admitido
+S00495,27/09/2025,Industrial,Presencial,21,Union libre,"3,69",3.9,293,1730000.0,,1,Admitido
+S00551,13/10/2025,Sistemas,Presencial,21,Unión libre,"4,12",2.3,294,1020000.0,,0,No admitido
+S00463,29/09/2025,Industrial,Virtual,32,Soltero,"3,64",5.4,349,1300000.0,,1,Admitido
+S00202,30/09/2025,Industrial,Presencial,21,casado,"2,95",4.4,335,1350000.0,4.0,0,No admitido
+S00313,01/11/2025,Industrial,Virtual,27,Casado,"4,97",4.0,307,1470000.0,,1,Admitido
+S00291,07/11/2025,Sistemas,Presencial,30,Union libre,"4,35",2.9,253,1970000.0,3.9,1,Admitido
+S00190,08/11/2025,Sistemas,Presencial,36,Soltero,"3,98",7.0,233,1830000.0,,1,Admitido
+S00113,15/09/2025,Sistemas,Presencial,32,Soltero,"3,92",1.4,,3830000.0,,0,No admitido
+S00184,15/09/2025,Industrial,Virtual,30,Union libre,"3,71",,275,4600000.0,3.8,1,Admitido
+S00153,21/09/2025,Industrial,Presencial,22,Casado,"3,17",3.2,,5360000.0,,0,No admitido
+S00326,11/11/2025,Sistemas,Presencial,26,Casado,"4,54",2.0,346,1000000.0,3.6,1,Admitido
+S00045,23/12/2025,Industrial,Presencial,35,Casado,"3,35",0.6,262,-999.0,4.3,0,No admitido
+S00445,16/10/2025,Sistemas,Presencial,27,Union libre,"3,48",1.2,,2510000.0,3.8,1,Admitido
+S00007,13/09/2025,Sistemas,Presencial,30,union libre,"3,82",7.5,320,1140000.0,,1,Admitido
+S00251,01/12/2025,Sistemas,Virtual,28,Casado,"4,84",,307,1490000.0,,1,Admitido
+S00076,25/10/2025,Electrica,Virtual,40,Casado,"3,66",2.4,211,2490000.0,,1,Admitido
+S00513,27/09/2025,Sistemas,Presencial,29,Casado,"4,06",2.2,379,1540000.0,,1,Admitido
+S00392,16/10/2025,Electrica,Presencial,27,Union libre,"3,85",1.8,257,-999.0,,1,Admitido
+S00433,09/11/2025,Industrial,Virtual,33,Union libre,"4,41",6.5,287,1000000.0,,1,Admitido
+S00069,06/12/2025,Electrica,Presencial,25,Soltero,"4,13",4.9,249,1110000.0,,1,Admitido
+S00168,21/09/2025,Industrial,Presencial,23,Casado,"3,31",2.9,304,1670000.0,,1,Admitido
+S00555,16/11/2025,Sistemas,Presencial,24,Soltero,"4,13",5.9,365,2230000.0,,1,Admitido
+S00367,21/11/2025,Sistemas,Presencial,29,Soltero,"3,77",2.6,362,1430000.0,3.7,1,Admitido
+S00346,23/10/2025,Electrica,Presencial,27,casado,"3,91",0.8,336,1360000.0,,1,Admitido
+S00585,12/10/2025,Sistemas,Virtual,22,Soltero,"3,58",,300,3130000.0,3.1,0,No admitido
+S00536,14/10/2025,Sistemas,Presencial,25,Soltero,"4,37",0.9,247,1470000.0,3.2,1,Admitido
+S00399,03/09/2025,Electrica,Virtual,21,Soltero,"3,64",,295,2610000.0,,0,No admitido
+S00186,08/11/2025,Sistemas,Presencial,26,CASADO ,"3,71",5.2,348,2050000.0,3.4,1,Admitido
+S00349,01/12/2025,Sistemas,Presencial,32,CASADO ,"4,70",3.4,217,2540000.0,,1,Admitido
+S00212,13/09/2025,Sistemas,Presencial,34,Soltero,"3,91",2.6,255,1000000.0,,1,Admitido
+S00580,02/12/2025,Sistemas,Presencial,31,Union libre,"3,25",3.1,336,2220000.0,,0,No admitido
+S00503,25/09/2025,Electrica,Presencial,34,Soltero,"3,66",3.2,333,-999.0,,1,Admitido
+S00538,30/10/2025,Sistemas,Presencial,34,Soltero,"3,81",3.2,324,1000000.0,,1,Admitido
+S00197,16/10/2025,Sistemas,Presencial,-5,Unión libre,"4,09",4.9,344,1760000.0,,1,Admitido
+S00176,17/10/2025,Sistemas,Presencial,28,Soltero,"3,16",2.5,226,2620000.0,4.0,0,No admitido
