@@ -1,0 +1,52 @@
+Curso de Machine Learning — Maestría en Ingeniería de Sistemas y Computación
+Universidad Tecnológica de Pereira
+Copyright (c) 2026 Délany Ramírez del Río
+
+Este repositorio se distribuye bajo licencia dual:
+
+================================================================================
+1. CONTENIDO EDUCATIVO (archivos .md, enunciados, quizzes, rúbricas, figuras)
+================================================================================
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Eres libre de compartir y adaptar este material para cualquier propósito,
+incluso comercial, siempre que otorgues el crédito correspondiente, enlaces a
+la licencia e indiques si se realizaron cambios.
+
+Texto completo de la licencia:
+https://creativecommons.org/licenses/by/4.0/legalcode.es
+
+================================================================================
+2. CÓDIGO (notebooks .ipynb, scripts .py, configuración)
+================================================================================
+
+Licencia MIT
+
+Por la presente se concede permiso, libre de cargos, a cualquier persona que
+obtenga una copia de este software y de los archivos de documentación asociados
+(el "Software"), a utilizar el Software sin restricción, incluyendo sin
+limitación los derechos a usar, copiar, modificar, fusionar, publicar,
+distribuir, sublicenciar y/o vender copias del Software, y a permitir a las
+personas a las que se les proporcione el Software a hacer lo mismo, sujeto a las
+siguientes condiciones:
+
+El aviso de copyright anterior y este aviso de permiso se incluirán en todas las
+copias o partes sustanciales del Software.
+
+EL SOFTWARE SE PROPORCIONA "COMO ESTÁ", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A GARANTÍAS DE COMERCIALIZACIÓN,
+IDONEIDAD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS
+AUTORES O TITULARES DEL COPYRIGHT SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN,
+DAÑOS U OTRAS RESPONSABILIDADES, YA SEA EN UNA ACCIÓN CONTRACTUAL, AGRAVIO O
+CUALQUIER OTRO MOTIVO, DERIVADAS DE, FUERA DE O EN CONEXIÓN CON EL SOFTWARE O SU
+USO U OTRO TIPO DE ACCIONES EN EL SOFTWARE.
+
+================================================================================
+3. DATOS DE TERCEROS
+================================================================================
+
+Los conjuntos de datos públicos utilizados (Titanic, Ames Housing, Wine Quality
+del UCI Machine Learning Repository, NYC Taxi Trip Duration, entre otros)
+conservan la licencia de sus fuentes originales, documentada en el README del
+módulo correspondiente.

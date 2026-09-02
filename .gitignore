@@ -1,0 +1,42 @@
+# --- Material de la edición anterior (referencia local, no se versiona) ---
+contenido_anterior/
+
+# --- Entornos ---
+.venv/
+venv/
+env/
+.conda/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Jupyter / notebooks ejecutados ---
+*-ejecutado.ipynb
+
+# --- Datos pesados (se descargan con script; ver README de cada módulo) ---
+*/datos/*.zip
+*/datos/*.parquet
+*/datos/raw/
+proyecto-integrador/datos/raw/
+
+# --- MLOps ---
+mlruns/
+mlartifacts/
+*.pkl
+*.joblib
+!modulo-6-mlops-despliegue/api/modelo-ejemplo.joblib
+
+# --- DVC ---
+/.dvc/cache
+/.dvc/tmp
+
+# --- Sistema / editores ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
