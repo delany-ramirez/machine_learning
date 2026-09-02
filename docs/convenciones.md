@@ -59,7 +59,25 @@ Esta es la convención central del curso. Cada tema puede tener uno o ambos:
 Un tema simple puede tener solo el aplicado; un tema puramente conceptual, solo el de
 intuición. Nunca dos notebooks que cubran lo mismo.
 
-### 4.2 Reglas de ejecución
+### 4.2 Cómo se escriben
+
+Los notebooks se redactan primero como `.py` en **formato percent** (`# %%` / `# %% [markdown]`)
+y se convierten con [`../herramientas/percent2ipynb.py`](../herramientas/percent2ipynb.py).
+
+La razón es práctica: el `.py` se puede **ejecutar como script** para comprobar que corre sin
+errores antes de publicarlo, y produce diffs legibles mientras se redacta.
+
+```bash
+python herramientas/percent2ipynb.py borrador.py --solo-codigo
+```
+
+```bash
+python herramientas/percent2ipynb.py borrador.py modulo-N/notebooks/NN-tema.ipynb
+```
+
+Los archivos `.py` intermedios no se versionan: el entregable es el `.ipynb`.
+
+### 4.3 Reglas de ejecución
 
 - Los notebooks **deben ejecutarse de principio a fin sin errores** con el entorno de
   [`../environment.yml`](../environment.yml).
@@ -73,7 +91,7 @@ intuición. Nunca dos notebooks que cubran lo mismo.
 - Si un dataset debe descargarse, hacerlo en una celda idempotente que compruebe primero si
   el archivo ya existe en `../datos/`.
 
-### 4.3 Un dataset canónico por módulo
+### 4.4 Un dataset canónico por módulo
 
 Cada módulo tiene un **dataset conductor** que se usa en la mayoría de sus notebooks, para
 que el estudiante profundice en un problema en vez de saltar entre datasets. Los notebooks de

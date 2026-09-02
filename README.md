@@ -55,11 +55,11 @@ conda env create -f environment.yml
 ```
 
 ```bash
-conda activate ml
+conda activate ml-curso
 ```
 
 ```bash
-python -m ipykernel install --user --name ml --display-name "Python (ml)"
+python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
 ```
 
 **Opción B — venv + pip:**

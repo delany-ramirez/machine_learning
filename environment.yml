@@ -1,13 +1,13 @@
 # Entorno conda para el curso de Machine Learning (solo Python).
 #
 #   conda env create -f environment.yml
-#   conda activate ml
+#   conda activate ml-curso
 #   python -m ipykernel install --user --name ml --display-name "Python (ml)"
 #   jupyter lab
 #
 # Ver docs/guia-entorno.md para la instalación paso a paso y alternativas.
 
-name: ml
+name: ml-curso
 channels:
   - conda-forge
 dependencies:

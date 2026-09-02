@@ -9,8 +9,8 @@ Requiere [Miniconda](https://docs.conda.io/en/latest/miniconda.html) o Anaconda.
 
 ```bash
 conda env create -f environment.yml
-conda activate ml
-python -m ipykernel install --user --name ml --display-name "Python (ml)"
+conda activate ml-curso
+python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
 jupyter lab
 ```
 
@@ -47,7 +47,7 @@ Instalar y registrar el kernel:
 
 ```bash
 pip install -r requirements.txt
-python -m ipykernel install --user --name ml --display-name "Python (ml)"
+python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
 jupyter lab
 ```
 
