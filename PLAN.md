@@ -44,7 +44,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 
 | Fase | Contenido | Estado | Commit |
 |---|---|---|---|
-| 0 | Estructura del repo, README, docs (programa, convenciones, entorno), entorno, licencia, READMEs índice de los 6 módulos | ✅ hecha | — |
+| 0 | Estructura del repo, README, docs (programa, convenciones, entorno), entorno, licencia, READMEs índice de los 6 módulos | ✅ hecha | `b0059bd` |
 | 1 | **Módulo 1** — Fundamentos y ciclo de vida (S1–S3) | ⬜ pendiente | |
 | 2 | **Módulo 2** — Datos y características (S4–S5) | ⬜ pendiente | |
 | 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | ⬜ pendiente | |
