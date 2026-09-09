@@ -1,7 +1,8 @@
 # Módulo 3 — Supervisado I: regresión y evaluación (S6–S8, 10.5 h)
 
-> Estado: **contenido pendiente** (Fase 3 de [`../PLAN.md`](../PLAN.md)). Este README es el
-> índice planeado; los archivos se irán creando en esa fase.
+> Estado: **en construcción** (Fase 3 de [`../PLAN.md`](../PLAN.md)). S6 (regresión lineal)
+> está completa; S7 (regularización) y S8 (evaluación y selección de modelos) siguen
+> pendientes.
 
 ## Objetivos
 
@@ -38,8 +39,8 @@ de hiperparámetros.
 
 | # | Documento | Sesión | Tema | Estado |
 |---|---|---|---|---|
-| 01 | `teoria/01-regresion-lineal.md` | S6 | Formulación, OLS, supuestos, residuales, métricas | ⬜ |
-| 02 | `teoria/02-descenso-gradiente.md` | S6 | Función de costo, gradiente, tasa de aprendizaje, variantes | ⬜ |
+| 01 | [`teoria/01-regresion-lineal.md`](teoria/01-regresion-lineal.md) | S6 | Formulación, OLS, supuestos, residuales, métricas | ✅ |
+| 02 | [`teoria/02-descenso-gradiente.md`](teoria/02-descenso-gradiente.md) | S6 | Función de costo, gradiente, tasa de aprendizaje, variantes | ✅ |
 | 03 | `teoria/03-multicolinealidad-polinomica.md` | S7 | VIF, diagnóstico, regresión polinómica | ⬜ |
 | 04 | `teoria/04-regularizacion.md` | S7 | Ridge, Lasso, Elastic Net; geometría e interpretación | ⬜ |
 | 05 | `teoria/05-sesgo-varianza-validacion.md` | S8 | Descomposición del error, CV, curvas de aprendizaje | ⬜ |
@@ -49,18 +50,29 @@ de hiperparámetros.
 
 | # | Notebook | Tipo | Contenido | Estado |
 |---|---|---|---|---|
-| 01 | `notebooks/01-descenso-gradiente-intuicion.ipynb` | intuición | Descenso del gradiente implementado a mano y comparado con OLS | ⬜ |
-| 02 | `notebooks/02-regresion-multiple-aplicado.ipynb` | aplicado | Regresión múltiple con dataset real; residuales y métricas | ⬜ |
+| 01 | [`notebooks/01-descenso-gradiente-intuicion.ipynb`](notebooks/01-descenso-gradiente-intuicion.ipynb) | intuición | Extiende el descenso a gradiente manual del módulo 1 a regresión múltiple vectorizada; batch/mini-batch/SGD; divergencia sin escalar | ✅ |
+| 02 | [`notebooks/02-regresion-multiple-aplicado.ipynb`](notebooks/02-regresion-multiple-aplicado.ipynb) | aplicado | `Pipeline` sobre Ames Housing; métricas; residuales en embudo; RMSE vs. MAE al modelar en log(precio) | ✅ |
 | 03 | `notebooks/03-regularizacion-intuicion.ipynb` | intuición | Efecto de $\lambda$ en Ridge y Lasso; trayectoria de coeficientes | ⬜ |
 | 04 | `notebooks/04-regularizacion-aplicado.ipynb` | aplicado | VIF, polinómica y comparación Ridge/Lasso/Elastic Net | ⬜ |
 | 05 | `notebooks/05-sesgo-varianza-intuicion.ipynb` | intuición | Curvas de aprendizaje y validación sobre un problema controlado | ⬜ |
 | 06 | `notebooks/06-seleccion-modelos-aplicado.ipynb` | aplicado | CV, grid/random search y Optuna sobre el dataset del módulo | ⬜ |
 
+> **Hallazgo del notebook 02.** Modelar $\log(1+\text{precio})$ en vez del precio directo baja
+> el MAE y el MAPE en los cuatro cuartiles de precio, pero **sube** el RMSE: una sola vivienda
+> atípica (grande, de calidad máxima, vendida muy por debajo de lo esperado) produce un error
+> de más de 700 mil dólares al revertir la transformación logarítmica. RMSE y MAE discrepan
+> sobre cuál modelo es mejor — la métrica que se elige es una decisión, no un trámite.
+
 ### Datos
 
-| Archivo | Descripción | Variables | Estado |
-|---|---|---|---|
-| — | Dataset conductor del módulo, pendiente de elegir (candidato heredado: Ames Housing) | — | ⬜ |
+**Dataset conductor del módulo:** `ames-housing.csv`
+
+| Archivo | Descripción | Por qué este |
+|---|---|---|
+| [`datos/ames-housing.csv`](datos/ames-housing.csv) | 2930 viviendas vendidas en Ames, Iowa (2006–2010), 80 variables tras limpiar columnas identificadoras. Dominio público (De Cock, 2011), vía [wblakecannon/ames](https://github.com/wblakecannon/ames) | Dataset real de tamaño moderado, con variables numéricas y categóricas, ideal para regresión múltiple, regularización y selección de modelos |
+| [`datos/preparar-ames-housing.py`](datos/preparar-ames-housing.py) | Descarga desde la fuente y normaliza encabezados a `snake_case` | Documenta la procedencia exacta; idempotente |
+| [`datos/rendimiento-estudiantes.csv`](datos/rendimiento-estudiantes.csv) | Mismo dataset sintético del módulo 1 (400 estudiantes) | El notebook 01 extiende exactamente el ajuste por descenso del gradiente que el módulo 1 hizo con una sola variable, ahora con seis |
+| [`datos/generar-rendimiento-estudiantes.py`](datos/generar-rendimiento-estudiantes.py) | Generador con semilla fija (copiado del módulo 1) | Reproducible byte a byte |
 
 ### Ejercicios
 
