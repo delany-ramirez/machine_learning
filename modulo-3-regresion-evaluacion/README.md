@@ -1,8 +1,8 @@
 # Módulo 3 — Supervisado I: regresión y evaluación (S6–S8, 10.5 h)
 
-> Estado: **en construcción** (Fase 3 de [`../PLAN.md`](../PLAN.md)). S6 (regresión lineal)
-> está completa; S7 (regularización) y S8 (evaluación y selección de modelos) siguen
-> pendientes.
+> Estado: **en construcción** (Fase 3 de [`../PLAN.md`](../PLAN.md)). S6 (regresión lineal) y
+> S7 (multicolinealidad y regularización) están completas; S8 (evaluación y selección de
+> modelos) sigue pendiente.
 
 ## Objetivos
 
@@ -41,8 +41,8 @@ de hiperparámetros.
 |---|---|---|---|---|
 | 01 | [`teoria/01-regresion-lineal.md`](teoria/01-regresion-lineal.md) | S6 | Formulación, OLS, supuestos, residuales, métricas | ✅ |
 | 02 | [`teoria/02-descenso-gradiente.md`](teoria/02-descenso-gradiente.md) | S6 | Función de costo, gradiente, tasa de aprendizaje, variantes | ✅ |
-| 03 | `teoria/03-multicolinealidad-polinomica.md` | S7 | VIF, diagnóstico, regresión polinómica | ⬜ |
-| 04 | `teoria/04-regularizacion.md` | S7 | Ridge, Lasso, Elastic Net; geometría e interpretación | ⬜ |
+| 03 | [`teoria/03-multicolinealidad-polinomica.md`](teoria/03-multicolinealidad-polinomica.md) | S7 | VIF, diagnóstico, regresión polinómica | ✅ |
+| 04 | [`teoria/04-regularizacion.md`](teoria/04-regularizacion.md) | S7 | Ridge, Lasso, Elastic Net; geometría e interpretación | ✅ |
 | 05 | `teoria/05-sesgo-varianza-validacion.md` | S8 | Descomposición del error, CV, curvas de aprendizaje | ⬜ |
 | 06 | `teoria/06-seleccion-hiperparametros.md` | S8 | Grid, random, optimización bayesiana; CV anidada | ⬜ |
 
@@ -52,8 +52,8 @@ de hiperparámetros.
 |---|---|---|---|---|
 | 01 | [`notebooks/01-descenso-gradiente-intuicion.ipynb`](notebooks/01-descenso-gradiente-intuicion.ipynb) | intuición | Extiende el descenso a gradiente manual del módulo 1 a regresión múltiple vectorizada; batch/mini-batch/SGD; divergencia sin escalar | ✅ |
 | 02 | [`notebooks/02-regresion-multiple-aplicado.ipynb`](notebooks/02-regresion-multiple-aplicado.ipynb) | aplicado | `Pipeline` sobre Ames Housing; métricas; residuales en embudo; RMSE vs. MAE al modelar en log(precio) | ✅ |
-| 03 | `notebooks/03-regularizacion-intuicion.ipynb` | intuición | Efecto de $\lambda$ en Ridge y Lasso; trayectoria de coeficientes | ⬜ |
-| 04 | `notebooks/04-regularizacion-aplicado.ipynb` | aplicado | VIF, polinómica y comparación Ridge/Lasso/Elastic Net | ⬜ |
+| 03 | [`notebooks/03-regularizacion-intuicion.ipynb`](notebooks/03-regularizacion-intuicion.ipynb) | intuición | Ridge y Lasso a mano (descenso con penalización $L_2$; descenso por coordenadas para $L_1$); inestabilidad de OLS por colinealidad, medida con bootstrap | ✅ |
+| 04 | [`notebooks/04-regularizacion-aplicado.ipynb`](notebooks/04-regularizacion-aplicado.ipynb) | aplicado | VIF sobre Ames Housing, términos polinómicos y su costo en colinealidad, Ridge/Lasso con `scikit-learn` | ✅ |
 | 05 | `notebooks/05-sesgo-varianza-intuicion.ipynb` | intuición | Curvas de aprendizaje y validación sobre un problema controlado | ⬜ |
 | 06 | `notebooks/06-seleccion-modelos-aplicado.ipynb` | aplicado | CV, grid/random search y Optuna sobre el dataset del módulo | ⬜ |
 
@@ -62,6 +62,13 @@ de hiperparámetros.
 > atípica (grande, de calidad máxima, vendida muy por debajo de lo esperado) produce un error
 > de más de 700 mil dólares al revertir la transformación logarítmica. RMSE y MAE discrepan
 > sobre cuál modelo es mejor — la métrica que se elige es una decisión, no un trámite.
+>
+> **Hallazgo del notebook 04.** Agregar `gr_liv_area²` y `overall_qual²` dispara el VIF de esas
+> variables a ≈ 50 y produce coeficientes gigantes de signo opuesto — pero el RMSE de
+> validación **no mejora** con más regularización: con $n=2930$ frente a $p\approx 24$, la
+> multicolinealidad aquí daña la interpretación, no la predicción, tal como anticipa
+> `03-multicolinealidad-polinomica.md`. Ridge y Lasso sí estabilizan el par colineal, a ritmos
+> muy distintos entre sí.
 
 ### Datos
 
