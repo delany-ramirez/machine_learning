@@ -1,8 +1,6 @@
 # Módulo 3 — Supervisado I: regresión y evaluación (S6–S8, 10.5 h)
 
-> Estado: **en construcción** (Fase 3 de [`../PLAN.md`](../PLAN.md)). S6 (regresión lineal) y
-> S7 (multicolinealidad y regularización) están completas; S8 (evaluación y selección de
-> modelos) sigue pendiente.
+> Estado: **completo** (Fase 3 de [`../PLAN.md`](../PLAN.md)).
 
 ## Objetivos
 
@@ -37,25 +35,25 @@ de hiperparámetros.
 
 ### Teoría
 
-| # | Documento | Sesión | Tema | Estado |
-|---|---|---|---|---|
-| 01 | [`teoria/01-regresion-lineal.md`](teoria/01-regresion-lineal.md) | S6 | Formulación, OLS, supuestos, residuales, métricas | ✅ |
-| 02 | [`teoria/02-descenso-gradiente.md`](teoria/02-descenso-gradiente.md) | S6 | Función de costo, gradiente, tasa de aprendizaje, variantes | ✅ |
-| 03 | [`teoria/03-multicolinealidad-polinomica.md`](teoria/03-multicolinealidad-polinomica.md) | S7 | VIF, diagnóstico, regresión polinómica | ✅ |
-| 04 | [`teoria/04-regularizacion.md`](teoria/04-regularizacion.md) | S7 | Ridge, Lasso, Elastic Net; geometría e interpretación | ✅ |
-| 05 | `teoria/05-sesgo-varianza-validacion.md` | S8 | Descomposición del error, CV, curvas de aprendizaje | ⬜ |
-| 06 | `teoria/06-seleccion-hiperparametros.md` | S8 | Grid, random, optimización bayesiana; CV anidada | ⬜ |
+| # | Documento | Sesión | Tema |
+|---|---|---|---|
+| 01 | [`teoria/01-regresion-lineal.md`](teoria/01-regresion-lineal.md) | S6 | Formulación, OLS, supuestos, residuales, métricas |
+| 02 | [`teoria/02-descenso-gradiente.md`](teoria/02-descenso-gradiente.md) | S6 | Función de costo, gradiente, tasa de aprendizaje, variantes |
+| 03 | [`teoria/03-multicolinealidad-polinomica.md`](teoria/03-multicolinealidad-polinomica.md) | S7 | VIF, diagnóstico, regresión polinómica |
+| 04 | [`teoria/04-regularizacion.md`](teoria/04-regularizacion.md) | S7 | Ridge, Lasso, Elastic Net; geometría e interpretación |
+| 05 | [`teoria/05-sesgo-varianza-validacion.md`](teoria/05-sesgo-varianza-validacion.md) | S8 | Descomposición del error, k-fold repetido, comparación pareada |
+| 06 | [`teoria/06-seleccion-hiperparametros.md`](teoria/06-seleccion-hiperparametros.md) | S8 | Grid, random, optimización bayesiana; CV anidada |
 
 ### Notebooks
 
-| # | Notebook | Tipo | Contenido | Estado |
-|---|---|---|---|---|
-| 01 | [`notebooks/01-descenso-gradiente-intuicion.ipynb`](notebooks/01-descenso-gradiente-intuicion.ipynb) | intuición | Extiende el descenso a gradiente manual del módulo 1 a regresión múltiple vectorizada; batch/mini-batch/SGD; divergencia sin escalar | ✅ |
-| 02 | [`notebooks/02-regresion-multiple-aplicado.ipynb`](notebooks/02-regresion-multiple-aplicado.ipynb) | aplicado | `Pipeline` sobre Ames Housing; métricas; residuales en embudo; RMSE vs. MAE al modelar en log(precio) | ✅ |
-| 03 | [`notebooks/03-regularizacion-intuicion.ipynb`](notebooks/03-regularizacion-intuicion.ipynb) | intuición | Ridge y Lasso a mano (descenso con penalización $L_2$; descenso por coordenadas para $L_1$); inestabilidad de OLS por colinealidad, medida con bootstrap | ✅ |
-| 04 | [`notebooks/04-regularizacion-aplicado.ipynb`](notebooks/04-regularizacion-aplicado.ipynb) | aplicado | VIF sobre Ames Housing, términos polinómicos y su costo en colinealidad, Ridge/Lasso con `scikit-learn` | ✅ |
-| 05 | `notebooks/05-sesgo-varianza-intuicion.ipynb` | intuición | Curvas de aprendizaje y validación sobre un problema controlado | ⬜ |
-| 06 | `notebooks/06-seleccion-modelos-aplicado.ipynb` | aplicado | CV, grid/random search y Optuna sobre el dataset del módulo | ⬜ |
+| # | Notebook | Tipo | Contenido |
+|---|---|---|---|
+| 01 | [`notebooks/01-descenso-gradiente-intuicion.ipynb`](notebooks/01-descenso-gradiente-intuicion.ipynb) | intuición | Extiende el descenso a gradiente manual del módulo 1 a regresión múltiple vectorizada; batch/mini-batch/SGD; divergencia sin escalar |
+| 02 | [`notebooks/02-regresion-multiple-aplicado.ipynb`](notebooks/02-regresion-multiple-aplicado.ipynb) | aplicado | `Pipeline` sobre Ames Housing; métricas; residuales en embudo; RMSE vs. MAE al modelar en log(precio) |
+| 03 | [`notebooks/03-regularizacion-intuicion.ipynb`](notebooks/03-regularizacion-intuicion.ipynb) | intuición | Ridge y Lasso a mano (descenso con penalización $L_2$; descenso por coordenadas para $L_1$); inestabilidad de OLS por colinealidad, medida con bootstrap |
+| 04 | [`notebooks/04-regularizacion-aplicado.ipynb`](notebooks/04-regularizacion-aplicado.ipynb) | aplicado | VIF sobre Ames Housing, términos polinómicos y su costo en colinealidad, Ridge/Lasso con `scikit-learn` |
+| 05 | [`notebooks/05-sesgo-varianza-intuicion.ipynb`](notebooks/05-sesgo-varianza-intuicion.ipynb) | intuición | Regresión polinómica sobre función verdadera conocida; k-fold a mano con barras de error; curvas de aprendizaje |
+| 06 | [`notebooks/06-seleccion-modelos-aplicado.ipynb`](notebooks/06-seleccion-modelos-aplicado.ipynb) | aplicado | Grid/random/Optuna sobre Ames Housing, CV anidada, comparación pareada Ridge vs. Lasso |
 
 > **Hallazgo del notebook 02.** Modelar $\log(1+\text{precio})$ en vez del precio directo baja
 > el MAE y el MAPE en los cuatro cuartiles de precio, pero **sube** el RMSE: una sola vivienda
@@ -69,6 +67,12 @@ de hiperparámetros.
 > multicolinealidad aquí daña la interpretación, no la predicción, tal como anticipa
 > `03-multicolinealidad-polinomica.md`. Ridge y Lasso sí estabilizan el par colineal, a ritmos
 > muy distintos entre sí.
+>
+> **Hallazgo del notebook 06.** Comparando Ridge y Lasso —cada uno afinado por CV— sobre los
+> **mismos** 10 pliegues, la diferencia media de RMSE es mucho menor que su error estándar: no
+> hay evidencia de que uno le gane al otro en este dataset. Es la misma conclusión que
+> `04-pipeline-caracteristicas-aplicado.ipynb` (módulo 2) reportó de forma informal, ahora con
+> el procedimiento formal para llegar a ella.
 
 ### Datos
 
@@ -83,17 +87,24 @@ de hiperparámetros.
 
 ### Ejercicios
 
-| # | Enunciado | Solución | Estado |
+| # | Enunciado | Solución | Duración |
 |---|---|---|---|
-| 01 | `ejercicios/ej01-residuales.md` | `ej01-residuales-sol.md` | ⬜ |
-| 02 | `ejercicios/ej02-regularizacion.md` | `ej02-regularizacion-sol.md` | ⬜ |
-| 03 | `ejercicios/ej03-validacion-cruzada.md` | `ej03-validacion-cruzada-sol.md` | ⬜ |
+| 01 | [`ejercicios/ej01-residuales.md`](ejercicios/ej01-residuales.md) | [`ej01-residuales-sol.md`](ejercicios/ej01-residuales-sol.md) | 75 min |
+| 02 | [`ejercicios/ej02-regularizacion.md`](ejercicios/ej02-regularizacion.md) | [`ej02-regularizacion-sol.md`](ejercicios/ej02-regularizacion-sol.md) | 75 min |
+| 03 | [`ejercicios/ej03-validacion-cruzada.md`](ejercicios/ej03-validacion-cruzada.md) | [`ej03-validacion-cruzada-sol.md`](ejercicios/ej03-validacion-cruzada-sol.md) | 75 min |
+
+Los tres ejercicios comparten un mismo subconjunto de variables de Ames Housing —distinto al
+de los notebooks— y se encadenan: el 01 descubre que `full_bath`/`half_bath` tienen
+coeficientes de signo contraintuitivo a pesar de un VIF bajo; el 02 mide ese VIF, prueba
+Ridge/Lasso/Elastic Net y muestra que corregir el signo exige mucho más $\lambda$ del que
+conviene para predecir; el 03 cierra con CV formal y una comparación pareada que, a diferencia
+de la del notebook 06, **sí** encuentra una diferencia real (`foundation` aporta señal).
 
 ### Quiz
 
-| Archivo | Clave | Estado |
-|---|---|---|
-| `quiz/quiz-modulo-3.md` | `quiz/quiz-modulo-3-sol.md` | ⬜ |
+| Archivo | Clave | Preguntas | Duración |
+|---|---|---|---|
+| [`quiz/quiz-modulo-3.md`](quiz/quiz-modulo-3.md) | [`quiz-modulo-3-sol.md`](quiz/quiz-modulo-3-sol.md) | 10 | 30 min |
 
 ## Entrega del proyecto integrador
 

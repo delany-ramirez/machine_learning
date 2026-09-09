@@ -3,7 +3,7 @@
 Este archivo es la **memoria del proyecto entre sesiones de trabajo**. Al retomar el trabajo,
 léelo primero: dice qué está hecho, qué sigue y qué decisiones ya se tomaron.
 
-**Última actualización:** 2026-09-09 · **Fase actual:** 3 en curso (S6 hecha, sigue S7).
+**Última actualización:** 2026-09-09 · **Fase actual:** 3 completada, sigue la Fase 4.
 
 ---
 
@@ -48,7 +48,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 | 0 | Estructura del repo, README, docs (programa, convenciones, entorno), entorno, licencia, READMEs índice de los 6 módulos | ✅ hecha | `b0059bd` |
 | 1 | **Módulo 1** — Fundamentos y ciclo de vida (S1–S3) | ✅ hecha | `ac80bf0` |
 | 2 | **Módulo 2** — Datos y características (S4–S5) | ✅ hecha | |
-| 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | 🔶 en curso (S6 hecha) | `887ac33` (S6) |
+| 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | ✅ hecha | `887ac33` (S6) · `0933873` (S7) |
 | 4 | **Módulo 4** — Clasificación y ensambles (S9–S11) | ⬜ pendiente | |
 | 5 | **Módulo 5** — No supervisado y deep learning (S12–S13) | ⬜ pendiente | |
 | 6 | **Módulo 6** — MLOps y despliegue (S14) | ⬜ pendiente | |
@@ -168,7 +168,7 @@ los números de las soluciones provienen de ejecutar el código real; los enlace
 `pd.read_html` en el notebook 02— se instaló en una carpeta temporal vía `PYTHONPATH` para
 poder verificar esa celda sin tocar el entorno del docente.
 
-### 🔶 Fase 3 (en curso) — Módulo 3: Regresión y evaluación
+### ✅ Fase 3 — Módulo 3: Regresión y evaluación
 
 **Dataset conductor elegido:** `ames-housing.csv` — 2930 viviendas vendidas en Ames, Iowa
 (2006-2010), dominio público (De Cock, 2011) vía [wblakecannon/ames](https://github.com/wblakecannon/ames).
@@ -177,7 +177,7 @@ descarga y cura con `datos/preparar-ames-housing.py` (columnas identificadoras e
 encabezados a snake_case); el CSV resultante pesa 923 KB, bajo el umbral de 1 MB, así que se
 versiona directo (no requiere script de descarga en `.gitignore`).
 
-**✅ S6 — Regresión lineal (commit `887ac33`).** Producido:
+**S6 — Regresión lineal (commit `887ac33`).**
 
 - **Teoría (2):** `01-regresion-lineal.md` (formulación matricial, OLS, ecuación normal, los
   5 supuestos del modelo lineal, MSE/RMSE/MAE/$R^2$/$R^2$ ajustado) · `02-descenso-gradiente.md`
@@ -190,52 +190,117 @@ versiona directo (no requiere script de descarga en `.gitignore`).
   aprendizaje que converge con datos estandarizados diverge sin estandarizar. ·
   `02-regresion-multiple-aplicado` usa Ames Housing con `Pipeline`/`ColumnTransformer`
   (módulo 2), métricas completas y diagnóstico de residuales.
-- **Datos:** `ames-housing.csv` + `preparar-ames-housing.py`; copia de
-  `rendimiento-estudiantes.csv` y su generador (módulo 1) para el notebook 01.
 
-**Hallazgo empírico que quedó documentado (mismo espíritu "medir, no asumir" del módulo 2).**
-En el notebook 02, los residuales del modelo sobre `saleprice` muestran heterocedasticidad
-clara (forma de embudo). Modelar $\log(1+\text{precio})$ en vez del precio directo baja el MAE
-y el MAPE en los cuatro cuartiles de precio — pero **sube el RMSE global**, porque una sola
-vivienda atípica (grande, calidad máxima, vendida muy por debajo de lo esperado) produce un
-error de más de 700 mil dólares al revertir la transformación logarítmica. Conclusión que se
-dejó explícita para la sesión 8: RMSE y MAE pueden discrepar sobre cuál modelo es mejor, y
-elegir la métrica es una decisión, no un trámite.
+**Hallazgo del notebook 02.** Los residuales del modelo sobre `saleprice` muestran
+heterocedasticidad clara (forma de embudo). Modelar $\log(1+\text{precio})$ en vez del precio
+directo baja el MAE y el MAPE en los cuatro cuartiles de precio — pero **sube el RMSE
+global**, porque una sola vivienda atípica (grande, calidad máxima, vendida muy por debajo de
+lo esperado) produce un error de más de 700 mil dólares al revertir la transformación
+logarítmica. RMSE y MAE pueden discrepar sobre cuál modelo es mejor.
 
-**Verificación realizada:** el código de ambos notebooks (extraído del `.py` intermedio en
-formato percent) se ejecutó de punta a punta sin errores con el entorno conda `ML`
-(Python 3.9; `ml-curso` aún no está creado, igual que en la fase 2).
+**S7 — Multicolinealidad y regularización (commit `0933873`).**
 
-**Ejercicios y quiz del módulo 3 quedan pendientes hasta cerrar S7 y S8** — se construyen al
-final de la fase, no por sesión, igual que en los módulos 1 y 2.
+- **Teoría (2):** `03-multicolinealidad-polinomica.md` (VIF, qué daña la multicolinealidad y
+  qué no, regresión polinómica) · `04-regularizacion.md` (Ridge/Lasso/Elastic Net, geometría
+  círculo-vs-diamante, por qué estandarizar es obligatorio).
+- **Notebooks (2):** `03-regularizacion-intuicion` — datos sintéticos con dos predictores
+  casi idénticos; mide con bootstrap la inestabilidad de OLS; implementa Ridge extendiendo el
+  descenso del gradiente y Lasso con descenso por coordenadas (soft-thresholding) a mano,
+  ambos validados contra `scikit-learn`. · `04-regularizacion-aplicado` — VIF sobre Ames
+  Housing, términos polinómicos que lo disparan a ≈50, Ridge/Lasso con `scikit-learn`.
 
-⬜ **S7 — Multicolinealidad y regularización (siguiente).** ⬜ **S8 — Evaluación y selección
-de modelos.**
+**Hallazgo del notebook 04.** Agregar `gr_liv_area²` y `overall_qual²` dispara su VIF a ≈50 y
+produce coeficientes gigantes de signo opuesto, pero el RMSE de validación **no mejora** con
+más regularización: con $n=2930$ frente a $p\approx24$, la multicolinealidad aquí daña la
+interpretación, no la predicción. Ridge y Lasso sí estabilizan el par colineal, a ritmos muy
+distintos entre sí (Ridge reacciona con $\lambda$ mucho menor que Lasso).
+
+**S8 — Evaluación y selección de modelos (cierra la fase).**
+
+- **Teoría (2):** `05-sesgo-varianza-validacion.md` (descomposición del error, k-fold
+  repetido, comparación pareada de modelos con error estándar) · `06-seleccion-hiperparametros.md`
+  (grid/random/Optuna, CV anidada, semillas de la búsqueda).
+- **Notebooks (2):** `05-sesgo-varianza-intuicion` — sobre $y=\sin(2\pi x)+\varepsilon$ (función
+  verdadera conocida), ajusta polinomios de grado 1-15, muestra que el "mejor grado" cambia
+  con la semilla del split, implementa k-fold a mano con barras de error, y construye curvas
+  de aprendizaje para sub/buen-ajuste/sobreajuste. · `06-seleccion-modelos-aplicado` — sobre
+  Ames Housing: `GridSearchCV` reemplaza el split informal de S7; compara grid/random/Optuna
+  sobre Elastic Net (2 hiperparámetros); mide el optimismo de no anidar la CV; cierra con una
+  comparación pareada Ridge-vs-Lasso.
+
+**Hallazgo del notebook 06.** Ridge y Lasso, cada uno afinado por CV, comparados sobre los
+mismos 10 pliegues: la diferencia media de RMSE es mucho menor que su error estándar — no hay
+evidencia de que uno le gane al otro. Misma conclusión que
+`04-pipeline-caracteristicas-aplicado.ipynb` (módulo 2) reportó de forma informal, ahora con
+el procedimiento formal (comparación pareada) para llegar a ella.
+
+**Ejercicios (3) y quiz**, construidos al cerrar la fase, como en los módulos 1 y 2:
+
+- Los tres ejercicios comparten un subconjunto de variables de Ames **distinto** al de los
+  notebooks (`lot_frontage`, `1st_flr_sf`, `2nd_flr_sf`, `foundation`, entre otras) y se
+  encadenan: `ej01-residuales` descubre que `full_bath`/`half_bath` tienen coeficientes de
+  signo contraintuitivo **a pesar de un VIF bajo** (máximo 4.2, ninguna variable supera el
+  umbral de 5) — el hallazgo central del módulo en cuanto a los límites del VIF individual.
+  `ej02-regularizacion` mide ese VIF, prueba Ridge/Lasso/Elastic Net (incluida la advertencia
+  de que la escala de `alpha` de Elastic Net no es comparable a la de Ridge/Lasso solos) y
+  muestra que corregir el signo exige un $\lambda$ mucho mayor al que minimiza el RMSE.
+  `ej03-validacion-cruzada` cierra con CV formal, grid-vs-random, CV anidada, y una
+  comparación pareada que — a diferencia de la del notebook 06 — **sí** encuentra una
+  diferencia real: `foundation` aporta señal (diferencia de RMSE de \$961 ± \$211, más de 4
+  errores estándar). Que el módulo termine con un caso donde la comparación pareada detecta
+  una diferencia real, después de que el notebook 06 mostrara un caso donde no la detecta, es
+  deliberado: la herramienta funciona en ambas direcciones.
+- **Quiz:** 10 preguntas con clave comentada, cubriendo las tres sesiones.
+
+**Verificación realizada:** los 6 notebooks se ejecutaron de punta a punta sin errores
+(código extraído del `.py` intermedio en formato percent); todos los números de teoría,
+ejercicios y quiz provienen de ejecutar el código real sobre los datos versionados.
+
+**Nota de entorno.** Igual que en la fase 2, la verificación se hizo con el entorno conda `ML`
+preexistente (Python 3.9), no con `ml-curso`, que aún no está creado. El notebook 06 usa
+`optuna`, que no estaba instalado en `ML`; se instaló en una carpeta temporal vía `PYTHONPATH`
+(con `--only-binary=:all:`, para evitar que `greenlet` intente compilar desde código fuente)
+para poder verificar esa celda sin tocar el entorno del docente. `optuna>=3.6` ya está en
+`environment.yml`/`requirements.txt` desde la fase 0, así que `ml-curso` lo traerá de fábrica.
 
 ---
 
-## 4. Qué sigue — Fase 3, sesión 7 (Multicolinealidad y regularización)
+## 4. Qué sigue — Fase 4 (Módulo 4: Clasificación y ensambles, S9–S11)
 
-Producir en `modulo-3-regresion-evaluacion/`:
+Producir en `modulo-4-clasificacion-ensambles/`:
 
-- **Teoría:** `03-multicolinealidad-polinomica.md` · `04-regularizacion.md`.
-- **Notebooks:** `03-regularizacion-intuicion` · `04-regularizacion-aplicado`.
-- Reusar `ames-housing.csv` (ya preparado). El notebook 02 de S6 ya señaló candidatas a
-  multicolinealidad: `gr_liv_area`, `total_bsmt_sf`, `garage_area`, `garage_cars` miden
-  aspectos parecidos de "qué tan grande es la casa" — buen punto de partida para el VIF.
+- **Teoría (propuesta, 6 documentos):** regresión logística (odds, log-odds, máxima
+  verosimilitud, softmax) · KNN y SVM (kernels) · métricas de clasificación (matriz de
+  confusión, precisión/recall/F1, ROC-AUC, curva PR, ajuste del umbral, clases desbalanceadas)
+  — S9; árboles de decisión (Gini/entropía, poda) · bagging y Random Forest (importancia de
+  variables) — S10; boosting (AdaBoost, Gradient Boosting, XGBoost, LightGBM) e
+  interpretabilidad (permutation importance, SHAP, stacking) — S11.
+- **Notebooks (propuesta, 6):** dos por sesión, siguiendo el patrón intuición/aplicado de los
+  módulos 1-3. El de intuición de S9 es candidato natural a **extender** el descenso del
+  gradiente de `02-descenso-gradiente.md` (módulo 3) de regresión a clasificación (función
+  sigmoide, pérdida de entropía cruzada), igual que el notebook 01 de M3 extendió el del
+  módulo 1 — mantener el patrón de no repetir lo ya construido.
+- **Dataset conductor candidato:** Wine Quality (UCI), según `PLAN.md` §... (candidato
+  histórico, pendiente de confirmar con el docente — ver decisión 1 abajo). Si se confirma,
+  probablemente necesite descargarse con script (`descargar-wine-quality.py`), no versionarse
+  directo: verificar tamaño antes de decidir.
+- **Ejercicios (3) y quiz**, al cierre de la fase.
 
 Puntos a cuidar:
 
-- La sesión 8 (evaluación) es **nueva**, sin material previo. Es la que da las herramientas
-  que los módulos 1 y 2 ya prometieron: validación cruzada repetida e intervalos sobre la
-  diferencia entre modelos. Varios notebooks anteriores terminan diciendo "esto se resuelve en
-  la sesión 8": hay que cumplirlo.
-- Optuna entra en la sesión 8 (venía de `Sesion11-Metodos_ensamble`), no en el módulo 4.
+- `Sesion09-Clasificacion2` (material previo) ya se dividió en la fase 3: CV y GridSearch
+  subieron a S8. Lo que queda de esa sesión para M4/S10 es específicamente árboles y bagging.
+- Optuna ya se cubrió en S8 (módulo 3); en M4 se **usa**, no se vuelve a enseñar desde cero.
+- Las métricas de clasificación (S9) son el primer tema realmente nuevo desde el punto de vista
+  de evaluación desde que se cerró el módulo 3 — no hay "sesión 8 lo resuelve" en el que
+  apoyarse; hay que construir el marco completo (matriz de confusión, umbral, desbalance) en
+  esa misma sesión.
 
 ### Decisiones abiertas para consultar con el docente
 
 1. **Dataset conductor de los módulos 4 y 5** — M2 usa Titanic, M3 usa Ames Housing (ambos
-   confirmados por el docente). Candidatos pendientes: Wine Quality UCI (M4), Iris/Wine (M5).
+   confirmados por el docente, siguiendo el mismo patrón de confirmación previa a construir).
+   Candidatos pendientes: Wine Quality UCI (M4), Iris/Wine (M5).
 2. **Tema del proyecto integrador** — propuesta: predicción de deserción estudiantil con
    dataset sintético realista (nulos, categóricas, desbalance y una fuga de datos plantada a
    propósito). El módulo 1 ya sienta el dominio con `rendimiento-estudiantes.csv`.
@@ -262,7 +327,7 @@ Referencia para saber qué insumo existe al construir cada módulo. Todo está e
 | `Sesion04-PCA*` ×3, `Sesion04-TSNE*` ×2 | M5/S12 | Consolidar 5 → 2 (intuición + aplicado) | pendiente |
 | `Sesion05-Ingenieria_caracteristicas` (NYC Taxi) | M2/S5 | Reescrito sobre `Pipeline`/`ColumnTransformer`; se usó Titanic en vez de NYC Taxi para mantener un solo dataset conductor | ✅ hecho |
 | `Sesion06-Regresion*` ×4 | M3/S6 | Consolidar 4 → 2 | ✅ hecho |
-| `Sesion07-*` ×5 (Ridge, Lasso, ElasticNet, Ames) | M3/S7 | Consolidar 5 → 2; sacar la rúbrica embebida | pendiente |
+| `Sesion07-*` ×5 (Ridge, Lasso, ElasticNet, Ames) | M3/S7 | Consolidar 5 → 2; sacar la rúbrica embebida | ✅ hecho |
 | `Sesion08-*` ×7 (LogReg, KNN, SVM, Wine) | M4/S9 | Consolidar 7 → 2; Wine Quality como caso canónico | pendiente |
 | `Sesion09-Clasificacion2` | M4/S10 + M3/S8 | Dividir: CV y GridSearch suben a S8 | pendiente |
 | `Sesion10-Clustering` | M5/S12 | Base reutilizable; añadir comparación de algoritmos | pendiente |
