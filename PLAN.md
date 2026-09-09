@@ -3,7 +3,7 @@
 Este archivo es la **memoria del proyecto entre sesiones de trabajo**. Al retomar el trabajo,
 léelo primero: dice qué está hecho, qué sigue y qué decisiones ya se tomaron.
 
-**Última actualización:** 2026-09-02 · **Fase actual:** 2 completada, sigue la Fase 3.
+**Última actualización:** 2026-09-09 · **Fase actual:** 3 en curso (S6 hecha, sigue S7).
 
 ---
 
@@ -48,7 +48,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 | 0 | Estructura del repo, README, docs (programa, convenciones, entorno), entorno, licencia, READMEs índice de los 6 módulos | ✅ hecha | `b0059bd` |
 | 1 | **Módulo 1** — Fundamentos y ciclo de vida (S1–S3) | ✅ hecha | `ac80bf0` |
 | 2 | **Módulo 2** — Datos y características (S4–S5) | ✅ hecha | |
-| 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | ⬜ pendiente | |
+| 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | 🔶 en curso (S6 hecha) | `887ac33` (S6) |
 | 4 | **Módulo 4** — Clasificación y ensambles (S9–S11) | ⬜ pendiente | |
 | 5 | **Módulo 5** — No supervisado y deep learning (S12–S13) | ⬜ pendiente | |
 | 6 | **Módulo 6** — MLOps y despliegue (S14) | ⬜ pendiente | |
@@ -168,38 +168,74 @@ los números de las soluciones provienen de ejecutar el código real; los enlace
 `pd.read_html` en el notebook 02— se instaló en una carpeta temporal vía `PYTHONPATH` para
 poder verificar esa celda sin tocar el entorno del docente.
 
+### 🔶 Fase 3 (en curso) — Módulo 3: Regresión y evaluación
+
+**Dataset conductor elegido:** `ames-housing.csv` — 2930 viviendas vendidas en Ames, Iowa
+(2006-2010), dominio público (De Cock, 2011) vía [wblakecannon/ames](https://github.com/wblakecannon/ames).
+Confirmado con el docente sobre el candidato heredado de `Sesion07-ames_regresion_ml`. Se
+descarga y cura con `datos/preparar-ames-housing.py` (columnas identificadoras eliminadas,
+encabezados a snake_case); el CSV resultante pesa 923 KB, bajo el umbral de 1 MB, así que se
+versiona directo (no requiere script de descarga en `.gitignore`).
+
+**✅ S6 — Regresión lineal (commit `887ac33`).** Producido:
+
+- **Teoría (2):** `01-regresion-lineal.md` (formulación matricial, OLS, ecuación normal, los
+  5 supuestos del modelo lineal, MSE/RMSE/MAE/$R^2$/$R^2$ ajustado) · `02-descenso-gradiente.md`
+  (forma vectorizada, por qué usar descenso en vez de ecuación normal, batch/mini-batch/SGD,
+  diagnóstico de convergencia).
+- **Notebooks (2):** `01-descenso-gradiente-intuicion` extiende
+  `04-gradientes-intuicion.ipynb` del módulo 1 (mismo dataset, `rendimiento-estudiantes.csv`)
+  de regresión simple a múltiple (6 predictores), en forma vectorizada; compara batch,
+  mini-batch y SGD contra la ecuación normal; y **demuestra en código** que la misma tasa de
+  aprendizaje que converge con datos estandarizados diverge sin estandarizar. ·
+  `02-regresion-multiple-aplicado` usa Ames Housing con `Pipeline`/`ColumnTransformer`
+  (módulo 2), métricas completas y diagnóstico de residuales.
+- **Datos:** `ames-housing.csv` + `preparar-ames-housing.py`; copia de
+  `rendimiento-estudiantes.csv` y su generador (módulo 1) para el notebook 01.
+
+**Hallazgo empírico que quedó documentado (mismo espíritu "medir, no asumir" del módulo 2).**
+En el notebook 02, los residuales del modelo sobre `saleprice` muestran heterocedasticidad
+clara (forma de embudo). Modelar $\log(1+\text{precio})$ en vez del precio directo baja el MAE
+y el MAPE en los cuatro cuartiles de precio — pero **sube el RMSE global**, porque una sola
+vivienda atípica (grande, calidad máxima, vendida muy por debajo de lo esperado) produce un
+error de más de 700 mil dólares al revertir la transformación logarítmica. Conclusión que se
+dejó explícita para la sesión 8: RMSE y MAE pueden discrepar sobre cuál modelo es mejor, y
+elegir la métrica es una decisión, no un trámite.
+
+**Verificación realizada:** el código de ambos notebooks (extraído del `.py` intermedio en
+formato percent) se ejecutó de punta a punta sin errores con el entorno conda `ML`
+(Python 3.9; `ml-curso` aún no está creado, igual que en la fase 2).
+
+**Ejercicios y quiz del módulo 3 quedan pendientes hasta cerrar S7 y S8** — se construyen al
+final de la fase, no por sesión, igual que en los módulos 1 y 2.
+
+⬜ **S7 — Multicolinealidad y regularización (siguiente).** ⬜ **S8 — Evaluación y selección
+de modelos.**
+
 ---
 
-## 4. Qué sigue — Fase 3 (Módulo 3: Regresión y evaluación)
+## 4. Qué sigue — Fase 3, sesión 7 (Multicolinealidad y regularización)
 
 Producir en `modulo-3-regresion-evaluacion/`:
 
-- **Teoría:** `01-regresion-lineal.md` · `02-descenso-gradiente.md` ·
-  `03-multicolinealidad-polinomica.md` · `04-regularizacion.md` ·
-  `05-sesgo-varianza-validacion.md` · `06-seleccion-hiperparametros.md`.
-- **Notebooks:** `01-descenso-gradiente-intuicion` · `02-regresion-multiple-aplicado` ·
-  `03-regularizacion-intuicion` · `04-regularizacion-aplicado` ·
-  `05-sesgo-varianza-intuicion` · `06-seleccion-modelos-aplicado`.
-- **Datos:** dataset conductor. Candidato heredado: **Ames Housing** (lo usaba
-  `Sesion07-ames_regresion_ml`). Verificar tamaño: si supera 1 MB, va con script de descarga.
-- **Ejercicios:** 3 con solución. **Quiz:** 10 preguntas.
+- **Teoría:** `03-multicolinealidad-polinomica.md` · `04-regularizacion.md`.
+- **Notebooks:** `03-regularizacion-intuicion` · `04-regularizacion-aplicado`.
+- Reusar `ames-housing.csv` (ya preparado). El notebook 02 de S6 ya señaló candidatas a
+  multicolinealidad: `gr_liv_area`, `total_bsmt_sf`, `garage_area`, `garage_cars` miden
+  aspectos parecidos de "qué tan grande es la casa" — buen punto de partida para el VIF.
 
 Puntos a cuidar:
 
-- El módulo 1 ya implementó el descenso del gradiente a mano
-  (`04-gradientes-intuicion.ipynb`). El notebook `01` de este módulo debe **partir de ahí**,
-  no repetirlo: extenderlo a múltiples variables, variantes (batch/mini-batch/SGD) y
-  diagnóstico de convergencia.
 - La sesión 8 (evaluación) es **nueva**, sin material previo. Es la que da las herramientas
   que los módulos 1 y 2 ya prometieron: validación cruzada repetida e intervalos sobre la
   diferencia entre modelos. Varios notebooks anteriores terminan diciendo "esto se resuelve en
   la sesión 8": hay que cumplirlo.
-- Optuna entra aquí (venía de `Sesion11-Metodos_ensamble`), no en el módulo 4.
+- Optuna entra en la sesión 8 (venía de `Sesion11-Metodos_ensamble`), no en el módulo 4.
 
 ### Decisiones abiertas para consultar con el docente
 
-1. **Dataset conductor de los módulos 3 a 5** — M2 ya usa Titanic (confirmado por el
-   docente). Candidatos pendientes: Ames Housing (M3), Wine Quality UCI (M4), Iris/Wine (M5).
+1. **Dataset conductor de los módulos 4 y 5** — M2 usa Titanic, M3 usa Ames Housing (ambos
+   confirmados por el docente). Candidatos pendientes: Wine Quality UCI (M4), Iris/Wine (M5).
 2. **Tema del proyecto integrador** — propuesta: predicción de deserción estudiantil con
    dataset sintético realista (nulos, categóricas, desbalance y una fuga de datos plantada a
    propósito). El módulo 1 ya sienta el dominio con `rendimiento-estudiantes.csv`.
@@ -225,7 +261,7 @@ Referencia para saber qué insumo existe al construir cada módulo. Todo está e
 | `Sesion03-webscraping` (BeautifulSoup) | M2/S4 🔵 | Reusar; fijar la fuente para que no se rompa | ✅ hecho (fixture local) |
 | `Sesion04-PCA*` ×3, `Sesion04-TSNE*` ×2 | M5/S12 | Consolidar 5 → 2 (intuición + aplicado) | pendiente |
 | `Sesion05-Ingenieria_caracteristicas` (NYC Taxi) | M2/S5 | Reescrito sobre `Pipeline`/`ColumnTransformer`; se usó Titanic en vez de NYC Taxi para mantener un solo dataset conductor | ✅ hecho |
-| `Sesion06-Regresion*` ×4 | M3/S6 | Consolidar 4 → 2 | pendiente |
+| `Sesion06-Regresion*` ×4 | M3/S6 | Consolidar 4 → 2 | ✅ hecho |
 | `Sesion07-*` ×5 (Ridge, Lasso, ElasticNet, Ames) | M3/S7 | Consolidar 5 → 2; sacar la rúbrica embebida | pendiente |
 | `Sesion08-*` ×7 (LogReg, KNN, SVM, Wine) | M4/S9 | Consolidar 7 → 2; Wine Quality como caso canónico | pendiente |
 | `Sesion09-Clasificacion2` | M4/S10 + M3/S8 | Dividir: CV y GridSearch suben a S8 | pendiente |
