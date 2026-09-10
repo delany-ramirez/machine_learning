@@ -225,14 +225,19 @@ distintos entre sí (Ridge reacciona con $\lambda$ mucho menor que Lasso).
   con la semilla del split, implementa k-fold a mano con barras de error, y construye curvas
   de aprendizaje para sub/buen-ajuste/sobreajuste. · `06-seleccion-modelos-aplicado` — sobre
   Ames Housing: `GridSearchCV` reemplaza el split informal de S7; compara grid/random/Optuna
-  sobre Elastic Net (2 hiperparámetros); mide el optimismo de no anidar la CV; cierra con una
-  comparación pareada Ridge-vs-Lasso.
+  sobre Elastic Net (2 hiperparámetros); mide el optimismo de no anidar la CV; hace la
+  comparación pareada Ridge-vs-Lasso en dos versiones (con y sin fuga de selección) y cierra
+  con el RMSE sobre el conjunto de prueba.
 
-**Hallazgo del notebook 06.** Ridge y Lasso, cada uno afinado por CV, comparados sobre los
-mismos 10 pliegues: la diferencia media de RMSE es mucho menor que su error estándar — no hay
-evidencia de que uno le gane al otro. Misma conclusión que
-`04-pipeline-caracteristicas-aplicado.ipynb` (módulo 2) reportó de forma informal, ahora con
-el procedimiento formal (comparación pareada) para llegar a ella.
+**Hallazgo del notebook 06.** Ridge y Lasso, cada uno afinado por CV y comparados sobre los
+mismos 10 pliegues, dan **conclusiones distintas según cómo se elija $\lambda$**. Con un
+$\lambda$ elegido una sola vez sobre todo `X_train` y evaluado en pliegues de ese mismo
+`X_train` —la fuga que el notebook mide en su sección 4—, la diferencia es −\$10 ± \$35
+(cociente 0.29): "no hay diferencia detectable". Con $\lambda$ elegido dentro de cada pliegue,
+es −\$41 ± \$17 (cociente 2.36): detectable, apenas por encima de la regla de dos errores
+estándar. Corregir la fuga no solo movió el número, cambió la respuesta. Y aun así \$41 sobre
+un RMSE de \$33,460 es 0.12 %: el notebook cierra distinguiendo **detectable** de **relevante
+para decidir**, que es la lección más transferible de la sesión.
 
 **Ejercicios (3) y quiz**, construidos al cerrar la fase, como en los módulos 1 y 2:
 
@@ -245,11 +250,10 @@ el procedimiento formal (comparación pareada) para llegar a ella.
   de que la escala de `alpha` de Elastic Net no es comparable a la de Ridge/Lasso solos) y
   muestra que corregir el signo exige un $\lambda$ mucho mayor al que minimiza el RMSE.
   `ej03-validacion-cruzada` cierra con CV formal, grid-vs-random, CV anidada, y una
-  comparación pareada que — a diferencia de la del notebook 06 — **sí** encuentra una
-  diferencia real: `foundation` aporta señal (diferencia de RMSE de \$961 ± \$211, más de 4
-  errores estándar). Que el módulo termine con un caso donde la comparación pareada detecta
-  una diferencia real, después de que el notebook 06 mostrara un caso donde no la detecta, es
-  deliberado: la herramienta funciona en ambas direcciones.
+  comparación pareada que encuentra una diferencia real **y además relevante**: `foundation`
+  aporta \$961 ± \$211 de RMSE (cociente 4.6, un 2.4 % del error). El contraste con el
+  notebook 06 —donde la diferencia detectable es de \$41, un 0.12 %— es deliberado: la
+  herramienta detecta en ambos casos, pero solo en uno la magnitud mueve una decisión.
 - **Quiz:** 10 preguntas con clave comentada, cubriendo las tres sesiones.
 
 **Verificación realizada:** los 6 notebooks se ejecutaron de punta a punta sin errores
@@ -262,6 +266,53 @@ preexistente (Python 3.9), no con `ml-curso`, que aún no está creado. El noteb
 (con `--only-binary=:all:`, para evitar que `greenlet` intente compilar desde código fuente)
 para poder verificar esa celda sin tocar el entorno del docente. `optuna>=3.6` ya está en
 `environment.yml`/`requirements.txt` desde la fase 0, así que `ml-curso` lo traerá de fábrica.
+
+**Revisión de la fase (2026-09-09, posterior al commit `7b54849`).** Se releyó el módulo
+completo verificando cada número contra una ejecución nueva. Los datos, las tablas de los
+ejercicios y los hallazgos de los notebooks 02, 03 y 04 se reprodujeron exactos. Se corrigió:
+
+- **Notebook 01.** La curva de convergencia submuestreaba el historial de batch (`[::5]`) y lo
+  graficaba contra un eje etiquetado "época", cuando en batch 1 paso = 1 época. Batch parecía
+  5× más rápido de lo que es, y eso ocultaba justo la lección del notebook: mini-batch llega en
+  1 época a donde batch tarda ~20. Se quitó el submuestreo y se añadió una tabla de costos por
+  época. También se corrigió la afirmación de que mini-batch coincide con la ecuación normal
+  "hasta el tercer o cuarto decimal" (coincide hasta centésimas).
+- **Notebook 02.** El hallazgo por cuartiles de precio se afirmaba en prosa sin celda que lo
+  calculara; ahora se computa (y se confirma: el modelo en log gana en los cuatro).
+- **Notebook 03.** La fórmula de umbral suave del markdown no coincidía con el código (el
+  factor $1/n$ iba fuera del umbral en vez de dentro). Se añadió una nota sobre las dos
+  convenciones de $\lambda$ —Ridge se valida con `alpha = lam * n` y Lasso con `alpha = lam`—,
+  que hacía que las dos trayectorias no fueran comparables punto por punto.
+- **Notebook 04.** El RMSE de referencia del notebook 02 estaba pegado a mano (\$37,940); ahora
+  se recalcula (da el mismo valor).
+- **Notebook 05.** Se corrigió la afirmación de que barras de error solapadas son "exactamente
+  la comparación pareada", y se añadió la comparación pareada de verdad entre los grados 5 y 7:
+  misma conclusión, pero con un ee (0.0035) menor que el de cada grado por separado (0.0093 y
+  0.0065) — que es precisamente el motivo de emparejar.
+- **Notebook 06.** Cuatro cambios. (a) `TPESampler` usaba el `n_startup_trials=10` de fábrica,
+  así que la corrida de 10 trials era **random search puro** y TPE no intervenía nunca; se bajó
+  a 5. (b) La sección 3 concluía superioridad de un método sobre otro a partir de diferencias
+  de \$1.5 sobre \$34,377; se reencuadró hacia el costo de la búsqueda, que es lo que sí
+  distingue a los métodos aquí. (c) La comparación pareada elegía $\lambda$ con todo `X_train`
+  y evaluaba en pliegues de ese mismo `X_train` — la fuga que la sección 4 acababa de enseñar;
+  ahora se presentan las dos versiones y se muestra que la conclusión cambia. (d) `X_test` se
+  creaba y nunca se usaba: el notebook que cierra el módulo no reportaba ningún número sobre
+  datos intocados. Ahora sí (\$37,966, contra \$34,450 de la CV anidada).
+- **Fuera de los notebooks.** `04-regularizacion.md` afirmaba que OLS no tiene solución cerrada
+  (el contraste correcto es con Lasso); se añadió la advertencia sobre los nombres `alpha`/
+  `l1_ratio` de `ElasticNet`. `05-sesgo-varianza-validacion.md` ahora aclara que el ee de
+  k-fold subestima la incertidumbre porque los pliegues comparten datos.
+  `ej03-validacion-cruzada-sol.md` reportaba $\lambda=7.85$, que sale de una rejilla de 20
+  puntos y no de la de 15 que sugiere el
+  enunciado (7.20); se recalcularon también los números de CV anidada. `environment.yml`
+  registraba el kernel como `ml`, mientras `docs/guia-entorno.md` y los 14 notebooks del repo
+  usan `ml-curso`.
+
+**Higiene de código.** Los notebooks 02, 04 y 06 compartían un mismo `ColumnTransformer` entre
+varios `Pipeline`. Como `Pipeline` no clona sus pasos, el último `fit` dejaba a los demás con
+un preprocesador ajustado sobre datos que no les correspondían — sin lanzar ninguna excepción.
+Funcionaba por casualidad (los reajustes caían sobre los mismos datos), pero se rompía al
+reejecutar celdas fuera de orden. Los tres usan ahora una función `crear_pipeline()`.
 
 ---
 
@@ -280,7 +331,7 @@ Producir en `modulo-4-clasificacion-ensambles/`:
   gradiente de `02-descenso-gradiente.md` (módulo 3) de regresión a clasificación (función
   sigmoide, pérdida de entropía cruzada), igual que el notebook 01 de M3 extendió el del
   módulo 1 — mantener el patrón de no repetir lo ya construido.
-- **Dataset conductor candidato:** Wine Quality (UCI), según `PLAN.md` §... (candidato
+- **Dataset conductor candidato:** Wine Quality (UCI), según el mapa de la sección 5 (candidato
   histórico, pendiente de confirmar con el docente — ver decisión 1 abajo). Si se confirma,
   probablemente necesite descargarse con script (`descargar-wine-quality.py`), no versionarse
   directo: verificar tamaño antes de decidir.

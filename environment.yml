@@ -2,7 +2,7 @@
 #
 #   conda env create -f environment.yml
 #   conda activate ml-curso
-#   python -m ipykernel install --user --name ml --display-name "Python (ml)"
+#   python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
 #   jupyter lab
 #
 # Ver docs/guia-entorno.md para la instalación paso a paso y alternativas.

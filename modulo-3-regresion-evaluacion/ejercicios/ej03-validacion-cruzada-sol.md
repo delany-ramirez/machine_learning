@@ -9,10 +9,15 @@
 
 | Modelo | $\lambda$ elegido (CV) | RMSE de CV |
 |---|---|---|
-| Ridge | 7.85 | \$40,764 |
-| Lasso | 7.85 | \$40,775 |
+| Ridge | 7.20 | \$40,764 |
+| Lasso | 7.20 | \$40,775 |
 
-**A.2** El $\lambda$ de Ridge por CV (7.85) es bastante mayor que el "≈1" elegido a ojo en
+> Los $\lambda$ de la tabla corresponden a la rejilla sugerida en `ej02-regularizacion.md`,
+> `np.logspace(-2, 3, 15)`, cuyo punto más cercano al óptimo es 7.20. Un estudiante que use
+> otra rejilla obtendrá un $\lambda$ algo distinto (con 20 puntos, 7.85) y prácticamente el
+> mismo RMSE: la curva es muy plana en esa zona, y eso es en sí mismo parte de la lección.
+
+**A.2** El $\lambda$ de Ridge por CV (7.20) es bastante mayor que el "≈1" elegido a ojo en
 `ej02-regularizacion-sol.md` sobre un solo split de validación — otra muestra de que un split
 único es ruidoso (`05-sesgo-varianza-validacion.md`, sección 2). El RMSE de 5-fold CV
 (\$40,764) es más bajo que el RMSE de prueba del ejercicio 02 (\$43,342): son números
@@ -38,11 +43,11 @@ suave, no hace falta cubrir la rejilla completa.
 
 ## Parte C — Validación cruzada anidada
 
-**C.1** RMSE de CV anidada: **\$40,797 ± \$3,665** (error estándar sobre los 5 pliegues
+**C.1** RMSE de CV anidada: **\$40,814 ± \$3,663** (error estándar sobre los 5 pliegues
 externos).
 
-**C.2** RMSE ingenuo (parte A): \$40,764. Optimismo medido: **\$33** — minúsculo, y muy por
-debajo del error estándar de \$3,665 de la propia CV anidada. Con este dataset y este
+**C.2** RMSE ingenuo (parte A): \$40,764. Optimismo medido: **\$50** — minúsculo, y muy por
+debajo del error estándar de \$3,663 de la propia CV anidada. Con este dataset y este
 $\lambda$ ya cercano a OLS, la fuga por no anidar es, en la práctica, indetectable. Vale la
 pena que el estudiante note la analogía con `04-regularizacion-aplicado.ipynb`: cuando el
 modelo ya está cerca de su óptimo sin regularizar, hay poco margen para que la elección del

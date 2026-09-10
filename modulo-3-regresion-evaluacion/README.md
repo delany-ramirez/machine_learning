@@ -52,8 +52,8 @@ de hiperparámetros.
 | 02 | [`notebooks/02-regresion-multiple-aplicado.ipynb`](notebooks/02-regresion-multiple-aplicado.ipynb) | aplicado | `Pipeline` sobre Ames Housing; métricas; residuales en embudo; RMSE vs. MAE al modelar en log(precio) |
 | 03 | [`notebooks/03-regularizacion-intuicion.ipynb`](notebooks/03-regularizacion-intuicion.ipynb) | intuición | Ridge y Lasso a mano (descenso con penalización $L_2$; descenso por coordenadas para $L_1$); inestabilidad de OLS por colinealidad, medida con bootstrap |
 | 04 | [`notebooks/04-regularizacion-aplicado.ipynb`](notebooks/04-regularizacion-aplicado.ipynb) | aplicado | VIF sobre Ames Housing, términos polinómicos y su costo en colinealidad, Ridge/Lasso con `scikit-learn` |
-| 05 | [`notebooks/05-sesgo-varianza-intuicion.ipynb`](notebooks/05-sesgo-varianza-intuicion.ipynb) | intuición | Regresión polinómica sobre función verdadera conocida; k-fold a mano con barras de error; curvas de aprendizaje |
-| 06 | [`notebooks/06-seleccion-modelos-aplicado.ipynb`](notebooks/06-seleccion-modelos-aplicado.ipynb) | aplicado | Grid/random/Optuna sobre Ames Housing, CV anidada, comparación pareada Ridge vs. Lasso |
+| 05 | [`notebooks/05-sesgo-varianza-intuicion.ipynb`](notebooks/05-sesgo-varianza-intuicion.ipynb) | intuición | Regresión polinómica sobre función verdadera conocida; k-fold a mano con barras de error; por qué barras solapadas no son una comparación pareada; curvas de aprendizaje |
+| 06 | [`notebooks/06-seleccion-modelos-aplicado.ipynb`](notebooks/06-seleccion-modelos-aplicado.ipynb) | aplicado | Grid/random/Optuna sobre Ames Housing, CV anidada, comparación pareada Ridge vs. Lasso con y sin fuga de selección, y el RMSE final sobre el conjunto de prueba |
 
 > **Hallazgo del notebook 02.** Modelar $\log(1+\text{precio})$ en vez del precio directo baja
 > el MAE y el MAPE en los cuatro cuartiles de precio, pero **sube** el RMSE: una sola vivienda
@@ -69,10 +69,14 @@ de hiperparámetros.
 > muy distintos entre sí.
 >
 > **Hallazgo del notebook 06.** Comparando Ridge y Lasso —cada uno afinado por CV— sobre los
-> **mismos** 10 pliegues, la diferencia media de RMSE es mucho menor que su error estándar: no
-> hay evidencia de que uno le gane al otro en este dataset. Es la misma conclusión que
-> `04-pipeline-caracteristicas-aplicado.ipynb` (módulo 2) reportó de forma informal, ahora con
-> el procedimiento formal para llegar a ella.
+> **mismos** 10 pliegues, la conclusión **depende de cómo se haya elegido $\lambda$**. Si se
+> elige una sola vez con todo el entrenamiento y después se evalúa sobre pliegues de ese mismo
+> entrenamiento —la fuga que el propio notebook mide en la sección 4—, la diferencia es −\$10
+> con un error estándar de \$35: "no hay diferencia detectable". Si cada pliegue elige su
+> $\lambda$ con datos que no lo incluyen, la diferencia es −\$41 con ee \$17, apenas por encima
+> de la regla de dos errores estándar. La higiene metodológica no solo corrige un número: aquí
+> cambia la respuesta. Y aun así, \$41 sobre un RMSE de \$33,460 es un 0.12 % —
+> **detectable no es lo mismo que relevante**.
 
 ### Datos
 
@@ -97,8 +101,10 @@ Los tres ejercicios comparten un mismo subconjunto de variables de Ames Housing 
 de los notebooks— y se encadenan: el 01 descubre que `full_bath`/`half_bath` tienen
 coeficientes de signo contraintuitivo a pesar de un VIF bajo; el 02 mide ese VIF, prueba
 Ridge/Lasso/Elastic Net y muestra que corregir el signo exige mucho más $\lambda$ del que
-conviene para predecir; el 03 cierra con CV formal y una comparación pareada que, a diferencia
-de la del notebook 06, **sí** encuentra una diferencia real (`foundation` aporta señal).
+conviene para predecir; el 03 cierra con CV formal y una comparación pareada que encuentra una
+diferencia **que además importa**: `foundation` aporta \$961 de RMSE con un ee de \$211
+(cociente 4.6), frente a los \$41 apenas detectables —y prácticamente irrelevantes— que el
+notebook 06 mide entre Ridge y Lasso.
 
 ### Quiz
 

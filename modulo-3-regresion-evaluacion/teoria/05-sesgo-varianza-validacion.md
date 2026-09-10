@@ -76,6 +76,13 @@ $$
 $k=5$ o $k=10$ son las opciones habituales: suficientes pliegues para estimar la variabilidad
 sin que cada uno se quede con muy pocos datos.
 
+> **Una advertencia sobre ese error estándar.** La fórmula $\text{ee} = s/\sqrt{k}$ supone que
+> los $k$ errores son independientes entre sí, y no lo son: los conjuntos de entrenamiento de
+> dos pliegues cualesquiera comparten la mayoría de sus datos. En consecuencia, el ee así
+> calculado **subestima** la incertidumbre real. Se usa igual en este curso porque es simple y
+> el orden de magnitud es informativo — pero conviene leerlo como una cota optimista, no como
+> un intervalo exacto.
+
 ### Variantes
 
 - **K-fold estratificado**: para clasificación (módulo 4), conserva la proporción de cada

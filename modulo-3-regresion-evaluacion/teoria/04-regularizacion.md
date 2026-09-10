@@ -44,8 +44,8 @@ $$
 R(\boldsymbol{\beta}) = \sum_{j=1}^p \beta_j^2 = \lVert \boldsymbol{\beta} \rVert_2^2
 $$
 
-A diferencia de OLS, Ridge **sí tiene solución cerrada**, y es la razón por la que se usa como
-primer remedio a la multicolinealidad:
+Igual que OLS, Ridge **tiene solución cerrada** —y a diferencia de Lasso (sección 3), que no la
+tiene—. Es la razón por la que se usa como primer remedio a la multicolinealidad:
 
 $$
 \boldsymbol{\beta}_{\text{Ridge}} = (\mathbf{X}^{\top}\mathbf{X} + \lambda \mathbf{I})^{-1}
@@ -97,12 +97,19 @@ R(\boldsymbol{\beta}) = \alpha \lVert \boldsymbol{\beta} \rVert_1 + (1-\alpha) \
 \boldsymbol{\beta} \rVert_2^2, \qquad \alpha \in [0, 1]
 $$
 
-Combina ambas penalizaciones. $\alpha=1$ es Lasso puro; $\alpha=0$ es Ridge puro
-(`scikit-learn` llama a $\alpha$ `l1_ratio`). La razón para usarlo, más allá de "un punto
-intermedio": cuando hay un **grupo** de variables muy correlacionadas entre sí y todas
-relevantes, Lasso tiende a elegir una del grupo de forma casi arbitraria y poner las demás en
-cero — inestable de una muestra a otra. Elastic Net, gracias al componente Ridge, tiende a
-mantener el grupo completo con coeficientes similares, en vez de una elección arbitraria.
+Combina ambas penalizaciones. $\alpha=1$ es Lasso puro; $\alpha=0$ es Ridge puro.
+
+> **Cuidado con los nombres en `scikit-learn`.** Al $\alpha$ de esta fórmula lo llama
+> `l1_ratio`; su parámetro `alpha` es el $\lambda$ de este documento. Además, `ElasticNet`
+> reparte un mismo `alpha` entre las dos penalizaciones, así que un valor que resulta suave
+> para `Ridge` o `Lasso` por separado puede ser mucho más agresivo para `ElasticNet`: las
+> rejillas de búsqueda **no** son intercambiables entre los tres métodos.
+
+La razón para usarlo, más allá de "un punto intermedio": cuando hay un **grupo** de variables
+muy correlacionadas entre sí y todas relevantes, Lasso tiende a elegir una del grupo de forma
+casi arbitraria y poner las demás en cero — inestable de una muestra a otra. Elastic Net,
+gracias al componente Ridge, tiende a mantener el grupo completo con coeficientes similares,
+en vez de una elección arbitraria.
 
 ## 5. $\lambda$: el hiperparámetro que lo controla todo
 
