@@ -136,8 +136,8 @@ general es un tema 🔵 opcional del módulo.
 
 Entrenar una SVM con kernel escala entre $O(n^2)$ y $O(n^3)$: es la más lenta de los tres
 clasificadores de la sesión, y con más de unas decenas de miles de filas se vuelve poco
-práctica (en `02-clasificacion-aplicado.ipynb`, con 4256 filas, tarda unos segundos por
-ajuste frente a milisegundos de la logística). Para datos grandes, `LinearSVC` (sin kernel)
+práctica (en `02-clasificacion-aplicado.ipynb`, con 4256 filas y `probability=True`, tarda
+alrededor de un segundo por ajuste frente a milisegundos de la logística). Para datos grandes, `LinearSVC` (sin kernel)
 o directamente boosting (S11).
 
 ## 3. Los tres clasificadores de la sesión, lado a lado

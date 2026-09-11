@@ -3,7 +3,7 @@
 Este archivo es la **memoria del proyecto entre sesiones de trabajo**. Al retomar el trabajo,
 léelo primero: dice qué está hecho, qué sigue y qué decisiones ya se tomaron.
 
-**Última actualización:** 2026-09-09 · **Fase actual:** 3 completada, sigue la Fase 4.
+**Última actualización:** 2026-09-11 · **Fase actual:** 4 completada, sigue la Fase 5.
 
 ---
 
@@ -49,7 +49,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 | 1 | **Módulo 1** — Fundamentos y ciclo de vida (S1–S3) | ✅ hecha | `ac80bf0` |
 | 2 | **Módulo 2** — Datos y características (S4–S5) | ✅ hecha | |
 | 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | ✅ hecha | `887ac33` (S6) · `0933873` (S7) |
-| 4 | **Módulo 4** — Clasificación y ensambles (S9–S11) | ⬜ pendiente | |
+| 4 | **Módulo 4** — Clasificación y ensambles (S9–S11) | ✅ hecha | `3466c40` (S9) · `a33831d` (S10) · `49fa45c` (S11) |
 | 5 | **Módulo 5** — No supervisado y deep learning (S12–S13) | ⬜ pendiente | |
 | 6 | **Módulo 6** — MLOps y despliegue (S14) | ⬜ pendiente | |
 | 7 | **Proyecto integrador** — enunciado, datos, rúbrica, entregas | ⬜ pendiente | |
@@ -316,42 +316,145 @@ reejecutar celdas fuera de orden. Los tres usan ahora una función `crear_pipeli
 
 ---
 
-## 4. Qué sigue — Fase 4 (Módulo 4: Clasificación y ensambles, S9–S11)
+### ✅ Fase 4 — Módulo 4: Clasificación y ensambles
 
-Producir en `modulo-4-clasificacion-ensambles/`:
+**Datasets elegidos (confirmados con el docente antes de construir):** `wine-quality.csv`
+como conductor de los notebooks y **Adult Census** como caso más retador para los ejercicios.
 
-- **Teoría (propuesta, 6 documentos):** regresión logística (odds, log-odds, máxima
-  verosimilitud, softmax) · KNN y SVM (kernels) · métricas de clasificación (matriz de
-  confusión, precisión/recall/F1, ROC-AUC, curva PR, ajuste del umbral, clases desbalanceadas)
-  — S9; árboles de decisión (Gini/entropía, poda) · bagging y Random Forest (importancia de
-  variables) — S10; boosting (AdaBoost, Gradient Boosting, XGBoost, LightGBM) e
-  interpretabilidad (permutation importance, SHAP, stacking) — S11.
-- **Notebooks (propuesta, 6):** dos por sesión, siguiendo el patrón intuición/aplicado de los
-  módulos 1-3. El de intuición de S9 es candidato natural a **extender** el descenso del
-  gradiente de `02-descenso-gradiente.md` (módulo 3) de regresión a clasificación (función
-  sigmoide, pérdida de entropía cruzada), igual que el notebook 01 de M3 extendió el del
-  módulo 1 — mantener el patrón de no repetir lo ya construido.
-- **Dataset conductor candidato:** Wine Quality (UCI), según el mapa de la sección 5 (candidato
-  histórico, pendiente de confirmar con el docente — ver decisión 1 abajo). Si se confirma,
-  probablemente necesite descargarse con script (`descargar-wine-quality.py`), no versionarse
-  directo: verificar tamaño antes de decidir.
-- **Ejercicios (3) y quiz**, al cierre de la fase.
+- **Wine Quality** (UCI, CC BY 4.0; Cortez et al., 2009): 6497 vinos, 11 medidas
+  fisicoquímicas + `tipo` + `quality` (3–9). Se une tinto + blanco con
+  `datos/preparar-wine-quality.py`; 430 KB, se versiona. Problema binario del módulo:
+  `buena = quality >= 7` (19.7 % positivos). Trae **1177 filas idénticas**, que resultaron
+  ser el hallazgo didáctico más útil (ver abajo).
+- **Adult Census** (UCI, CC BY 4.0; Kohavi y Becker, 1996): 48 842 personas, 14 variables,
+  `ingreso_alto` (23.9 %). ~5 MB, así que **no se versiona**: `datos/descargar-adult-census.py`
+  (idempotente) y una entrada en `.gitignore`. Categóricas de alta cardinalidad, nulos,
+  variables sesgadas (`ganancia_capital`), y proxies de variables sensibles.
+- Además, copia de `rendimiento-estudiantes.csv` (módulos 1 y 3) para el notebook 01, que
+  extiende a `aprobo` el descenso del gradiente que M3 hizo sobre `nota_final`.
+
+Producido:
+
+- **Teoría (6):** regresión logística · KNN y SVM · métricas y desbalance (S9); árboles y
+  bagging (S10); boosting (AdaBoost, gradient boosting, XGBoost/LightGBM, stacking) ·
+  interpretabilidad (MDI, permutación, Shapley/SHAP, PDP/ICE, qué no es una explicación) (S11).
+- **Notebooks (7, no 6):** S9 `01-logistica-intuicion` (extiende el bucle de descenso de M3
+  sin cambiar una línea: solo cambian costo y gradiente; softmax; separación perfecta) ·
+  `02-clasificacion-aplicado`. S10 `03-arboles-intuicion` (árbol recursivo a mano que
+  coincide con `DecisionTreeClassifier`; bagging a mano) · `04-arboles-bagging-aplicado`.
+  S11 `05-boosting-intuicion` (AdaBoost y gradient boosting a mano, validados contra
+  `scikit-learn` hasta $10^{-15}$) · `06-boosting-aplicado` · `07-interpretabilidad-aplicado`.
+  La S11 lleva tres porque cubre boosting **e** interpretabilidad; fusionarlos habría dado un
+  notebook de 40 celdas.
+- **Ejercicios (3 + soluciones)** sobre Adult Census, encadenados, y **quiz** de 10 preguntas.
+
+**Hallazgos que cambiaron el contenido** (todos medidos, no supuestos):
+
+1. **Duplicados como fuga que elige al modelo equivocado.** Con las 1177 filas idénticas
+   dentro, KNN con $k=1$ obtiene F1 0.66 —muy por encima de la logística y la SVM (0.40–0.44)—;
+   sin ellas, 0.47. El 30 % de las filas de prueba tenía un gemelo exacto en entrenamiento.
+   El notebook 02 se construyó alrededor de esto, en contraste con el Titanic (M2), donde
+   las filas idénticas **no** eran duplicados. El criterio (plausibilidad de que sean
+   observaciones distintas + medir) está en teoría 02 y en el quiz.
+2. **Balancear clases = mover el umbral.** Pesos de clase y SMOTE suben el recall en 0.5,
+   pero AUC-ROC, AP y el mejor F1 alcanzable no cambian en la logística (también en Adult,
+   con 10× más datos). En la SVM sí cambian el modelo — y AUC sube mientras AP baja: las
+   métricas discrepan, como RMSE/MAE en M3. `scale_pos_weight` en LightGBM: igual.
+3. **Random Forest no siempre gana a bagging.** Con 2 variables informativas de 20
+   (notebook 03), el 63 % de los nodos no ve ninguna útil y RF es peor. Sobre Wine (12
+   variables con señal), `max_features=12` es la peor fila y `max_features=1` la mejor;
+   RF − bagging = 0.016 ± 0.003. `max_features` se afina.
+4. **Boosting no gana siempre.** Wine: boosting por defecto (AP 0.54) < RF (0.57) <
+   Extra-Trees (0.59); LightGBM tras 40 trials de Optuna (0.57) sigue 0.022 ± 0.004 por debajo
+   de Extra-Trees sin afinar. Stacking: +0.006 ± 0.003, detectable, no relevante. **Adult
+   (ejercicios): se invierte** — LightGBM por defecto 0.83 frente a RF 0.78; LightGBM − RF
+   afinado = 0.026 ± 0.001; y `min_samples_leaf=1` deja de ser lo mejor para RF (0.775 → 0.803
+   con 5). La pareja de datasets se eligió para poder mostrar las dos direcciones.
+5. **Sesgos de las importancias, medidos.** MDI: una columna de ruido gaussiano queda por
+   encima de cuatro variables reales y 6× por encima del ruido binario (misma explicación
+   para `age` > sexo en el Titanic de M2). Permutación: con las correlaciones reales (0.5–0.7)
+   el punto ciego es de solo un 4 %; con una copia de `alcohol`, su importancia cae de 0.104 a
+   0.017. En Adult aparece sin plantar nada: `fnlwgt` es la segunda variable por número de
+   particiones y nada por permutación; `relacion` es `sexo × estado_civil`.
+6. **Quitar `sexo` no quita el sexo** (ejercicio 03): `Husband`/`Wife` lo codifican al
+   100 %; sin la columna, la AP y las tasas de positivos predichos por sexo no cambian. Es la
+   entrada del módulo al tema de sesgos (🔵 del README), tratada como medición, no como
+   sermón.
+
+**Verificación realizada:** los 7 notebooks se ejecutaron de principio a fin sin errores
+(código extraído del `.py` percent, ejecutado desde `notebooks/`, figuras revisadas una a
+una); todos los números de teoría, README, ejercicios y quiz provienen de esas ejecuciones y
+de los scripts de solución sobre `adult-census.csv`. Optuna con `TPESampler(seed=42,
+n_startup_trials=10)` es reproducible corrida a corrida (mismos hiperparámetros); los
+hiperparámetros resultantes están copiados a mano en el notebook 07, que no repite la
+búsqueda. Enlaces relativos del módulo verificados por script.
+
+**Nota de entorno.** Como en las fases 2 y 3, la verificación se hizo con el entorno conda
+`ML` (Python 3.9). `xgboost`, `lightgbm`, `shap`, `imbalanced-learn`, `seaborn` y `optuna` no
+estaban instalados; se instalaron con `pip install --only-binary=:all: --target <carpeta
+temporal>` y `PYTHONPATH`, sin tocar el entorno del docente. Todos están en
+`environment.yml`/`requirements.txt` desde la fase 0. Versiones usadas: scikit-learn 1.6.1,
+xgboost 2.1.4, lightgbm 4.6.0, shap 0.49.1, imbalanced-learn 0.12.4.
+
+**Detalles de implementación que conviene conservar:**
+
+- `evaluar_cv()` reporta la AP como **promedio de la AP por pliegue** (con error estándar);
+  el notebook 02 la calculaba sobre las probabilidades de `cross_val_predict` juntas (0.517
+  vs. 0.526 para la logística). La diferencia está explicada en el notebook 04; no mezclar.
+- `shap.plots.scatter(..., color=explicacion)` falla con columnas categóricas (`dtype=
+  category`): la selección automática de la variable de color compara `str` con `float`. El
+  ejercicio 03 pide colorear por `horas_semana` explícitamente.
+- `oob_decision_function_` tiene `nan` para filas que ningún árbol dejó fuera; con $B=10$
+  le pasa al 1 %. El notebook 04 las filtra antes de calcular la AP OOB.
+- Los notebooks 05 y 06 tardan ~1 y ~2 minutos; el resto, segundos. El más lento es el
+  `GradientBoostingClassifier` exacto del notebook 05 (50 s sobre 30 000 filas), que está ahí
+  a propósito para medir la diferencia con los histogramas.
+
+---
+
+## 4. Qué sigue — Fase 5 (Módulo 5: No supervisado y deep learning, S12–S13)
+
+Producir en `modulo-5-no-supervisado-deep-learning/`:
+
+- **Teoría (propuesta, 4–5 documentos):** clustering (K-Means/K-Means++, jerárquico,
+  DBSCAN) · validación de clusters (codo, silueta, Davies-Bouldin) · reducción de
+  dimensionalidad (PCA, t-SNE, 🔵 UMAP) · 🔵 detección de anomalías — S12; perceptrón, MLP,
+  activaciones, retropropagación, entrenamiento en PyTorch, cuándo no usar deep learning —
+  S13.
+- **Notebooks (propuesta, 4–5):** S12 `01-clustering-intuicion` (K-Means a mano: asignación
+  y actualización; ver que el resultado depende de la inicialización y qué arregla K-Means++)
+  · `02-clustering-aplicado` (comparación de algoritmos y validación sobre el dataset
+  conductor) · `03-reduccion-dimensionalidad` (PCA a mano vía la SVD del módulo 1; t-SNE;
+  cuándo PCA no aporta — `rendimiento-estudiantes.csv` tiene variables casi incorreladas,
+  hallazgo de la fase 1). S13 `04-mlp-intuicion` (perceptrón y retropropagación a mano,
+  extendiendo por tercera vez el descenso del gradiente: M1 → M3 → M4 nb01 → aquí) ·
+  `05-pytorch-aplicado` (MLP en PyTorch sobre tabular, comparado contra el mejor ensamble de
+  M4 sobre los mismos datos, para enseñar cuándo **no** usar deep learning).
+- **Dataset conductor:** pendiente de confirmar (decisión 1 abajo). Para el notebook 05
+  conviene reutilizar Wine Quality o Adult Census, para que la comparación "MLP vs. LightGBM"
+  sea sobre datos ya conocidos y con números ya establecidos (AP 0.59 / 0.83).
+- **Ejercicios (2–3) y quiz**, al cierre.
 
 Puntos a cuidar:
 
-- `Sesion09-Clasificacion2` (material previo) ya se dividió en la fase 3: CV y GridSearch
-  subieron a S8. Lo que queda de esa sesión para M4/S10 es específicamente árboles y bagging.
-- Optuna ya se cubrió en S8 (módulo 3); en M4 se **usa**, no se vuelve a enseñar desde cero.
-- Las métricas de clasificación (S9) son el primer tema realmente nuevo desde el punto de vista
-  de evaluación desde que se cerró el módulo 3 — no hay "sesión 8 lo resuelve" en el que
-  apoyarse; hay que construir el marco completo (matriz de confusión, umbral, desbalance) en
-  esa misma sesión.
+- El material previo tiene 5 notebooks de PCA/t-SNE (`Sesion04-*`) y uno de clustering
+  (`Sesion10-Clustering`): consolidar, no copiar. Ver mapa de la sección 5.
+- S13 es un **puente** (decisión de diseño de la fase 0): un solo notebook de PyTorch, sin
+  CNN ni transfer learning más allá de un vistazo 🔵. El criterio "cuándo no usar DL" debe
+  salir de una medición, no de una afirmación: un MLP afinado contra LightGBM sobre tabular.
+- Patrones a mantener de M3/M4: `.py` percent → `.ipynb`; números de teoría y ejercicios
+  desde ejecuciones reales; comparación pareada con error estándar; "detectable vs.
+  relevante"; datasets confirmados con el docente antes de construir.
 
 ### Decisiones abiertas para consultar con el docente
 
-1. **Dataset conductor de los módulos 4 y 5** — M2 usa Titanic, M3 usa Ames Housing (ambos
-   confirmados por el docente, siguiendo el mismo patrón de confirmación previa a construir).
-   Candidatos pendientes: Wine Quality UCI (M4), Iris/Wine (M5).
+1. **Dataset conductor del módulo 5** — M2 usa Titanic, M3 Ames Housing, M4 Wine Quality +
+   Adult Census (todos confirmados por el docente antes de construir). Para M5 hay dos
+   candidatos: reutilizar **Wine Quality** (ya conocido; `tipo` tinto/blanco es una etiqueta
+   natural para validar clusters *a posteriori*, y PCA sobre las 11 variables tiene sentido
+   porque sí están correlacionadas, a diferencia de `rendimiento-estudiantes.csv`), o un
+   dataset nuevo (p. ej. clientes de un centro comercial / segmentación, más "de negocio").
+   Para S13, reutilizar Wine Quality o Adult Census en la comparación MLP vs. LightGBM.
 2. **Tema del proyecto integrador** — propuesta: predicción de deserción estudiantil con
    dataset sintético realista (nulos, categóricas, desbalance y una fuga de datos plantada a
    propósito). El módulo 1 ya sienta el dominio con `rendimiento-estudiantes.csv`.
@@ -372,17 +475,17 @@ Referencia para saber qué insumo existe al construir cada módulo. Todo está e
 
 | Material previo | Destino | Acción | Estado |
 |---|---|---|---|
-| PDFs S1–S12 | Teoría de los 6 módulos | Reescribir como texto con LaTeX | parcial (M1 hecho) |
+| PDFs S1–S12 | Teoría de los 6 módulos | Reescribir como texto con LaTeX | parcial (M1–M4 hechos) |
 | `Sesion03-Limpieza de datos` (Titanic) | M2/S4 | Reusar dataset; reescribir con EDA más fuerte | ✅ hecho |
 | `Sesion03-webscraping` (BeautifulSoup) | M2/S4 🔵 | Reusar; fijar la fuente para que no se rompa | ✅ hecho (fixture local) |
 | `Sesion04-PCA*` ×3, `Sesion04-TSNE*` ×2 | M5/S12 | Consolidar 5 → 2 (intuición + aplicado) | pendiente |
 | `Sesion05-Ingenieria_caracteristicas` (NYC Taxi) | M2/S5 | Reescrito sobre `Pipeline`/`ColumnTransformer`; se usó Titanic en vez de NYC Taxi para mantener un solo dataset conductor | ✅ hecho |
 | `Sesion06-Regresion*` ×4 | M3/S6 | Consolidar 4 → 2 | ✅ hecho |
 | `Sesion07-*` ×5 (Ridge, Lasso, ElasticNet, Ames) | M3/S7 | Consolidar 5 → 2; sacar la rúbrica embebida | ✅ hecho |
-| `Sesion08-*` ×7 (LogReg, KNN, SVM, Wine) | M4/S9 | Consolidar 7 → 2; Wine Quality como caso canónico | pendiente |
-| `Sesion09-Clasificacion2` | M4/S10 + M3/S8 | Dividir: CV y GridSearch suben a S8 | pendiente |
+| `Sesion08-*` ×7 (LogReg, KNN, SVM, Wine) | M4/S9 | Consolidado 7 → 2; Wine Quality (tinto + blanco, sin duplicados) como caso canónico | ✅ hecho |
+| `Sesion09-Clasificacion2` | M4/S10 + M3/S8 | Dividido: CV y GridSearch subieron a S8; árboles y bagging en M4/S10, reescritos sobre Wine Quality en vez de Titanic | ✅ hecho |
 | `Sesion10-Clustering` | M5/S12 | Base reutilizable; añadir comparación de algoritmos | pendiente |
-| `Sesion11-*` ×3 + `03-SHAP_LightGBM` | M4/S11 | Consolidar 4 → 2; Optuna pasa a S8 | pendiente |
+| `Sesion11-*` ×3 + `03-SHAP_LightGBM` | M4/S11 | Consolidado 4 → 3 (boosting intuición, boosting aplicado, interpretabilidad); Optuna pasó a S8 y aquí solo se usa; Breast Cancer reemplazado por Wine Quality | ✅ hecho |
 | *(no existía)* | M1/S1, M1/S2, M5/S13, M6/S14 | Contenido **nuevo** | M1 hecho |
 
 El módulo 1 no reutilizó ningún notebook previo: no existían para S1 ni S2, y los de S4 sobre

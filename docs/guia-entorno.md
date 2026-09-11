@@ -107,7 +107,7 @@ Los datasets pequeños ya están en la carpeta `datos/` de cada módulo. Los gra
 descargan con el script correspondiente, por ejemplo:
 
 ```bash
-python modulo-4-clasificacion-ensambles/datos/descargar-wine-quality.py
+python modulo-4-clasificacion-ensambles/datos/descargar-adult-census.py
 ```
 
 Los scripts son idempotentes: si el archivo ya existe, no lo vuelven a bajar. Los datos
@@ -117,7 +117,7 @@ descargados están excluidos de git, así que cada quien los genera en su máqui
 
 | Síntoma | Causa probable | Solución |
 |---|---|---|
-| El notebook no encuentra los paquetes | Jupyter está usando otro kernel | Selecciona el kernel `Python (ml)` en la esquina superior derecha |
+| El notebook no encuentra los paquetes | Jupyter está usando otro kernel | Selecciona el kernel `Python (ml-curso)` en la esquina superior derecha |
 | `FileNotFoundError` al leer un CSV | Se abrió Jupyter desde una carpeta distinta | Abre `jupyter lab` desde la raíz del repositorio; las rutas son relativas a la carpeta del notebook |
 | `conda` tarda horas resolviendo | Solver clásico | Usa `mamba`, o `conda config --set solver libmamba` |
 | Gráficas que no aparecen | Backend de matplotlib | Añade `%matplotlib inline` en la primera celda |

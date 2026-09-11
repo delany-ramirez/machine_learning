@@ -123,7 +123,7 @@ de $P(y=1)$ entre repeticiones del experimento baja de 0.139 para un árbol solo
 para bagging con 50 árboles. El **sesgo no cambia**: el promedio de árboles profundos sigue
 siendo tan flexible como cada uno. Por eso bagging usa árboles **sin podar** —sesgo mínimo—
 y deja que el promedio se ocupe de la varianza: en Wine Quality, `min_samples_leaf=1` es la
-mejor opción en toda la rejilla.
+mejor opción en casi toda la rejilla de Random Forest (solo empata en la fila de bagging).
 
 Tres propiedades prácticas:
 
