@@ -3,6 +3,11 @@
 Cómo dejar tu máquina lista para ejecutar todo el material del curso. Elige **una** de las dos
 opciones; no necesitas ambas.
 
+> Esta es la **versión corta**, para quien ya maneja conda y Git. El tutorial paso a paso
+> (instalar Git y Miniconda en cada sistema operativo, VS Code, Colab como plan B, FAQ y
+> tabla extensa de problemas) está en
+> [`../modulo-0-instalacion/README.md`](../modulo-0-instalacion/README.md).
+
 ## Opción A — conda (recomendada)
 
 Requiere [Miniconda](https://docs.conda.io/en/latest/miniconda.html) o Anaconda.
@@ -53,7 +58,14 @@ jupyter lab
 
 ## Verificar la instalación
 
-Ejecuta esto dentro del entorno activo:
+Con el entorno activo y desde la raíz del repositorio:
+
+```bash
+python modulo-0-instalacion/verificar-entorno.py
+```
+
+Revisa Python, cada paquete de `environment.yml`, el kernel de Jupyter y Git, e indica cómo
+corregir lo que falte. La comprobación rápida equivalente en una línea:
 
 ```bash
 python -c "import numpy, pandas, sklearn, matplotlib, statsmodels, xgboost, lightgbm, shap, optuna, torch; print('Entorno OK')"
@@ -66,7 +78,19 @@ Debe imprimir `Entorno OK` sin errores. Si falla en `torch`, revisa la sección 
 ### PyTorch (módulo 5)
 
 El curso solo necesita **CPU**: los ejemplos son pequeños y están pensados para correr en un
-portátil. La rueda por defecto de `pip install torch` ya es la de CPU en Windows y macOS.
+portátil. `environment.yml` instala `pytorch-cpu` desde conda-forge (no la rueda de pip),
+porque la rueda de pip se instala pero **falla al importar en Windows dentro de un entorno
+conda** (`OSError: ... shm.dll`). Si ves ese error, con el entorno activo:
+
+```bash
+pip uninstall -y torch
+```
+
+```bash
+conda install -c conda-forge pytorch-cpu
+```
+
+En la opción B (venv + pip) la rueda de pip funciona con normalidad.
 
 Si tienes GPU NVIDIA y quieres usarla, instala la variante CUDA siguiendo el selector oficial
 en <https://pytorch.org/get-started/locally/>. No es necesario para ninguna actividad

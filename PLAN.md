@@ -60,6 +60,14 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 Cada fase cierra con un commit en español (`Fase N: ...`) que incluye la actualización de este
 archivo.
 
+**Fuera de las fases:** `modulo-0-instalacion/` (2026-09-11) — tutorial de instalación para
+estudiantes (Git, Miniconda, entorno, VS Code, Colab como plan B, FAQ, tabla de problemas,
+glosario, checklist) más `verificar-entorno.py`, que comprueba Python, paquetes, kernel y Git.
+`docs/guia-entorno.md` queda como versión corta y enlaza al tutorial. Verificado creando
+`ml-curso` desde cero en Windows: el script termina con 34 OK. Hallazgo: la rueda de pip de
+`torch` (2.14) se instala pero no importa en Windows dentro de conda (`shm.dll`), así que
+`environment.yml` ahora instala `pytorch-cpu` desde conda-forge (más pequeño y funciona).
+
 ---
 
 ## 3. Detalle de lo hecho

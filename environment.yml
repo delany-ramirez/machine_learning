@@ -44,8 +44,11 @@ dependencies:
   # --- Optimización de hiperparámetros (módulo 3) ---
   - optuna>=3.6
 
-  # --- Reducción de dimensionalidad (módulo 5) ---
+  # --- Reducción de dimensionalidad y deep learning (módulo 5) ---
   - umap-learn>=0.5
+  - pytorch-cpu>=2.4         # PyTorch solo CPU. Se instala desde conda-forge y no con pip
+                             # porque la rueda de pip falla al importar en Windows dentro de
+                             # un entorno conda (shm.dll). Ver docs/guia-entorno.md si tienes GPU.
 
   # --- MLOps (módulos 2 y 6) ---
   - mlflow>=2.16
@@ -54,7 +57,4 @@ dependencies:
   - dvc>=3.55
 
   - pip:
-      # PyTorch CPU (módulo 5). En Windows/Linux sin GPU la rueda por
-      # defecto ya es la de CPU; ver docs/guia-entorno.md si tienes GPU.
-      - torch>=2.4
       - ucimlrepo>=0.0.7     # descarga de datasets del UCI ML Repository

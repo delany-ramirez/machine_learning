@@ -11,6 +11,7 @@ Docente: MSc. Délany Ramírez del Río — `delram@utp.edu.co`
 
 | Módulo | Sesiones | Tema | Carpeta |
 |---|---|---|---|
+| 0 | antes de S1 | Instalación del software (tutorial para estudiantes) | [`modulo-0-instalacion/`](modulo-0-instalacion/) |
 | 1 | S1–S3 | Fundamentos y ciclo de vida | [`modulo-1-fundamentos-ciclo-vida/`](modulo-1-fundamentos-ciclo-vida/) |
 | 2 | S4–S5 | Datos: preprocesamiento e ingeniería de características | [`modulo-2-datos-caracteristicas/`](modulo-2-datos-caracteristicas/) |
 | 3 | S6–S8 | Supervisado I: regresión y evaluación | [`modulo-3-regresion-evaluacion/`](modulo-3-regresion-evaluacion/) |
@@ -33,7 +34,10 @@ ml/
 ├── docs/
 │   ├── programa.md               # malla de 14 sesiones (fuente de verdad)
 │   ├── convenciones.md           # estilo .md/LaTeX, notebooks, nombres, commits
-│   └── guia-entorno.md           # instalación paso a paso
+│   └── guia-entorno.md           # instalación (versión corta)
+├── modulo-0-instalacion/
+│   ├── README.md                 # tutorial de instalación para estudiantes + FAQ
+│   └── verificar-entorno.py      # script que comprueba el entorno
 ├── modulo-1-fundamentos-ciclo-vida/
 │   ├── teoria/   notebooks/   datos/   ejercicios/   quiz/
 ├── modulo-2-datos-caracteristicas/          (misma sub-estructura)
@@ -47,6 +51,10 @@ ml/
 ```
 
 ## ⚙️ Puesta en marcha
+
+Si es tu primera vez con Python, conda o Git, sigue el tutorial completo de
+[`modulo-0-instalacion/`](modulo-0-instalacion/) (instalación por sistema operativo, FAQ y
+solución de problemas). El resumen para quien ya conoce las herramientas:
 
 **Opción A — conda (recomendada):**
 
@@ -78,8 +86,8 @@ En ambos casos, para trabajar:
 jupyter lab
 ```
 
-Instrucciones completas, verificación y problemas frecuentes en
-[`docs/guia-entorno.md`](docs/guia-entorno.md).
+Verifica la instalación con `python modulo-0-instalacion/verificar-entorno.py`. Referencia
+corta en [`docs/guia-entorno.md`](docs/guia-entorno.md).
 
 ## 📝 Evaluación
 
