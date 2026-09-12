@@ -50,7 +50,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 | 2 | **Módulo 2** — Datos y características (S4–S5) | ✅ hecha | |
 | 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | ✅ hecha | `887ac33` (S6) · `0933873` (S7) |
 | 4 | **Módulo 4** — Clasificación y ensambles (S9–S11) | ✅ hecha | `3466c40` (S9) · `a33831d` (S10) · `49fa45c` (S11) |
-| 5 | **Módulo 5** — No supervisado y deep learning (S12–S13) | ⬜ pendiente | |
+| 5 | **Módulo 5** — No supervisado y deep learning (S12–S13) | ✅ hecha | `16dc27d` (S12) · `0d0acec` (S13) |
 | 6 | **Módulo 6** — MLOps y despliegue (S14) | ⬜ pendiente | |
 | 7 | **Proyecto integrador** — enunciado, datos, rúbrica, entregas | ⬜ pendiente | |
 | 8 | **Recursos generales** — bibliografía, enlaces, glosario, cheatsheets, plantillas | ⬜ pendiente | |
@@ -431,59 +431,153 @@ xgboost 2.1.4, lightgbm 4.6.0, shap 0.49.1, imbalanced-learn 0.12.4.
   `GradientBoostingClassifier` exacto del notebook 05 (50 s sobre 30 000 filas), que está ahí
   a propósito para medir la diferencia con los histogramas.
 
+### ✅ Fase 5 — Módulo 5: No supervisado y deep learning
+
+**Datasets elegidos (confirmados con el docente antes de construir):** **Wine Quality**
+como conductor de S12 y S13 (sus 11 variables sí están correlacionadas, `tipo` valida
+clusters *a posteriori*, y los números del módulo 4 —AP 0.52 / 0.57 / 0.59— sirven de
+referencia para el MLP), `digits` de `scikit-learn` para t-SNE/UMAP, la compresión con PCA
+y la 🔵 CNN (sin descarga), **Adult Census** para la comparación MLP vs. LightGBM con 10×
+más datos (script copiado del módulo 4, no versionado), y `rendimiento-estudiantes.csv`
+como el caso en que PCA no aporta y un MLP no puede ganar a un modelo lineal.
+
+Producido:
+
+- **Teoría (5):** clustering (K-Means, jerárquico, DBSCAN; supuestos y cuál usar) ·
+  validación de clusters (codo, silueta, Davies-Bouldin; referencia nula y estabilidad;
+  ARI/NMI; protocolo) · reducción de dimensionalidad (PCA por covarianza y SVD, cuándo daña;
+  t-SNE; 🔵 UMAP) — S12; redes neuronales (perceptrón, MLP, activaciones, retropropagación,
+  aproximación universal) · entrenamiento y límites (PyTorch, optimizadores,
+  regularización, la fuga del early stopping, cuándo no usar DL) — S13.
+- **Notebooks (6):** S12 `01-clustering-intuicion` (Lloyd, K-Means++, jerárquico y DBSCAN a
+  mano, validados contra `scikit-learn` y SciPy; codo y silueta a mano) ·
+  `02-clustering-aplicado` (Wine sin etiquetas) · `03-pca-intuicion` (autovectores y SVD
+  validados; dígitos; dos límites medidos) · `04-reduccion-dimensionalidad-aplicado`
+  (t-SNE/UMAP frente a PCA con *trustworthiness*, KNN y silueta). S13 `05-mlp-intuicion`
+  (retropropagación en NumPy verificada por diferencias finitas y contra autograd) ·
+  `06-mlp-pytorch-aplicado` (comparación pareada contra los modelos del módulo 4; 🔵 CNN).
+  Cuatro en S12 porque cubre tres temas (clustering, validación, reducción); dos en S13.
+- **Ejercicios (3 + soluciones)** sobre datos que los notebooks no analizaron (tintos,
+  dígitos, estudiantes + Adult) y **quiz** de 10 preguntas.
+
+**Hallazgos que cambiaron el contenido** (todos medidos):
+
+1. **Los criterios internos siempre proponen un $k$.** Sobre puntos uniformes, la silueta
+   de K-Means tiene su máximo en $k=4$ con valor 0.41 (con cuatro grupos reales, 0.77).
+   La **referencia nula** (columnas permutadas) pasó a ser el centro de la validación:
+   Wine Quality da 0.27 frente a 0.10, los tintos solos 0.205 frente a 0.09, y una gaussiana
+   en 10D llevada a un mapa t-SNE da grumos con silueta 0.35–0.38 frente a 0.08 en los datos.
+2. **El clustering encuentra la estructura dominante, no la que interesa.** K-Means con
+   $k=2$ recupera tinto/blanco (ARI 0.93) sin ver `tipo`; dentro de los blancos, dulces/secos;
+   y con ningún $k$ dice nada de la calidad (NMI $\leq 0.07$). PCA encuentra exactamente lo
+   mismo (PC1 = tinto/blanco, PC2 = dulce/seco) porque ambos buscan la varianza dominante.
+3. **Los *linkages* con datos reales.** *Average*, *complete* y *single* cortan un solo
+   vino atípico y dejan 5319 juntos; Ward coincide con K-Means (ARI 0.90) en el conjunto
+   completo pero **no** en los tintos (0.32), donde no hay una partición claramente mejor.
+4. **DBSCAN en 11-D es un detector de anomalías**, no de grupos: solo separa tinto/blanco
+   dejando un tercio como ruido; con `eps=2` señala 191 vinos con alguna variable extrema
+   (el máximo global de las 11 está entre ellos), y coincide en un tercio con Isolation
+   Forest — "anomalía" no tiene una definición única.
+5. **PCA no ve $y$.** PC1 (91 %) da accuracy 0.47 y PC2 (9 %) da 0.93 en un ejemplo
+   construido; en Wine, PCA completo deja la AP idéntica (rotación) y quitar componentes
+   la baja de 0.52 a 0.40. En los dígitos, en cambio, 20 componentes de 64 igualan al KNN
+   completo (ejercicio 02): la regla es validar con la métrica del modelo, no con la varianza.
+6. **t-SNE conserva vecindarios y nada más.** Un grupo 5× más disperso aparece del mismo
+   tamaño; uno 3× más lejano, a la misma distancia; y `init="pca"` (el valor por defecto)
+   hace el resultado insensible a la semilla, así que la demostración "otra semilla, otro
+   mapa" necesita `init="random"`. Clusterizar el mapa sube el ARI de 0.67 a 0.89 en los
+   dígitos, y los subgrupos que dibuja entre los "1" existen en 64D (tres formas de
+   escribirlo; silueta 0.35 frente a 0.04 de la nula) — el mapa exagera, no inventa, ahí.
+7. **Sobreparametrización benigna.** Sobre 60 puntos del seno, la red de 100 neuronas
+   ajusta la función verdadera mejor que la de 10 (ECM 0.011 frente a 0.079); la intuición
+   de la S8 no se cumple automáticamente con el ancho. El sobreajuste sí aparece con pocos
+   datos y muchas épocas (lunas: validación de 0.22 a 0.29), y con eso se motiva el early
+   stopping. El primer borrador diverge con 100 neuronas y tasa fija: la escala $1/\sqrt{h}$
+   de la capa de salida es necesaria.
+8. **El desvanecimiento del gradiente depende de la inicialización tanto como de la
+   activación.** Con la inicialización por defecto de PyTorch, ReLU también pierde dos
+   órdenes en 10 capas; con Glorot para sigmoide/tanh y He para ReLU, sigmoide pierde $10^6$
+   y tanh/ReLU quedan en cociente 0.3–0.4. El notebook usa la inicialización recomendada.
+9. **La red no gana en tabular, y una fuga que la favorece.** Wine: MLP − Extra-Trees
+   = −0.046 ± 0.004 (cociente 10), empate con LightGBM por defecto, +0.023 sobre la
+   logística, 6× el tiempo de Extra-Trees. Adult: −0.047 ± 0.001 contra LightGBM, y una red
+   256-128 no mejora a una de 64 (ejercicio 03). Sobre `rendimiento-estudiantes` (proceso
+   lineal), el MLP **pierde** contra la regresión lineal (+0.015 ± 0.005 de RMSE). Hacer el
+   early stopping sobre el pliegue evaluado infla la AP 0.017 en Wine y 0.004 en Adult: el
+   envoltorio `MLPClasificador` aparta un 15 % del entrenamiento para eso.
+10. **La CNN sobre dígitos de 8 × 8 gana poco en accuracy (97.9 % frente a 97.0 % de la
+    logística) y mucho en robustez**: con los dígitos corridos un píxel, 0.62 frente a
+    0.42–0.51. La primera versión afirmaba "la mitad de los errores con menos parámetros";
+    era falso (la CNN tiene 6× más parámetros que el MLP) y se reemplazó por la prueba de
+    desplazamiento, que mide el sesgo inductivo directamente.
+
+**Verificación realizada:** los 6 notebooks se ejecutaron de principio a fin sin errores,
+primero como `.py` percent con las figuras revisadas una a una y después como `.ipynb` con
+`nbconvert --execute` en el `.venv` de `uv`; todos los números de teoría, README, ejercicios
+y quiz provienen de esas ejecuciones y de los tres scripts de solución. Tiempos: los
+notebooks 01–03 y 05 corren en segundos; 04 en ~50 s (UMAP compila con `numba`); 06 en
+~2 min (20 pliegues del MLP en CPU).
+
+**Nota de entorno.** Primera fase verificada con el entorno oficial del curso (`uv sync`,
+Python 3.11.15, `uv.lock`): scikit-learn 1.9.1, pandas 3.0.5, numpy 2.4.6, torch 2.14.0+cpu,
+umap-learn 0.5.12, lightgbm 4.7.0. `select_dtypes("object")` ya no selecciona texto con
+pandas 3 (strings nativos): usar `select_dtypes(exclude="number")`.
+
+**Detalles de implementación que conviene conservar:**
+
+- La referencia nula por permutación de columnas usa el `rng` del notebook; los valores
+  son estables a la segunda cifra entre semillas.
+- `TSNE(init="pca")` es determinista respecto a `random_state`; para mostrar variabilidad
+  hay que usar `init="random"`.
+- `umap-learn` emite avisos de versión de `numba`; los notebooks los silencian con
+  `warnings.filterwarnings("ignore")`.
+- `entrenar_mlp` en el notebook 06 baraja con un `torch.Generator` sembrado y guarda el
+  mejor `state_dict`; con `torch.set_num_threads(4)` los tiempos son reproducibles en
+  orden de magnitud. El MLP se envuelve en `MLPClasificador` (interfaz `fit`/`predict_proba`)
+  para entrar en la misma comparación pareada que los modelos de `scikit-learn`.
+
 ---
 
-## 4. Qué sigue — Fase 5 (Módulo 5: No supervisado y deep learning, S12–S13)
+## 4. Qué sigue — Fase 6 (Módulo 6: MLOps y despliegue, S14)
 
-Producir en `modulo-5-no-supervisado-deep-learning/`:
+Producir en `modulo-6-mlops-despliegue/`, siguiendo el índice planeado de su README:
 
-- **Teoría (propuesta, 4–5 documentos):** clustering (K-Means/K-Means++, jerárquico,
-  DBSCAN) · validación de clusters (codo, silueta, Davies-Bouldin) · reducción de
-  dimensionalidad (PCA, t-SNE, 🔵 UMAP) · 🔵 detección de anomalías — S12; perceptrón, MLP,
-  activaciones, retropropagación, entrenamiento en PyTorch, cuándo no usar deep learning —
-  S13.
-- **Notebooks (propuesta, 4–5):** S12 `01-clustering-intuicion` (K-Means a mano: asignación
-  y actualización; ver que el resultado depende de la inicialización y qué arregla K-Means++)
-  · `02-clustering-aplicado` (comparación de algoritmos y validación sobre el dataset
-  conductor) · `03-reduccion-dimensionalidad` (PCA a mano vía la SVD del módulo 1; t-SNE;
-  cuándo PCA no aporta — `rendimiento-estudiantes.csv` tiene variables casi incorreladas,
-  hallazgo de la fase 1). S13 `04-mlp-intuicion` (perceptrón y retropropagación a mano,
-  extendiendo por tercera vez el descenso del gradiente: M1 → M3 → M4 nb01 → aquí) ·
-  `05-pytorch-aplicado` (MLP en PyTorch sobre tabular, comparado contra el mejor ensamble de
-  M4 sobre los mismos datos, para enseñar cuándo **no** usar deep learning).
-- **Dataset conductor:** pendiente de confirmar (decisión 1 abajo). Para el notebook 05
-  conviene reutilizar Wine Quality o Adult Census, para que la comparación "MLP vs. LightGBM"
-  sea sobre datos ya conocidos y con números ya establecidos (AP 0.59 / 0.83).
-- **Ejercicios (2–3) y quiz**, al cierre.
+- **Teoría (4):** trazabilidad con MLflow (tracking, runs, artefactos, model registry) ·
+  APIs para modelos (HTTP, contrato de entrada/salida) · empaquetado y despliegue
+  (serialización, Docker, entornos) · monitoreo y drift (de datos y de concepto,
+  reentrenamiento).
+- **Notebooks (2):** `01-mlflow-aplicado` (registrar los experimentos de un caso conocido
+  —por ejemplo la comparación Extra-Trees / LightGBM / MLP de M4–M5 sobre Wine Quality—,
+  compararlos en la interfaz y promover un modelo) · `02-drift-intuicion` (simular drift de
+  datos y de concepto sobre `rendimiento-estudiantes.csv` o Wine, y medir cómo se degrada la
+  métrica; criterios de alarma).
+- **Código de despliegue:** `api/main.py` (FastAPI con `/health` y `/predict`),
+  `api/esquemas.py` (Pydantic), `api/README.md`; `docker/Dockerfile` y `docker/README.md`.
+  El modelo de ejemplo (`api/modelo-ejemplo.joblib`, ya previsto en `.gitignore`) puede ser
+  el Extra-Trees de Wine Quality del módulo 5, notebook 06.
+- **Ejercicios y quiz**, al cierre.
 
 Puntos a cuidar:
 
-- El material previo tiene 5 notebooks de PCA/t-SNE (`Sesion04-*`) y uno de clustering
-  (`Sesion10-Clustering`): consolidar, no copiar. Ver mapa de la sección 5.
-- S13 es un **puente** (decisión de diseño de la fase 0): un solo notebook de PyTorch, sin
-  CNN ni transfer learning más allá de un vistazo 🔵. El criterio "cuándo no usar DL" debe
-  salir de una medición, no de una afirmación: un MLP afinado contra LightGBM sobre tabular.
-- Patrones a mantener de M3/M4: `.py` percent → `.ipynb`; números de teoría y ejercicios
-  desde ejecuciones reales; comparación pareada con error estándar; "detectable vs.
-  relevante"; datasets confirmados con el docente antes de construir.
+- Con `uv`, la API y el Dockerfile deben usar el `pyproject.toml` del repositorio (o un
+  `requirements` exportado con `uv export`) para que el contenedor reproduzca el entorno.
+  Conviene una imagen ligera: la API no necesita PyTorch ni JupyterLab; documentar cómo
+  exportar solo lo necesario.
+- Verificar la API de verdad (levantarla con `uvicorn`, `curl` a `/predict`) y el
+  contenedor (construir y correr), y registrar la verificación aquí.
+- Mantener el patrón "medir, no afirmar" también en drift: la degradación de la métrica
+  debe salir de una simulación ejecutada, no de una tabla inventada.
 
 ### Decisiones abiertas para consultar con el docente
 
-1. **Dataset conductor del módulo 5** — M2 usa Titanic, M3 Ames Housing, M4 Wine Quality +
-   Adult Census (todos confirmados por el docente antes de construir). Para M5 hay dos
-   candidatos: reutilizar **Wine Quality** (ya conocido; `tipo` tinto/blanco es una etiqueta
-   natural para validar clusters *a posteriori*, y PCA sobre las 11 variables tiene sentido
-   porque sí están correlacionadas, a diferencia de `rendimiento-estudiantes.csv`), o un
-   dataset nuevo (p. ej. clientes de un centro comercial / segmentación, más "de negocio").
-   Para S13, reutilizar Wine Quality o Adult Census en la comparación MLP vs. LightGBM.
-2. **Tema del proyecto integrador** — propuesta: predicción de deserción estudiantil con
+1. **Tema del proyecto integrador** — propuesta: predicción de deserción estudiantil con
    dataset sintético realista (nulos, categóricas, desbalance y una fuga de datos plantada a
    propósito). El módulo 1 ya sienta el dominio con `rendimiento-estudiantes.csv`.
    Alternativa: reutilizar el enunciado del trabajo final de la edición anterior si el docente
    lo aporta a `proyecto-integrador/`.
-3. **Pesos de evaluación** — los de `docs/programa.md` (60/25/15) son una sugerencia; ajustar
+2. **Pesos de evaluación** — los de `docs/programa.md` (60/25/15) son una sugerencia; ajustar
    al reglamento del programa.
-4. **Talleres** — la evaluación acordada fue proyecto + quiz, y las entregas parciales del
+3. **Talleres** — la evaluación acordada fue proyecto + quiz, y las entregas parciales del
    proyecto hacen las veces de taller por módulo. Si se prefieren talleres independientes, hay
    que añadirlos a la estructura de cada módulo.
 
@@ -496,18 +590,18 @@ Referencia para saber qué insumo existe al construir cada módulo. Todo está e
 
 | Material previo | Destino | Acción | Estado |
 |---|---|---|---|
-| PDFs S1–S12 | Teoría de los 6 módulos | Reescribir como texto con LaTeX | parcial (M1–M4 hechos) |
+| PDFs S1–S12 | Teoría de los 6 módulos | Reescribir como texto con LaTeX | parcial (M1–M5 hechos) |
 | `Sesion03-Limpieza de datos` (Titanic) | M2/S4 | Reusar dataset; reescribir con EDA más fuerte | ✅ hecho |
 | `Sesion03-webscraping` (BeautifulSoup) | M2/S4 🔵 | Reusar; fijar la fuente para que no se rompa | ✅ hecho (fixture local) |
-| `Sesion04-PCA*` ×3, `Sesion04-TSNE*` ×2 | M5/S12 | Consolidar 5 → 2 (intuición + aplicado) | pendiente |
+| `Sesion04-PCA*` ×3, `Sesion04-TSNE*` ×2 | M5/S12 | Consolidado 5 → 2 (`03-pca-intuicion`, `04-reduccion-dimensionalidad-aplicado`); `load_wine` (178 filas) reemplazado por Wine Quality, y `digits` conservado para t-SNE | ✅ hecho |
 | `Sesion05-Ingenieria_caracteristicas` (NYC Taxi) | M2/S5 | Reescrito sobre `Pipeline`/`ColumnTransformer`; se usó Titanic en vez de NYC Taxi para mantener un solo dataset conductor | ✅ hecho |
 | `Sesion06-Regresion*` ×4 | M3/S6 | Consolidar 4 → 2 | ✅ hecho |
 | `Sesion07-*` ×5 (Ridge, Lasso, ElasticNet, Ames) | M3/S7 | Consolidar 5 → 2; sacar la rúbrica embebida | ✅ hecho |
 | `Sesion08-*` ×7 (LogReg, KNN, SVM, Wine) | M4/S9 | Consolidado 7 → 2; Wine Quality (tinto + blanco, sin duplicados) como caso canónico | ✅ hecho |
 | `Sesion09-Clasificacion2` | M4/S10 + M3/S8 | Dividido: CV y GridSearch subieron a S8; árboles y bagging en M4/S10, reescritos sobre Wine Quality en vez de Titanic | ✅ hecho |
-| `Sesion10-Clustering` | M5/S12 | Base reutilizable; añadir comparación de algoritmos | pendiente |
+| `Sesion10-Clustering` | M5/S12 | Reescrito: los tres algoritmos a mano y validados (`01`), flujo completo con referencia nula sobre Wine Quality (`02`); `make_blobs`/Iris reemplazados | ✅ hecho |
 | `Sesion11-*` ×3 + `03-SHAP_LightGBM` | M4/S11 | Consolidado 4 → 3 (boosting intuición, boosting aplicado, interpretabilidad); Optuna pasó a S8 y aquí solo se usa; Breast Cancer reemplazado por Wine Quality | ✅ hecho |
-| *(no existía)* | M1/S1, M1/S2, M5/S13, M6/S14 | Contenido **nuevo** | M1 hecho |
+| *(no existía)* | M1/S1, M1/S2, M5/S13, M6/S14 | Contenido **nuevo** | M1 y M5/S13 hechos |
 
 El módulo 1 no reutilizó ningún notebook previo: no existían para S1 ni S2, y los de S4 sobre
 PCA/t-SNE se movieron al módulo 5. El módulo 2 reutilizó el **dataset** de `Sesion03` y la idea
