@@ -22,8 +22,9 @@ __pycache__/
 */datos/*.parquet
 */datos/raw/
 proyecto-integrador/datos/raw/
-# Adult Census (~5 MB): se genera con modulo-4-.../datos/descargar-adult-census.py
+# Adult Census (~5 MB): se genera con modulo-{4,5}-.../datos/descargar-adult-census.py
 modulo-4-clasificacion-ensambles/datos/adult-census.csv
+modulo-5-no-supervisado-deep-learning/datos/adult-census.csv
 
 # --- MLOps ---
 mlruns/
