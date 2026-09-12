@@ -26,7 +26,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 | Slides | No por ahora — fase 10, opcional |
 | Evaluación | Proyecto integrador transversal + quiz teórico por módulo |
 | Material previo | Insumo de referencia, **no plantilla**: se reescribe todo |
-| Entorno conda | Se llama `ml-curso`, **no** `ml`: ya existe un entorno `ML` en la máquina del docente y en Windows los nombres no distinguen mayúsculas |
+| Entorno | **uv**: `pyproject.toml` + `uv.lock` + `.python-version` (3.11), `.venv` en la raíz del repo; `requirements.txt` solo como respaldo pip. El kernel de Jupyter (y el prompt) se llama `ml-curso`, **no** `ml`: ya existe un entorno `ML` en la máquina del docente y en Windows los nombres no distinguen mayúsculas |
 
 ### Problemas de la edición anterior que este refactor corrige
 
@@ -67,6 +67,19 @@ glosario, checklist) más `verificar-entorno.py`, que comprueba Python, paquetes
 `ml-curso` desde cero en Windows: el script termina con 34 OK. Hallazgo: la rueda de pip de
 `torch` (2.14) se instala pero no importa en Windows dentro de conda (`shm.dll`), así que
 `environment.yml` ahora instala `pytorch-cpu` desde conda-forge (más pequeño y funciona).
+
+**Migración a uv** (2026-09-12) — el gestor del curso pasa de Miniconda a
+[uv](https://docs.astral.sh/uv/): `environment.yml` se elimina y lo reemplazan
+`pyproject.toml` (dependencias, `torch` desde el índice CPU de PyTorch para que en Linux no
+baje CUDA, `package = false`), `uv.lock` (258 paquetes resueltos para Windows/Linux/macOS
+arm64) y `.python-version` (3.11). Flujo para estudiantes: `uv sync` → `uv run …`, sin
+activar nada. `requirements.txt` se conserva como respaldo pip (opción B), en sincronía a
+mano. Se reescriben `modulo-0-instalacion/README.md`, `docs/guia-entorno.md`, la puesta en
+marcha del `README.md` y `verificar-entorno.py` (ahora comprueba que el intérprete sea el
+`.venv` del repo, que `uv` esté en el PATH y que el kernel `ml-curso` apunte a ese `.venv`,
+no a otro Python). Verificado en Windows desde cero: `uv sync` instala 248 paquetes
+(`.venv` de 1.6 GB) y el script termina con 35 OK. Versiones que trae el lock: numpy 2.4,
+pandas 3.0, scikit-learn 1.9, torch 2.14+cpu, mlflow 3.16, xgboost 3.2, lightgbm 4.7.
 
 ---
 

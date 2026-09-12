@@ -97,5 +97,5 @@ preprocesamiento reproducible. Ver [`../proyecto-integrador/`](../proyecto-integ
 ---
 
 > Los notebooks se ejecutan de principio a fin con el entorno de
-> [`../environment.yml`](../environment.yml). Reglas de estilo en
+> [`../pyproject.toml`](../pyproject.toml). Reglas de estilo en
 > [`../docs/convenciones.md`](../docs/convenciones.md).

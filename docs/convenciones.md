@@ -80,7 +80,7 @@ Los archivos `.py` intermedios no se versionan: el entregable es el `.ipynb`.
 ### 4.3 Reglas de ejecución
 
 - Los notebooks **deben ejecutarse de principio a fin sin errores** con el entorno de
-  [`../environment.yml`](../environment.yml).
+  [`../pyproject.toml`](../pyproject.toml).
 - Leer los datos desde `../datos/` con rutas relativas; **nunca** rutas absolutas.
 - Fijar la semilla aleatoria siempre que haya aleatoriedad: definir `SEMILLA = 42` en la
   primera celda de código y pasarla a `random_state=SEMILLA`.

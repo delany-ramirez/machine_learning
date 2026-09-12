@@ -1,12 +1,13 @@
 """Verifica que el entorno del curso quedó bien instalado.
 
-Uso, con el entorno `ml-curso` activo y desde la raíz del repositorio:
+Uso, desde la raíz del repositorio:
 
-    python modulo-0-instalacion/verificar-entorno.py
+    uv run modulo-0-instalacion/verificar-entorno.py
 
-Revisa la versión de Python, que cada paquete de environment.yml esté instalado con una
-versión suficiente, que el kernel de Jupyter esté registrado y que Git funcione. No modifica
-nada. Si algo falla, copia la salida completa y envíasela al docente.
+Revisa la versión de Python, que el intérprete sea el del `.venv` del repositorio, que cada
+paquete de pyproject.toml esté instalado con una versión suficiente, que el kernel de Jupyter
+esté registrado y que Git y uv funcionen. No modifica nada. Si algo falla, copia la salida
+completa y envíasela al docente.
 """
 
 import os
@@ -16,7 +17,7 @@ import subprocess
 import sys
 from importlib import metadata
 
-# (nombre para importar, nombre del paquete en pip/conda, versión mínima, módulo del curso)
+# (nombre para importar, nombre del paquete en pyproject.toml, versión mínima, módulo del curso)
 PAQUETES = [
     ("numpy", "numpy", "1.26", "todo el curso"),
     ("pandas", "pandas", "2.2", "todo el curso"),
@@ -45,14 +46,10 @@ PAQUETES = [
     ("ucimlrepo", "ucimlrepo", "0.0.7", "datasets"),
 ]
 
-# Paquetes que environment.yml instala con pip (no existen con ese nombre en conda-forge).
-SOLO_PIP = {"ucimlrepo"}
-# Paquetes cuyo nombre en conda-forge no coincide con el de pip.
-NOMBRE_CONDA = {"torch": "pytorch-cpu"}
-
 PYTHON_MINIMO = (3, 11)
 PYTHON_MAXIMO_EXCLUSIVO = (3, 12)
-NOMBRE_ENTORNO = "ml-curso"
+NOMBRE_ENTORNO = "ml-curso"   # nombre del kernel y del prompt; el entorno vive en .venv/
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ok, advertencias, fallos = [], [], []
 
@@ -99,32 +96,44 @@ elif version_py[:2] >= PYTHON_MAXIMO_EXCLUSIVO:
     reporta(
         "WARN",
         f"Python {texto_py}: el curso se verificó con 3.11",
-        "Si usaste environment.yml deberías tener 3.11. Comprueba que activaste `ml-curso`.",
+        "Ejecuta el script con `uv run`: .python-version fija 3.11 y uv la descarga sola.",
     )
 else:
     reporta(
         "FAIL",
         f"Python {texto_py} es demasiado antiguo (se requiere 3.11)",
-        "Crea el entorno con `conda env create -f environment.yml` y actívalo.",
+        "Crea el entorno con `uv sync` y ejecuta el script con `uv run`.",
     )
 
-entorno = os.environ.get("CONDA_DEFAULT_ENV")
-if entorno == NOMBRE_ENTORNO:
-    reporta("OK", f"Entorno conda activo: {entorno}")
-elif entorno:
+venv_esperado = os.path.join(RAIZ, ".venv")
+prefijo = os.path.normcase(os.path.realpath(sys.prefix))
+if prefijo == os.path.normcase(os.path.realpath(venv_esperado)):
+    reporta("OK", f"Intérprete del .venv del repositorio: {sys.prefix}")
+elif os.environ.get("CONDA_DEFAULT_ENV"):
     reporta(
         "WARN",
-        f"Entorno conda activo: {entorno} (se esperaba {NOMBRE_ENTORNO})",
-        f"Ejecuta `conda activate {NOMBRE_ENTORNO}` y vuelve a correr este script.",
+        f"Estás usando un entorno conda ({os.environ['CONDA_DEFAULT_ENV']}), no el .venv del curso",
+        "Ejecuta el script con `uv run modulo-0-instalacion/verificar-entorno.py`.",
     )
 elif sys.prefix != sys.base_prefix:
-    reporta("OK", f"Entorno virtual (venv) activo: {sys.prefix}")
+    reporta(
+        "WARN",
+        f"Entorno virtual activo, pero no es el .venv del repositorio: {sys.prefix}",
+        "Ejecuta el script con `uv run` desde la raíz del repositorio (crea .venv con `uv sync`).",
+    )
 else:
     reporta(
         "WARN",
-        "No hay ningún entorno virtual activo",
-        f"Ejecuta `conda activate {NOMBRE_ENTORNO}` (o activa tu venv) y vuelve a correr.",
+        "No hay ningún entorno virtual activo (estás en el Python del sistema)",
+        "Ejecuta `uv sync` y luego `uv run modulo-0-instalacion/verificar-entorno.py`.",
     )
+
+if shutil.which("uv") is None:
+    reporta("WARN", "`uv` no está en el PATH de esta terminal",
+            "Instálalo siguiendo el Paso 2 del tutorial y reinicia la terminal.")
+else:
+    salida_uv = subprocess.run(["uv", "--version"], capture_output=True, text=True)
+    reporta("OK", salida_uv.stdout.strip() or "uv disponible")
 
 ruta = os.getcwd()
 if any(ch in ruta for ch in " áéíóúñÁÉÍÓÚÑ"):
@@ -136,12 +145,12 @@ if any(ch in ruta for ch in " áéíóúñÁÉÍÓÚÑ"):
 else:
     reporta("OK", f"Ruta sin espacios ni tildes: {ruta}")
 
-if os.path.exists("environment.yml"):
-    reporta("OK", "Ejecutado desde la raíz del repositorio (environment.yml encontrado)")
+if os.path.exists("pyproject.toml") and os.path.exists("uv.lock"):
+    reporta("OK", "Ejecutado desde la raíz del repositorio (pyproject.toml y uv.lock encontrados)")
 else:
     reporta(
         "WARN",
-        "No se encontró environment.yml en la carpeta actual",
+        "No se encontró pyproject.toml / uv.lock en la carpeta actual",
         "Ejecuta el script desde la raíz del repositorio (`cd machine_learning`).",
     )
 
@@ -151,19 +160,15 @@ for modulo, paquete, minimo, uso in PAQUETES:
     try:
         instalada = metadata.version(paquete)
     except metadata.PackageNotFoundError:
-        if paquete in SOLO_PIP:
-            ayuda = f"Con el entorno activo: `pip install {paquete}`."
-        else:
-            ayuda = (f"Con el entorno activo: `conda install -c conda-forge "
-                     f"{NOMBRE_CONDA.get(paquete, paquete)}`.")
-        reporta("FAIL", f"{paquete:<18} no está instalado  ({uso})", ayuda)
+        reporta("FAIL", f"{paquete:<18} no está instalado  ({uso})",
+                "Ejecuta `uv sync` desde la raíz del repositorio y vuelve a correr el script.")
         continue
 
     if _version_tupla(instalada) < _version_tupla(minimo):
         reporta(
             "WARN",
             f"{paquete:<18} {instalada:<10} (se recomienda >= {minimo}; {uso})",
-            "Actualiza con `conda env update -f environment.yml --prune`.",
+            "Actualiza con `git pull` y luego `uv sync`.",
         )
         continue
 
@@ -173,7 +178,7 @@ for modulo, paquete, minimo, uso in PAQUETES:
     except Exception as exc:  # noqa: BLE001 - queremos capturar cualquier error de import
         ayuda = f"`import {modulo}` falló: {type(exc).__name__}: {exc}"
         if paquete == "lightgbm" and platform.system() == "Darwin":
-            ayuda += " | En macOS: `conda install -c conda-forge llvm-openmp`."
+            ayuda += " | En macOS: `brew install libomp`."
         reporta("FAIL", f"{paquete:<18} {instalada:<10} instalado pero no importa", ayuda)
         continue
 
@@ -184,19 +189,29 @@ seccion("3. Kernel de Jupyter")
 try:
     from jupyter_client.kernelspec import KernelSpecManager
 
-    kernels = KernelSpecManager().find_kernel_specs()
+    gestor = KernelSpecManager()
+    kernels = gestor.find_kernel_specs()
+    comando_kernel = (f"uv run python -m ipykernel install --user --name {NOMBRE_ENTORNO} "
+                      f'--display-name "Python ({NOMBRE_ENTORNO})"')
     if NOMBRE_ENTORNO in kernels:
-        reporta("OK", f"Kernel `{NOMBRE_ENTORNO}` registrado en {kernels[NOMBRE_ENTORNO]}")
+        ejecutable = gestor.get_kernel_spec(NOMBRE_ENTORNO).argv[0]
+        if os.path.normcase(os.path.realpath(ejecutable)).startswith(prefijo):
+            reporta("OK", f"Kernel `{NOMBRE_ENTORNO}` registrado y apunta al .venv del curso")
+        else:
+            reporta(
+                "WARN",
+                f"El kernel `{NOMBRE_ENTORNO}` apunta a otro Python: {ejecutable}",
+                f"Vuelve a registrarlo desde este entorno: {comando_kernel}",
+            )
     else:
         reporta(
             "WARN",
             f"El kernel `{NOMBRE_ENTORNO}` no está registrado (hay: {', '.join(sorted(kernels)) or 'ninguno'})",
-            f'Ejecuta: python -m ipykernel install --user --name {NOMBRE_ENTORNO} '
-            f'--display-name "Python ({NOMBRE_ENTORNO})"',
+            f"Ejecuta: {comando_kernel}",
         )
 except Exception as exc:  # noqa: BLE001
     reporta("WARN", f"No se pudo consultar los kernels ({type(exc).__name__})",
-            "Instala ipykernel y jupyterlab con `conda env update -f environment.yml`.")
+            "Instala ipykernel y jupyterlab con `uv sync`.")
 
 # --- 4. Git ---------------------------------------------------------------------------------
 seccion("4. Git")

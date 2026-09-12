@@ -1,0 +1,73 @@
+# Entorno del curso de Machine Learning, gestionado con uv (https://docs.astral.sh/uv/).
+#
+#   uv sync                        # crea .venv con Python 3.11 y todas las librerías
+#   uv run python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
+#   uv run jupyter lab
+#
+# Ver docs/guia-entorno.md (versión corta) o modulo-0-instalacion/README.md (paso a paso).
+# uv.lock fija las versiones exactas: no lo edites a mano.
+
+[project]
+name = "ml-curso"
+version = "2026.2"
+description = "Material del curso de Machine Learning (UTP)"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+    # --- Núcleo científico ---
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scipy>=1.13",
+    "scikit-learn>=1.5",
+    "statsmodels>=0.14",        # OLS con summary, VIF (módulo 3)
+
+    # --- Visualización ---
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+
+    # --- Entorno de trabajo ---
+    "jupyterlab>=4.2",
+    "ipykernel>=6.29",
+    "ipywidgets>=8.1",
+
+    # --- Recolección de datos (módulo 2) ---
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.2",
+
+    # --- Ensambles e interpretabilidad (módulo 4) ---
+    "xgboost>=2.1",
+    "lightgbm>=4.5",
+    "imbalanced-learn>=0.12",   # manejo de clases desbalanceadas
+    "shap>=0.46",
+
+    # --- Optimización de hiperparámetros (módulo 3) ---
+    "optuna>=3.6",
+
+    # --- Reducción de dimensionalidad y deep learning (módulo 5) ---
+    "umap-learn>=0.5",
+    "torch>=2.4",               # solo CPU; ver [tool.uv.sources]
+
+    # --- MLOps (módulos 2 y 6) ---
+    "mlflow>=2.16",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "dvc>=3.55",
+
+    # --- Datasets ---
+    "ucimlrepo>=0.0.7",         # descarga de datasets del UCI ML Repository
+]
+
+# PyTorch solo CPU desde el índice oficial de PyTorch. El paquete `torch` de PyPI en Linux
+# arrastra las librerías CUDA (varios GB) que el curso no necesita.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv]
+# El repositorio no es un paquete instalable: uv solo gestiona las dependencias.
+package = false

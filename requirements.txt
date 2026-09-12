@@ -1,9 +1,11 @@
-# Alternativa pip al entorno conda (ver environment.yml y docs/guia-entorno.md).
+# Respaldo pip para quien no pueda usar uv (ver docs/guia-entorno.md, opción B).
+# La fuente de verdad es pyproject.toml (+ uv.lock con versiones exactas); esta lista replica
+# sus dependencias con versiones mínimas y hay que mantenerla en sincronía a mano.
 #
 #   python -m venv .venv
 #   # Windows:  .venv\Scripts\activate     Linux/macOS:  source .venv/bin/activate
 #   pip install -r requirements.txt
-#   python -m ipykernel install --user --name ml --display-name "Python (ml)"
+#   python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
 
 # --- Núcleo científico ---
 numpy>=1.26
@@ -39,6 +41,7 @@ optuna>=3.6
 umap-learn>=0.5
 
 # --- Deep learning (módulo 5) ---
+# En Linux, para la variante CPU: pip install torch --index-url https://download.pytorch.org/whl/cpu
 torch>=2.4
 
 # --- MLOps (módulos 2 y 6) ---

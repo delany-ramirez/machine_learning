@@ -47,30 +47,32 @@ ml/
 ├── modulo-6-mlops-despliegue/               (+ api/  docker/)
 ├── proyecto-integrador/
 ├── recursos/
+├── pyproject.toml / uv.lock      # entorno del curso (uv); requirements.txt como respaldo pip
 └── PLAN.md                       # bitácora de construcción del repositorio
 ```
 
 ## ⚙️ Puesta en marcha
 
-Si es tu primera vez con Python, conda o Git, sigue el tutorial completo de
+Si es tu primera vez con Python, `uv` o Git, sigue el tutorial completo de
 [`modulo-0-instalacion/`](modulo-0-instalacion/) (instalación por sistema operativo, FAQ y
 solución de problemas). El resumen para quien ya conoce las herramientas:
 
-**Opción A — conda (recomendada):**
+**Opción A — uv (recomendada):** con [uv](https://docs.astral.sh/uv/) instalado, desde la
+raíz del repositorio:
 
 ```bash
-conda env create -f environment.yml
+uv sync
 ```
 
 ```bash
-conda activate ml-curso
+uv run python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
 ```
 
 ```bash
-python -m ipykernel install --user --name ml-curso --display-name "Python (ml-curso)"
+uv run jupyter lab
 ```
 
-**Opción B — venv + pip:**
+**Opción B — venv + pip** (requiere Python 3.11):
 
 ```bash
 python -m venv .venv
@@ -80,13 +82,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-En ambos casos, para trabajar:
-
-```bash
-jupyter lab
-```
-
-Verifica la instalación con `python modulo-0-instalacion/verificar-entorno.py`. Referencia
+Verifica la instalación con `uv run modulo-0-instalacion/verificar-entorno.py`. Referencia
 corta en [`docs/guia-entorno.md`](docs/guia-entorno.md).
 
 ## 📝 Evaluación

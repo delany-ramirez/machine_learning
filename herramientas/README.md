@@ -33,4 +33,4 @@ Extraer solo el código, para ejecutarlo y verificar que no falla:
 python herramientas/percent2ipynb.py entrada.py --solo-codigo
 ```
 
-El kernel que declara es `ml-curso`, el del entorno de `environment.yml`.
+El kernel que declara es `ml-curso`, el del entorno de `pyproject.toml` (`.venv` creado con `uv sync`).

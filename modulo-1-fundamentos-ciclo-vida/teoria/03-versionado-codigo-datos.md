@@ -95,7 +95,7 @@ En un proyecto de ML la respuesta no es "todo".
 | Se versiona en Git | No se versiona |
 |---|---|
 | Código: `.py`, `.ipynb` | Datasets grandes |
-| `requirements.txt`, `environment.yml` | Modelos entrenados (`.joblib`, `.pkl`) |
+| `pyproject.toml`, `uv.lock`, `requirements.txt` | Modelos entrenados (`.joblib`, `.pkl`) |
 | Configuración, documentación | Resultados regenerables |
 | Datasets pequeños (< 1 MB) | Entornos virtuales (`.venv/`) |
 | Scripts que descargan o generan datos | Credenciales, tokens, contraseñas |
