@@ -1,0 +1,12 @@
+# Solo api/ entra en la imagen; el resto del modulo no hace falta.
+notebooks/
+datos/
+teoria/
+ejercicios/
+quiz/
+docker/
+**/__pycache__/
+**/mlruns/
+**/*.db
+api/probar_api.py
+api/entrenar_modelo.py

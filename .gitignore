@@ -29,6 +29,7 @@ modulo-5-no-supervisado-deep-learning/datos/adult-census.csv
 # --- MLOps ---
 mlruns/
 mlartifacts/
+mlflow.db
 *.pkl
 *.joblib
 !modulo-6-mlops-despliegue/api/modelo-ejemplo.joblib

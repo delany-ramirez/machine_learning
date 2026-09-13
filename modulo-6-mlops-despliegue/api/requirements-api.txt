@@ -1,0 +1,12 @@
+# Dependencias minimas de la API, con las versiones exactas de uv.lock (raiz del repo).
+# La imagen Docker instala solo esto: no necesita PyTorch, JupyterLab ni MLflow.
+# Si cambian las versiones en uv.lock, actualizar aqui (o regenerar con
+#   uv export --no-hashes --no-dev | grep -E "^(fastapi|uvicorn|scikit-learn|pandas|numpy|scipy|joblib|pydantic)==").
+fastapi==0.141.1
+uvicorn==0.52.4
+scikit-learn==1.9.1
+scipy==1.17.1
+pandas==3.0.5
+numpy==2.4.6
+joblib==1.6.0
+pydantic==2.13.5

@@ -51,7 +51,7 @@ repositorio versionable con teoría en texto, notebooks curados, ejercicios y ev
 | 3 | **Módulo 3** — Regresión y evaluación (S6–S8) | ✅ hecha | `887ac33` (S6) · `0933873` (S7) |
 | 4 | **Módulo 4** — Clasificación y ensambles (S9–S11) | ✅ hecha | `3466c40` (S9) · `a33831d` (S10) · `49fa45c` (S11) |
 | 5 | **Módulo 5** — No supervisado y deep learning (S12–S13) | ✅ hecha | `16dc27d` (S12) · `0d0acec` (S13) |
-| 6 | **Módulo 6** — MLOps y despliegue (S14) | ⬜ pendiente | |
+| 6 | **Módulo 6** — MLOps y despliegue (S14) | ✅ hecha | |
 | 7 | **Proyecto integrador** — enunciado, datos, rúbrica, entregas | ⬜ pendiente | |
 | 8 | **Recursos generales** — bibliografía, enlaces, glosario, cheatsheets, plantillas | ⬜ pendiente | |
 | 9 | **QA global** — ejecutar todos los notebooks, verificar enlaces y coherencia | ⬜ pendiente | |
@@ -536,37 +536,110 @@ pandas 3 (strings nativos): usar `select_dtypes(exclude="number")`.
   orden de magnitud. El MLP se envuelve en `MLPClasificador` (interfaz `fit`/`predict_proba`)
   para entrar en la misma comparación pareada que los modelos de `scikit-learn`.
 
+### ✅ Fase 6 — Módulo 6: MLOps y despliegue
+
+**Datos:** Wine Quality (copiado de M4/M5) para el notebook de MLflow y la API, y un
+dataset nuevo, `cohortes-estudiantes.csv` — 24 meses × 300 estudiantes generados con el
+proceso de `rendimiento-estudiantes.csv`, con **drift de datos plantado desde el mes 13**
+(fracción que trabaja 0.38 → 0.65, promedio anterior −0.15) y **drift de concepto desde el
+19** (coeficiente de horas 0.055 → 0.020, intercepto +0.45 para que la nota media no lo
+delate). Como en el módulo 1, conocer el proceso generador permite medir qué detecta cada
+herramienta y cuál se queda ciega.
+
+Producido:
+
+- **Teoría (4):** trazabilidad con MLflow · APIs para modelos · empaquetado y despliegue ·
+  monitoreo y drift.
+- **Notebooks (2):** `01-mlflow-aplicado` (seis candidatos de M4–M5 como corridas con
+  hash de datos, commit, versiones, semilla, AP ± ee, **tamaño y latencia**; `search_runs`;
+  registro con alias `campeon`/`produccion`; reproducción exacta) · `02-drift-intuicion`
+  (PSI/KS por variable, distribución de predicciones, carta de control del RMSE,
+  diagnóstico por coeficientes, cuatro estrategias de reentrenamiento).
+- **Código de despliegue:** `api/` (FastAPI + Pydantic, modelo en el `lifespan`,
+  `/health`, `/predict`, `/predict/lote`; `entrenar_modelo.py` produce
+  `modelo-ejemplo.joblib` como paquete con columnas, umbral por costos y metadatos;
+  `probar_api.py` con seis pruebas; `requirements-api.txt` con las versiones de
+  `uv.lock`), `docker/` (`Dockerfile` sobre `ghcr.io/astral-sh/uv:python3.11-bookworm-slim`,
+  README línea a línea) y `.dockerignore`.
+- **Ejercicios (2 + soluciones)** y **quiz** de 10 preguntas.
+
+**Hallazgos que cambiaron el contenido** (todos medidos):
+
+1. **Campeón ≠ producción.** Extra-Trees 300 (mejor AP, 0.589) pesa 12 MB y predice 20×
+   más lento que el `HistGradientBoostingClassifier` (0.547, 0.15 MB). Tamaño y latencia
+   pasaron a ser métricas registradas en cada corrida, y la API sirve el HGB con la razón
+   anotada como tag de la versión. En Adult (ejercicio 01) sí coinciden: LightGBM gana en
+   AP, tamaño y latencia, y Random Forest (11.6 MB) queda descartado por los tres.
+2. **MLflow 3 guarda scikit-learn en skops**, que rechaza tipos no declarados: registrar
+   un `LGBMClassifier` con `mlflow.sklearn.log_model` falla; se usa `mlflow.lightgbm`. El
+   registro de modelos exige backend de base de datos (`sqlite:///mlflow.db`; el file
+   store no lo soporta), y `search_model_versions` no devuelve los alias — hay que
+   pedirlos con `get_model_version`.
+3. **La métrica no detecta cambios en los datos.** Cambiar una fila de Adult deja la AP de
+   LightGBM idéntica hasta el sexto decimal (ejercicio 01, C.2); solo el hash lo ve.
+4. **Drift de datos sin daño; drift de concepto sin aviso.** Mes 13: PSI de `trabaja` de 0
+   a 0.3–0.4, nota predicha media de 3.42 a 3.16, RMSE **sin cambio** (0.34: el modelo lineal
+   es correcto y la región estaba representada; un HGB tampoco se degrada). Mes 19: PSI
+   plano, RMSE 0.34 → 0.44. Reajustar sobre los meses en alarma recupera el cambio
+   plantado (horas 0.053 → 0.019). Reentrenar tras la alarma: todo el historial 0.42,
+   ventana de 6 meses 0.39, solo desde el cambio 0.36 (≈ ruido), sin reentrenar 0.44.
+5. **La AP alarma con el drift de datos y no con el de concepto** (ejercicio 02): para el
+   clasificador de `aprobo`, la prevalencia baja de 0.74 a 0.65 en el mes 13 y la AP cae
+   bajo la carta de control sin que la relación cambie; en el 19 la prevalencia vuelve y
+   la AP sube justo cuando el modelo se degrada. El AUC (0.88–0.91 → 0.82–0.87) cuenta la
+   historia correcta. La solución del ejercicio y la pregunta 10 del quiz giran sobre eso.
+6. **La imagen no instala `pyproject.toml`.** El entorno del curso pesa 1.6 GB; la API
+   necesita ~270 MB (`requirements-api.txt`, versiones de `uv.lock`). Verificado creando
+   ese entorno mínimo con `uv venv` + `uv pip install` y levantando la API desde él.
+
+**Verificación realizada:** los 2 notebooks ejecutados de principio a fin con `nbconvert`
+en el `.venv` de uv (el 01 crea `mlflow.db` y `mlruns/`, ignorados por Git); las seis
+pruebas de `api/probar_api.py` pasan; la API levantada con `uvicorn` responde a `curl`
+(`/health`, `/predict` → 0.7403, `alcohol: 94` → 422) con mediana 2.7 ms y p95 3.7 ms en
+200 peticiones; la API arranca desde un entorno construido solo con
+`requirements-api.txt`. **No verificado:** `docker build` (no hay Docker en la máquina del
+docente); el `Dockerfile` está documentado en `docker/README.md` con esa salvedad y con
+la URL de las etiquetas de la imagen base por si la etiqueta cambia. Enlaces relativos del
+módulo verificados por script.
+
+**Detalles de implementación que conviene conservar:**
+
+- Tracking en `sqlite:///mlflow.db` relativo a `notebooks/`; `mlflow ui
+  --backend-store-uri sqlite:///mlflow.db` desde esa carpeta. `MLFLOW_DISABLE_AGENT_HINT=1`
+  y `logging.getLogger("mlflow").setLevel(logging.ERROR)` silencian los avisos.
+- El modelo de la API se guarda como diccionario (modelo, columnas, umbral, metadatos);
+  `/health` reporta los metadatos. El umbral (0.22) sale de FN = 3 × FP sobre
+  probabilidades de CV, como en M4.
+- En Windows, un entorno virtual en una ruta muy larga (> ~200 caracteres) hace fallar la
+  carga de las extensiones compiladas de scikit-learn (`ModuleNotFoundError` en
+  `_middle_term_computer`); el entorno mínimo de verificación se creó en una ruta corta.
+- `api/__init__.py` existe para que `uvicorn api.main:app` y las importaciones relativas
+  funcionen igual en local y en el contenedor.
+
 ---
 
-## 4. Qué sigue — Fase 6 (Módulo 6: MLOps y despliegue, S14)
+## 4. Qué sigue — Fase 7 (Proyecto integrador)
 
-Producir en `modulo-6-mlops-despliegue/`, siguiendo el índice planeado de su README:
+Producir en `proyecto-integrador/`, según lo previsto en `docs/programa.md` y en los
+READMEs de los módulos (entregas E1–E6):
 
-- **Teoría (4):** trazabilidad con MLflow (tracking, runs, artefactos, model registry) ·
-  APIs para modelos (HTTP, contrato de entrada/salida) · empaquetado y despliegue
-  (serialización, Docker, entornos) · monitoreo y drift (de datos y de concepto,
-  reentrenamiento).
-- **Notebooks (2):** `01-mlflow-aplicado` (registrar los experimentos de un caso conocido
-  —por ejemplo la comparación Extra-Trees / LightGBM / MLP de M4–M5 sobre Wine Quality—,
-  compararlos en la interfaz y promover un modelo) · `02-drift-intuicion` (simular drift de
-  datos y de concepto sobre `rendimiento-estudiantes.csv` o Wine, y medir cómo se degrada la
-  métrica; criterios de alarma).
-- **Código de despliegue:** `api/main.py` (FastAPI con `/health` y `/predict`),
-  `api/esquemas.py` (Pydantic), `api/README.md`; `docker/Dockerfile` y `docker/README.md`.
-  El modelo de ejemplo (`api/modelo-ejemplo.joblib`, ya previsto en `.gitignore`) puede ser
-  el Extra-Trees de Wine Quality del módulo 5, notebook 06.
-- **Ejercicios y quiz**, al cierre.
+- **Enunciado** del caso (decisión abierta 1: deserción estudiantil con dataset sintético
+  realista, o el trabajo final de la edición anterior si el docente lo aporta).
+- **Datos**: si es sintético, generador con semilla fija que plante nulos, categóricas de
+  alta cardinalidad, desbalance, una fuga de datos, y un drift en una cohorte posterior
+  (reutilizando `generar-cohortes-drift.py` como base); documentado en el README como en
+  los módulos.
+- **Entregas E1–E6** con lo que cada módulo ya anuncia en su sección "Entrega del proyecto
+  integrador" (E1 encuadre y repo; E2 datos y pipeline; E3 línea base y evaluación; E4
+  ensambles con comparación pareada y umbral por costos; E5 exploración no supervisada o
+  MLP comparado; E6 MLflow + API + Dockerfile + monitoreo + informe).
+- **Rúbrica** única (decisión abierta 2 sobre los pesos) y **plantilla** del informe final.
+- Un ejemplo de referencia parcial (no la solución completa) para calibrar la rúbrica.
 
-Puntos a cuidar:
-
-- Con `uv`, la API y el Dockerfile deben usar el `pyproject.toml` del repositorio (o un
-  `requirements` exportado con `uv export`) para que el contenedor reproduzca el entorno.
-  Conviene una imagen ligera: la API no necesita PyTorch ni JupyterLab; documentar cómo
-  exportar solo lo necesario.
-- Verificar la API de verdad (levantarla con `uvicorn`, `curl` a `/predict`) y el
-  contenedor (construir y correr), y registrar la verificación aquí.
-- Mantener el patrón "medir, no afirmar" también en drift: la degradación de la métrica
-  debe salir de una simulación ejecutada, no de una tabla inventada.
+Puntos a cuidar: coherencia con las secciones "Entrega" de los seis módulos (revisarlas y
+ajustar el texto si el enunciado final las contradice); que el caso permita una fuga de
+datos *plantada* que E1 deba detectar; que E6 exija el documento de monitoreo de una
+página del módulo 6.
 
 ### Decisiones abiertas para consultar con el docente
 
@@ -590,7 +663,7 @@ Referencia para saber qué insumo existe al construir cada módulo. Todo está e
 
 | Material previo | Destino | Acción | Estado |
 |---|---|---|---|
-| PDFs S1–S12 | Teoría de los 6 módulos | Reescribir como texto con LaTeX | parcial (M1–M5 hechos) |
+| PDFs S1–S12 | Teoría de los 6 módulos | Reescribir como texto con LaTeX | ✅ hecho (M6 no tenía PDF) |
 | `Sesion03-Limpieza de datos` (Titanic) | M2/S4 | Reusar dataset; reescribir con EDA más fuerte | ✅ hecho |
 | `Sesion03-webscraping` (BeautifulSoup) | M2/S4 🔵 | Reusar; fijar la fuente para que no se rompa | ✅ hecho (fixture local) |
 | `Sesion04-PCA*` ×3, `Sesion04-TSNE*` ×2 | M5/S12 | Consolidado 5 → 2 (`03-pca-intuicion`, `04-reduccion-dimensionalidad-aplicado`); `load_wine` (178 filas) reemplazado por Wine Quality, y `digits` conservado para t-SNE | ✅ hecho |
@@ -601,7 +674,7 @@ Referencia para saber qué insumo existe al construir cada módulo. Todo está e
 | `Sesion09-Clasificacion2` | M4/S10 + M3/S8 | Dividido: CV y GridSearch subieron a S8; árboles y bagging en M4/S10, reescritos sobre Wine Quality en vez de Titanic | ✅ hecho |
 | `Sesion10-Clustering` | M5/S12 | Reescrito: los tres algoritmos a mano y validados (`01`), flujo completo con referencia nula sobre Wine Quality (`02`); `make_blobs`/Iris reemplazados | ✅ hecho |
 | `Sesion11-*` ×3 + `03-SHAP_LightGBM` | M4/S11 | Consolidado 4 → 3 (boosting intuición, boosting aplicado, interpretabilidad); Optuna pasó a S8 y aquí solo se usa; Breast Cancer reemplazado por Wine Quality | ✅ hecho |
-| *(no existía)* | M1/S1, M1/S2, M5/S13, M6/S14 | Contenido **nuevo** | M1 y M5/S13 hechos |
+| *(no existía)* | M1/S1, M1/S2, M5/S13, M6/S14 | Contenido **nuevo** | ✅ hecho |
 
 El módulo 1 no reutilizó ningún notebook previo: no existían para S1 ni S2, y los de S4 sobre
 PCA/t-SNE se movieron al módulo 5. El módulo 2 reutilizó el **dataset** de `Sesion03` y la idea
