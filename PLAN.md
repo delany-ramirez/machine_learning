@@ -81,6 +81,21 @@ no a otro Python). Verificado en Windows desde cero: `uv sync` instala 248 paque
 (`.venv` de 1.6 GB) y el script termina con 35 OK. Versiones que trae el lock: numpy 2.4,
 pandas 3.0, scikit-learn 1.9, torch 2.14+cpu, mlflow 3.16, xgboost 3.2, lightgbm 4.7.
 
+**Celda de arranque para Google Colab** (2026-09-13) — el portal `ml.delanyr.dev` abre cada
+notebook en Colab cargando solo el `.ipynb` desde GitHub, así que las rutas relativas
+`../datos/...` no existían allí. Los 29 notebooks de `modulo-*/notebooks/` llevan ahora una
+primera celda de código etiquetada `colab-arranque` que, solo si `google.colab` está en
+`sys.modules`, clona el repositorio (`--depth 1`) en `/content/machine_learning` y hace `%cd` a
+la carpeta del notebook; en local no hace nada. Añade `%pip install -q` únicamente con lo que
+el notebook importa y Colab no trae (`optuna` en M3·06 y M4·06, `shap` en M4·07, `umap-learn`
+en M5·04, `mlflow` en M6·01) y, en M5·06, ejecuta `descargar-adult-census.py` si el CSV no
+existe. La genera `herramientas/celda_colab.py` (idempotente, sin dependencias, respeta
+salidas, metadatos y kernel) y `percent2ipynb.py` la inserta al convertir, omitiéndola en
+`--solo-codigo`. Verificado: los 29 `.ipynb` siguen siendo JSON válido con la celda en su
+sitio, una segunda pasada no cambia ningún byte, M1·01 ejecuta de principio a fin en el kernel
+local con la celda como no-op, y las 29 celdas se transforman y compilan en IPython.
+Documentado en `docs/convenciones.md` (§4.3) y en el Plan B de `modulo-0-instalacion/README.md`.
+
 ---
 
 ## 3. Detalle de lo hecho

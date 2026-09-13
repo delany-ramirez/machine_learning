@@ -399,26 +399,15 @@ queda corto. Pero para los módulos 1 a 5 funciona bien.
 ### Cómo abrir un notebook del curso en Colab
 
 1. Ve a <https://colab.research.google.com> → pestaña **GitHub** → pega
-   `https://github.com/delany-ramirez/machine_learning` → Enter → elige el notebook.
-2. Los notebooks leen datos con rutas relativas (`../datos/archivo.csv`), que en Colab no
-   existen. Añade **una celda al inicio** que clone el repositorio y se ubique en la carpeta
-   correcta:
-
-```python
-!git clone -q https://github.com/delany-ramirez/machine_learning.git
-%cd machine_learning/modulo-1-fundamentos-ciclo-vida/notebooks
-```
-
-(cambia la carpeta del módulo según el notebook que estés usando).
-
-3. Colab trae NumPy, pandas, scikit-learn, matplotlib, XGBoost, LightGBM y PyTorch. Lo que no
-   trae se instala en una celda:
-
-```python
-!pip install -q statsmodels shap optuna umap-learn imbalanced-learn ucimlrepo mlflow
-```
-
-4. Para conservar tus cambios: *Archivo → Guardar una copia en Drive*.
+   `https://github.com/delany-ramirez/machine_learning` → Enter → elige el notebook (o usa el
+   botón *Abrir en Colab* del portal del curso).
+2. **Al abrir un notebook en Colab, ejecuta la primera celda de código antes que nada**: carga
+   los datos del curso. Los notebooks leen datos con rutas relativas (`../datos/archivo.csv`),
+   que en Colab no existen; esa primera celda (etiquetada `colab-arranque`) clona el
+   repositorio, se ubica en la carpeta correcta e instala lo que Colab no trae. En tu
+   computador esa celda no hace nada, así que puedes ejecutarla siempre.
+3. Para conservar tus cambios: *Archivo → Guardar una copia en Drive*. Si la sesión se
+   reinicia, vuelve a ejecutar la primera celda.
 
 ## 11. Herramientas que se instalan más adelante
 

@@ -83,9 +83,14 @@ Los archivos `.py` intermedios no se versionan: el entregable es el `.ipynb`.
   [`../pyproject.toml`](../pyproject.toml).
 - Leer los datos desde `../datos/` con rutas relativas; **nunca** rutas absolutas.
 - Fijar la semilla aleatoria siempre que haya aleatoriedad: definir `SEMILLA = 42` en la
-  primera celda de código y pasarla a `random_state=SEMILLA`.
+  celda de importaciones y pasarla a `random_state=SEMILLA`.
 - Primera celda (Markdown): título, sesión a la que pertenece, objetivos y lista de paquetes.
-- Segunda celda (código): importaciones y `SEMILLA`.
+- **Primera celda de código: el arranque para Google Colab**, etiquetada `colab-arranque`. En
+  Colab clona el repositorio y hace `%cd` a la carpeta del notebook para que `../datos` exista
+  (e instala con `%pip` lo que Colab no trae); **en local no hace nada**. La genera
+  [`../herramientas/celda_colab.py`](../herramientas/celda_colab.py) y `percent2ipynb.py` la
+  inserta al convertir; no se escribe a mano ni se edita en el notebook.
+- Siguiente celda (código): importaciones y `SEMILLA`.
 - Guardar los notebooks **con las salidas limpias** (`Kernel → Restart & Clear Output`) para
   que los diffs de git sean legibles.
 - Si un dataset debe descargarse, hacerlo en una celda idempotente que compruebe primero si

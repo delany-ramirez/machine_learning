@@ -34,3 +34,28 @@ python herramientas/percent2ipynb.py entrada.py --solo-codigo
 ```
 
 El kernel que declara es `ml-curso`, el del entorno de `pyproject.toml` (`.venv` creado con `uv sync`).
+
+Al convertir, inserta automáticamente la **celda de arranque para Google Colab** (ver abajo)
+justo después del título, deduciendo la carpeta del módulo de la ruta de salida. En
+`--solo-codigo` esa celda se omite, porque sus `!` y `%` solo son válidos en IPython.
+
+## `celda_colab.py`
+
+Inserta (o reemplaza) en cada notebook la primera celda de código, etiquetada
+`colab-arranque`, que en Colab clona el repositorio y se ubica en la carpeta del notebook
+para que `../datos` exista; en local no hace nada. Sin dependencias externas.
+
+```bash
+python herramientas/celda_colab.py                       # los 29 modulo-*/notebooks/*.ipynb
+python herramientas/celda_colab.py ruta/al/notebook.ipynb  # solo esos
+```
+
+- Es **idempotente**: si el notebook ya tiene la celda, la reemplaza; no toca salidas, metadatos
+  ni el kernel.
+- Añade `%pip install -q ...` solo con los paquetes que el notebook importa y Colab no trae
+  (`PAQUETES_NO_EN_COLAB`: `optuna`, `shap`, `umap-learn`, `mlflow`). Si un notebook nuevo usa
+  otro paquete ausente en Colab, añadirlo a ese diccionario.
+- Si el notebook lee un CSV que no se versiona (`DATOS_DESCARGABLES`, hoy solo
+  `adult-census.csv`), la celda ejecuta el script `descargar-*.py` cuando el archivo no existe.
+
+`percent2ipynb.py` importa este módulo, así que la celda es la misma por los dos caminos.

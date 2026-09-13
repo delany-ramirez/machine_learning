@@ -6,12 +6,18 @@ Formato de entrada:
     # %%
     codigo_python()
 
+Al convertir inserta la celda de arranque para Google Colab (ver celda_colab.py),
+deduciendo la carpeta del notebook de la ruta de salida. En --solo-codigo esa celda se
+omite: sus '!' y '%' solo son validos en IPython.
+
 Uso:
     python percent2ipynb.py entrada.py salida.ipynb
     python percent2ipynb.py entrada.py --solo-codigo   # imprime el codigo para ejecutarlo
 """
 import json
 import sys
+
+import celda_colab
 
 
 def parsear(texto):
@@ -54,7 +60,9 @@ def a_fuente(cuerpo):
     return [ln + "\n" for ln in lineas[:-1]] + [lineas[-1]]
 
 
-def construir(celdas):
+def construir(celdas, carpeta):
+    """Notebook nbformat 4 con la celda de arranque para Colab para `carpeta`
+    (p. ej. 'modulo-3-regresion-evaluacion/notebooks')."""
     salida = []
     for tipo, cuerpo in celdas:
         celda = {"cell_type": tipo, "metadata": {}, "source": a_fuente(cuerpo)}
@@ -62,7 +70,7 @@ def construir(celdas):
             celda["execution_count"] = None
             celda["outputs"] = []
         salida.append(celda)
-    return {
+    nb = {
         "cells": salida,
         "metadata": {
             "kernelspec": {
@@ -75,6 +83,7 @@ def construir(celdas):
         "nbformat": 4,
         "nbformat_minor": 5,
     }
+    return celda_colab.insertar(nb, carpeta)
 
 
 if __name__ == "__main__":
@@ -83,12 +92,14 @@ if __name__ == "__main__":
         celdas = parsear(fh.read())
 
     if "--solo-codigo" in sys.argv:
-        print("\n\n".join(c for t, c in celdas if t == "code"))
+        # Sin la celda de arranque para Colab: sus '!' y '%' no son Python.
+        print("\n\n".join(c for t, c in celdas if t == "code" and not celda_colab.es_celda_arranque(c)))
     else:
         salida = sys.argv[2]
+        nb = construir(celdas, celda_colab.carpeta_de(salida))
         with open(salida, "w", encoding="utf-8") as fh:
-            json.dump(construir(celdas), fh, ensure_ascii=False, indent=1)
+            json.dump(nb, fh, ensure_ascii=False, indent=1)
             fh.write("\n")
-        md = sum(1 for t, _ in celdas if t == "markdown")
-        code = sum(1 for t, _ in celdas if t == "code")
-        print(f"{salida}: {len(celdas)} celdas ({md} markdown / {code} codigo)")
+        md = sum(1 for c in nb["cells"] if c["cell_type"] == "markdown")
+        code = sum(1 for c in nb["cells"] if c["cell_type"] == "code")
+        print(f"{salida}: {len(nb['cells'])} celdas ({md} markdown / {code} codigo, con la de arranque para Colab)")
