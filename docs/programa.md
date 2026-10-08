@@ -8,7 +8,7 @@
 
 | Campo | Valor |
 |---|---|
-| Programa | Maestría en Ingeniería de Sistemas y Computación |
+| Programa | Posgrados UTP |
 | Institución | Universidad Tecnológica de Pereira |
 | Docente | MSc. Délany Ramírez del Río — `delram@utp.edu.co` |
 | Intensidad | **48 horas** — 14 sesiones de 3.5 h |
