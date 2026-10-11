@@ -10,6 +10,10 @@
 - Elegir e interpretar correctamente las métricas de error: MSE, RMSE, MAE, $R^2$ y $R^2$
   ajustado.
 
+> La geometría de este documento —el SSE como área, el $R^2$ como razón entre dos áreas y la
+> función de costo como paraboloide— se dibuja paso a paso en
+> `00-regresion-lineal-intuicion.ipynb`.
+
 ## 1. De la regresión simple a la múltiple
 
 En la regresión simple, una sola variable $x$ predice $y$ mediante una recta:

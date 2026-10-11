@@ -219,6 +219,12 @@ versiona directo (no requiere script de descarga en `.gitignore`).
   5 supuestos del modelo lineal, MSE/RMSE/MAE/$R^2$/$R^2$ ajustado) · `02-descenso-gradiente.md`
   (forma vectorizada, por qué usar descenso en vez de ecuación normal, batch/mini-batch/SGD,
   diagnóstico de convergencia).
+- **Notebook añadido después (`00-regresion-lineal-intuicion`):** regresión simple con 10
+  estudiantes de `rendimiento-estudiantes.csv`; SSE como suma de áreas de cuadrados, $R^2$ como
+  razón de áreas y su descomposición, paraboloide de la pérdida (número de condición de
+  $\mathbf{X}^{	op}\mathbf{X}$ ≈ 1000 sin centrar, 4 centrado) y, opcional, OLS como
+  proyección ortogonal en $\mathbb{R}^3$. Numerado `00` para no renumerar las referencias
+  existentes a los notebooks 01–06.
 - **Notebooks (2):** `01-descenso-gradiente-intuicion` extiende
   `04-gradientes-intuicion.ipynb` del módulo 1 (mismo dataset, `rendimiento-estudiantes.csv`)
   de regresión simple a múltiple (6 predictores), en forma vectorizada; compara batch,

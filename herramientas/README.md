@@ -46,7 +46,7 @@ Inserta (o reemplaza) en cada notebook la primera celda de código, etiquetada
 para que `../datos` exista; en local no hace nada. Sin dependencias externas.
 
 ```bash
-python herramientas/celda_colab.py                       # los 29 modulo-*/notebooks/*.ipynb
+python herramientas/celda_colab.py                       # todos los modulo-*/notebooks/*.ipynb
 python herramientas/celda_colab.py ruta/al/notebook.ipynb  # solo esos
 ```
 
