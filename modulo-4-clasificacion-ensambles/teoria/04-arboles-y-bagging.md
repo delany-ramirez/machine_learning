@@ -12,6 +12,10 @@
 - Entender qué añade **Random Forest** sobre bagging, cuándo ayuda y cuándo no.
 - Conocer el error *out-of-bag* y la importancia de variables por impureza, con sus límites.
 
+> La geometría de la sección 1 —la curva escalonada de la impureza, los rectángulos, las
+> terrazas de la probabilidad, la escalera ante una diagonal y la miopía del algoritmo
+> voraz— se dibuja paso a paso en `02b-arboles-geometria-intuicion.ipynb`.
+
 ## 1. Cómo crece un árbol
 
 Un árbol de decisión parte el espacio de las variables con preguntas binarias de la forma
@@ -68,6 +72,10 @@ implementa en ~40 líneas y verifica que reproduce exactamente las particiones d
   en implementaciones que manejan categóricas de forma nativa (LightGBM, S11).
 - Capturan **interacciones** de forma natural: la pregunta del nodo hijo depende de la
   respuesta del padre. Un modelo lineal necesita términos explícitos $x_1 x_2$ para eso.
+  Con un límite: la partición voraz tiene que encontrar primero un corte útil, y en una
+  interacción pura (un XOR) ninguno lo parece; en `02b-arboles-geometria-intuicion.ipynb`
+  el árbol voraz de profundidad 2 acierta la mitad, y uno de profundidad 2 hecho a mano, el
+  97 %.
 - Son **interpretables** mientras son pequeños: un árbol de profundidad 3 se lee como una
   lista de reglas. A partir de cierta profundidad, deja de serlo — y los ensambles nunca lo
   son directamente (S11 resuelve eso).
@@ -211,6 +219,7 @@ miden sobre datos no vistos y no tienen el sesgo de cardinalidad.
 | Random Forest | Bagging + `max_features` por nodo para bajar $\rho$; se afina, no es gratis | Línea base fuerte del proyecto integrador |
 | MDI | Importancia gratis, sesgada hacia alta cardinalidad y calculada en entrenamiento | Reemplazada por permutación y SHAP (S11) |
 
-**Notebooks:** `03-arboles-intuicion.ipynb` (todo a mano, en 2D) ·
+**Notebooks:** `02b-arboles-geometria-intuicion.ipynb` (la geometría de las particiones) ·
+`03-arboles-intuicion.ipynb` (todo a mano, en 2D) ·
 `04-arboles-bagging-aplicado.ipynb` (Wine Quality: árbol, bagging, OOB, rejilla de Random
 Forest, Extra-Trees, comparación pareada y conjunto de prueba).

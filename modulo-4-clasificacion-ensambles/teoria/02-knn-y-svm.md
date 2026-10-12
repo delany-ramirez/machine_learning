@@ -13,6 +13,10 @@
 - Saber qué tienen en común los tres clasificadores de la sesión (exigen escalado) y en qué
   se diferencian (forma de la frontera, costo, probabilidades).
 
+> La geometría de este documento —el círculo que se infla hasta encerrar $k$ vecinos, las
+> celdas de Voronoi, la calle de la SVM y las campanas del kernel RBF— se dibuja paso a paso
+> en `01b-knn-intuicion.ipynb` y `01c-svm-intuicion.ipynb`.
+
 ## 1. K vecinos más cercanos (KNN)
 
 ### La idea
@@ -169,4 +173,6 @@ explicará qué encuentran en las variables que estos tres no.
 | $C$ y $\gamma$ | Regularización y alcance; se afinan juntos | Búsqueda de hiperparámetros del proyecto |
 | Truco del kernel | Frontera no lineal sin construir el espacio | PCA con kernel (S12, 🔵) |
 
-**Notebook:** `02-clasificacion-aplicado.ipynb`.
+**Notebooks:** `01b-knn-intuicion.ipynb` (KNN a mano, Voronoi, escalado, ruido) ·
+`01c-svm-intuicion.ipynb` (margen máximo y blando a mano, bisagra, kernels) ·
+`02-clasificacion-aplicado.ipynb` (los tres clasificadores sobre Wine Quality).

@@ -389,6 +389,20 @@ Producido:
   La S11 lleva tres porque cubre boosting **e** interpretabilidad; fusionarlos habría dado un
   notebook de 40 celdas.
 - **Ejercicios (3 + soluciones)** sobre Adult Census, encadenados, y **quiz** de 10 preguntas.
+- **Notebooks añadidos después (`01b-knn-intuicion`, `01c-svm-intuicion`,
+  `02b-arboles-geometria-intuicion`):** la versión geométrica de KNN, SVM y árboles, al estilo
+  de `00-regresion-lineal-intuicion` de M3, con los mismos 20 estudiantes de
+  `rendimiento-estudiantes.csv` (`sample(n=20, random_state=42)`, que resulta linealmente
+  separable con 3 vectores de soporte). KNN: celdas de Voronoi, escalado como elipse (razón
+  de desviaciones 10.7 en los 400), ruido que lo lleva de 0.82 a 0.74 (clase mayoritaria).
+  SVM: margen duro y blando resueltos con `scipy.optimize.minimize` (SLSQP) e iguales a
+  `SVC`, bisagra vs. entropía cruzada, levantamiento a $(x, x^2)$ y al paraboloide, RBF
+  reconstruida a mano desde `dual_coef_`. Árboles: el primer corte de los 20 es por horas,
+  no por promedio; invariancia a transformaciones monótonas (99 % de predicciones iguales en
+  CV frente a 85–88 % de KNN); en el XOR el voraz de profundidad 2 acierta 0.50 y el de mano
+  0.97; 🔵 tocón de regresión con los 10 estudiantes de M3 (SSE 0.93 frente a 1.49 de la
+  recta, pero empatan sobre los otros 390). Numerados con sufijo de letra para no renumerar
+  las referencias existentes a los notebooks 02–07.
 
 **Hallazgos que cambiaron el contenido** (todos medidos, no supuestos):
 
