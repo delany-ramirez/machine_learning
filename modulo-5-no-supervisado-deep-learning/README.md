@@ -27,7 +27,7 @@ decidir cuándo un problema tabular no necesita deep learning.
   desvanecimiento del gradiente.
 - **S13** — Retropropagación: la regla de la cadena de S3 aplicada a una red, verificada
   contra diferencias finitas y contra el autograd de PyTorch.
-- **S13** — Entrenamiento en PyTorch: optimizadores (SGD, momento, Adam), mini-lotes,
+- **S13** — Entrenamiento en PyTorch: optimizadores (SGD, momento, Adam), mini-batches,
   early stopping, weight decay, dropout.
 - **S13** — Cuándo *no* usar deep learning: comparación pareada contra los ensambles de
   S10–S11 sobre Wine Quality y Adult Census.
@@ -101,7 +101,7 @@ decidir cuándo un problema tabular no necesita deep learning.
 > **Hallazgo del notebook 06.** Sobre Wine Quality, el MLP gana a la logística (+0.023 de
 > AP), empata con LightGBM por defecto y pierde con Extra-Trees (−0.046 ± 0.004, cociente
 > 10) costando 6× más; sobre Adult Census, con 10× más datos, LightGBM 0.83 frente a MLP
-> 0.78 (−0.047 ± 0.001) a una décima del tiempo. Hacer el early stopping sobre el pliegue
+> 0.78 (−0.047 ± 0.001) a una décima del tiempo. Hacer el early stopping sobre el fold
 > evaluado infla la AP 0.017 en Wine y 0.004 en Adult. Sobre los dígitos, la CNN es la mejor
 > y la única que resiste un desplazamiento de un píxel (0.62 frente a 0.42–0.51): gana el
 > modelo cuyo sesgo inductivo encaja con la estructura de los datos.

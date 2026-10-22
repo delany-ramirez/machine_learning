@@ -22,7 +22,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 ```
 
-Semilla 42; CV estratificada de 5 pliegues donde haga falta. Entrega un notebook
+Semilla 42; CV estratificada de 5 folds donde haga falta. Entrega un notebook
 `ej02-<tu-apellido>.ipynb`.
 
 ## Parte A — PCA validado por el modelo (20 min)

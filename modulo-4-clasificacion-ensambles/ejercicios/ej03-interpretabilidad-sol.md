@@ -2,8 +2,8 @@
 
 > **Material del docente.** Números obtenidos con la partición del ejercicio 01, el modelo
 > `LGBMClassifier(n_estimators=335, learning_rate=0.03, random_state=42)` ajustado sobre
-> cuatro pliegues y evaluado sobre el primero (7 815 personas), categóricas nativas. Los
-> valores SHAP están en log-momios. El valor base es −2.33.
+> cuatro folds y evaluado sobre el primero (7 815 personas), categóricas nativas. Los
+> valores SHAP están en log-odds. El valor base es −2.33.
 
 ## Parte A — Tres importancias, dos ganancias
 
@@ -44,7 +44,7 @@ sí le da a `relacion` una contribución grande (0.65), porque SHAP reparte entr
 variables redundantes y la permutación se la quita a todas.
 
 **A.4** Solo el **8.2 %** de las personas tiene `ganancia_capital > 0`. Su contribución SHAP
-media: **−0.24** log-momios para quienes la tienen en cero, **+2.70** para quienes la tienen
+media: **−0.24** log-odds para quienes la tienen en cero, **+2.70** para quienes la tienen
 positiva, y **+5.17** para quienes tienen 5 000 o más. Es una variable que casi nunca actúa,
 pero cuando actúa decide sola la predicción — y no tiene sustituto: al permutarla, ninguna
 otra variable puede recuperar esa información, de ahí que sea la primera por permutación
@@ -88,8 +88,8 @@ similar si el estudiante usó otra semilla.
 
 ## Parte C — `sexo`: qué hace el modelo y qué pasa si se quita
 
-**C.1** Contribución SHAP media de `sexo`: **−0.22** log-momios para mujeres, **+0.12** para
-hombres. Sobre el pliegue de validación con umbral 0.15:
+**C.1** Contribución SHAP media de `sexo`: **−0.22** log-odds para mujeres, **+0.12** para
+hombres. Sobre el fold de validación con umbral 0.15:
 
 | | n | Prevalencia real | Predichos positivos | Recall | Precisión |
 |---|---|---|---|---|---|

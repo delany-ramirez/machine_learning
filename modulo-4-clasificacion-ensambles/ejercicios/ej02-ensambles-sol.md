@@ -7,7 +7,7 @@
 
 **A.1**
 
-| Modelo | AP | AUC-ROC | Ajuste por pliegue |
+| Modelo | AP | AUC-ROC | Ajuste por fold |
 |---|---|---|---|
 | Random Forest (300) | 0.775 | 0.906 | 2.5 s |
 | Extra-Trees (300) | 0.712 | 0.887 | 3.6 s |
@@ -58,11 +58,11 @@ equivalentes en calidad; la ventaja de la nativa es de higiene (no hay que decid
 advertir que las categorías del conjunto de prueba deben fijarse a las del entrenamiento
 (`pd.Categorical(..., categories=...)`), o LightGBM las codificará con enteros distintos.
 
-**C.2** `best_iteration_` = **335** con $\nu = 0.03$; la AP de validación en ese pliegue es
+**C.2** `best_iteration_` = **335** con $\nu = 0.03$; la AP de validación en ese fold es
 0.832. La curva es plana alrededor del máximo —la firma de una tasa de aprendizaje baja—
 y el early stopping se detuvo en la ronda 535 (200 después del máximo).
 
-**C.3** Comparación pareada sobre 10 pliegues (5 × 2):
+**C.3** Comparación pareada sobre 10 folds (5 × 2):
 
 | | AP |
 |---|---|
@@ -71,7 +71,7 @@ y el early stopping se detuvo en la ronda 535 (200 después del máximo).
 | **Diferencia** | **+0.026 ± 0.0007** (cociente 39) |
 
 Detectable sin ninguna duda, y relevante: un 3 % relativo de AP con un error estándar
-diminuto (con 39 000 filas, los pliegues son mucho más parecidos entre sí que en Wine
+diminuto (con 39 000 filas, los folds son mucho más parecidos entre sí que en Wine
 Quality, donde el error estándar era de 0.003–0.015). Contra el Random Forest sin afinar
 (`min_samples_leaf=1`), la diferencia es de +0.051.
 

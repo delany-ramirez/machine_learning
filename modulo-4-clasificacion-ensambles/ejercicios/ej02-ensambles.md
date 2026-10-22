@@ -24,9 +24,9 @@ Entrega un notebook `ej02-<tu-apellido>.ipynb` que corra de principio a fin.
 
 ## Parte A — Cuatro ensambles con valores por defecto (15 min)
 
-**A.1** Evalúa con la CV de 5 pliegues: Random Forest (300 árboles), Extra-Trees (300
+**A.1** Evalúa con la CV de 5 folds: Random Forest (300 árboles), Extra-Trees (300
 árboles), LightGBM con valores por defecto, y LightGBM con `n_estimators=1000,
-learning_rate=0.03`. Reporta AP, AUC-ROC y tiempo de ajuste por pliegue.
+learning_rate=0.03`. Reporta AP, AUC-ROC y tiempo de ajuste por fold.
 
 **A.2** Compara con la tabla de la sección 2 de `06-boosting-aplicado.ipynb`. ¿Qué cambió
 de orden respecto a Wine Quality? Propón una explicación a partir de lo que dice
@@ -48,13 +48,13 @@ a `dtype="category"` en entrenamiento **y** prueba (con las mismas categorías) 
 `LGBMClassifier(n_estimators=1000, learning_rate=0.03)` directamente sobre el `DataFrame`,
 sin `ColumnTransformer`. Compara AP y tiempo con la versión *one-hot* de A.1.
 
-**C.2** Sobre el primer pliegue de la CV, entrena LightGBM con `n_estimators=5000`,
-`learning_rate=0.03`, `eval_set` sobre el pliegue de validación, `eval_metric="average_precision"`
+**C.2** Sobre el primer fold de la CV, entrena LightGBM con `n_estimators=5000`,
+`learning_rate=0.03`, `eval_set` sobre el fold de validación, `eval_metric="average_precision"`
 y `callbacks=[early_stopping(200)]`. Grafica la AP de validación por ronda y reporta
 `best_iteration_`.
 
 **C.3** Comparación pareada de LightGBM (con el número de rondas de C.2) contra Random Forest
-(con el mejor `min_samples_leaf` de B.1) sobre los mismos pliegues de
+(con el mejor `min_samples_leaf` de B.1) sobre los mismos folds de
 `RepeatedStratifiedKFold(n_splits=5, n_repeats=2, random_state=42)`. Reporta la diferencia
 media, su error estándar y el cociente.
 

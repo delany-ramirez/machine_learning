@@ -16,7 +16,7 @@
 
 Este documento es el primer marco de evaluación nuevo desde `05-sesgo-varianza-validacion.md`:
 la validación cruzada, la comparación pareada y la CV anidada del módulo 3 siguen valiendo
-tal cual; lo que cambia es **qué número** se calcula en cada pliegue.
+tal cual; lo que cambia es **qué número** se calcula en cada fold.
 
 ## 1. La matriz de confusión
 
@@ -141,12 +141,12 @@ balancear y por eso es la que se cita.
 
 Dos reglas de higiene:
 
-- El remuestreo va **dentro** del pipeline, solo sobre los pliegues de entrenamiento. SMOTE
+- El remuestreo va **dentro** del pipeline, solo sobre los folds de entrenamiento. SMOTE
   antes de partir crea positivos sintéticos que caen en validación interpolados desde
   positivos de entrenamiento — fuga. `imblearn.pipeline.Pipeline` lo garantiza; el
   `Pipeline` de `scikit-learn` no admite remuestreadores.
 - La validación cruzada debe ser **estratificada** (`StratifiedKFold`): con 19 % de
-  positivos y 5 pliegues, sin estratificar un pliegue puede quedar con la mitad de los
+  positivos y 5 folds, sin estratificar un fold puede quedar con la mitad de los
   positivos que otro por azar.
 
 ## 6. Más de dos clases

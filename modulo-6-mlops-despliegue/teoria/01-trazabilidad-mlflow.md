@@ -37,7 +37,7 @@ trabajo en:
 | **Parámetros** | Valores de entrada, texto: hiperparámetros y contexto | `n_estimators`, `datos.sha256`, `codigo.commit`, `semilla` |
 | **Métricas** | Números de salida, opcionalmente por paso | `ap_cv`, `ap_cv_ee`, `tamano_mb`, `latencia_ms_por_fila` |
 | **Tags** | Etiquetas libres para filtrar | `modelo.familia` |
-| **Artefactos** | Archivos: figuras, tablas, el modelo | curva PR, AP por pliegue, `modelo/` |
+| **Artefactos** | Archivos: figuras, tablas, el modelo | curva PR, AP por fold, `modelo/` |
 
 Dos almacenes detrás: los **metadatos** (parámetros, métricas, tags) van a una base de
 datos —SQLite en local, PostgreSQL en un servidor compartido— y los **artefactos** a una
@@ -59,7 +59,7 @@ Lo mínimo para poder reproducirla y para poder decidir con ella:
    deciden despliegues: sobre Wine Quality, el mejor modelo en AP (Extra-Trees con 300
    árboles) pesa **12 MB** y predice 20 veces más lento que un gradient boosting de
    0.15 MB que pierde 0.04 de AP (`01-mlflow-aplicado.ipynb`, sección 4).
-5. **Artefactos de diagnóstico**: la curva precisión-recall, la tabla por pliegue, la
+5. **Artefactos de diagnóstico**: la curva precisión-recall, la tabla por fold, la
    matriz de confusión — lo que se querría mirar después sin reentrenar.
 6. **El modelo**, con su firma y sus dependencias (§3).
 

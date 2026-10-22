@@ -88,21 +88,21 @@ respuesta.
 Extraer datos directamente del HTML de una página. Es el último recurso, no el primero: es
 frágil (la página cambia y el código se rompe), lento y a menudo está restringido.
 
-**Antes de raspar:**
+**Antes de hacer scraping:**
 
 1. ¿Existe una **API oficial**? Casi siempre sí.
 2. ¿Están los datos en un **portal de datos abiertos**?
 3. ¿Qué dice `robots.txt` del sitio?
 4. ¿Qué dicen los términos de servicio?
 
-**Al raspar:**
+**Al hacer scraping:**
 
 - Identificarse con un `User-Agent` descriptivo.
 - Esperar entre peticiones. Un bucle sin pausas es indistinguible de un ataque.
 - Guardar el HTML crudo en local, para no repetir peticiones al ajustar el código.
 - Nunca extraer datos personales sin base legal.
 
-**Después de raspar:** todo llega como texto. La conversión de tipos es parte obligatoria del
+**Después de hacer scraping:** todo llega como texto. La conversión de tipos es parte obligatoria del
 proceso, no un detalle posterior.
 
 ## 5. El diccionario de datos
@@ -173,7 +173,7 @@ reproducibilidad (sesión 2) y lo que permite responder a una auditoría.
 ## Notebooks relacionados
 
 - [`../notebooks/02-webscraping-aplicado.ipynb`](../notebooks/02-webscraping-aplicado.ipynb) 🔵
-  — extracción de tablas con BeautifulSoup y limpieza de datos raspados.
+  — extracción de tablas con BeautifulSoup y limpieza de datos obtenidos por scraping.
 
 ## Documento siguiente
 

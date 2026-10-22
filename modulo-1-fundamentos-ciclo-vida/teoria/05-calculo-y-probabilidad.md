@@ -79,7 +79,7 @@ intuición se mantiene: existe un umbral por encima del cual el método explota.
 |---|---|---|
 | **Batch** | Todo el conjunto | Estable, costoso |
 | **Estocástico (SGD)** | Una observación | Rápido y ruidoso; el ruido ayuda a escapar de mínimos locales |
-| **Mini-batch** | Un lote de 32–256 | El equilibrio usado en la práctica |
+| **Mini-batch** | Un batch de 32–256 | El equilibrio usado en la práctica |
 
 Optimizadores modernos como **Adam** añaden momento y tasas adaptativas por parámetro. Se
 usan en la sesión 13.

@@ -70,10 +70,10 @@ de hiperparámetros.
 > muy distintos entre sí.
 >
 > **Hallazgo del notebook 06.** Comparando Ridge y Lasso —cada uno afinado por CV— sobre los
-> **mismos** 10 pliegues, la conclusión **depende de cómo se haya elegido $\lambda$**. Si se
-> elige una sola vez con todo el entrenamiento y después se evalúa sobre pliegues de ese mismo
+> **mismos** 10 folds, la conclusión **depende de cómo se haya elegido $\lambda$**. Si se
+> elige una sola vez con todo el entrenamiento y después se evalúa sobre folds de ese mismo
 > entrenamiento —la fuga que el propio notebook mide en la sección 4—, la diferencia es −\$10
-> con un error estándar de \$35: "no hay diferencia detectable". Si cada pliegue elige su
+> con un error estándar de \$35: "no hay diferencia detectable". Si cada fold elige su
 > $\lambda$ con datos que no lo incluyen, la diferencia es −\$41 con ee \$17, apenas por encima
 > de la regla de dos errores estándar. La higiene metodológica no solo corrige un número: aquí
 > cambia la respuesta. Y aun así, \$41 sobre un RMSE de \$33,460 es un 0.12 % —

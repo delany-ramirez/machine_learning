@@ -49,8 +49,8 @@ random search encuentra un resultado comparable con menos evaluaciones?
 
 ## Parte C — Validación cruzada anidada (20 min)
 
-**C.1** Implementa CV anidada para Ridge: un bucle externo de 5 pliegues, y dentro de cada uno
-un `GridSearchCV` con su propio `KFold` interno de 5 pliegues (igual que
+**C.1** Implementa CV anidada para Ridge: un bucle externo de 5 folds, y dentro de cada uno
+un `GridSearchCV` con su propio `KFold` interno de 5 folds (igual que
 `06-seleccion-modelos-aplicado.ipynb`). Reporta el RMSE promedio del bucle externo, con su
 error estándar.
 
@@ -63,9 +63,9 @@ de la CV anidada?
 **D.1** Construye dos pipelines de Ridge (con el $\lambda$ de la parte A): uno con las 11
 variables numéricas **y** `foundation`, y otro **solo** con las 11 numéricas.
 
-**D.2** Compara ambos con validación cruzada de **10 pliegues, usando los mismos pliegues
+**D.2** Compara ambos con validación cruzada de **10 folds, usando los mismos folds
 para los dos modelos** (comparación pareada, `05-sesgo-varianza-validacion.md` sección 3).
-Calcula la diferencia media de RMSE por pliegue y su error estándar.
+Calcula la diferencia media de RMSE por fold y su error estándar.
 
 **D.3** ¿La diferencia es mayor o menor que dos errores estándar? A diferencia de la
 comparación Ridge-vs-Lasso de `06-seleccion-modelos-aplicado.ipynb` (sesión 8), donde no se

@@ -117,7 +117,7 @@ frente a los 9–13 del notebook. **La explicación es la clave del apartado:**
 > azar algunas se parecen a la etiqueta y el selector las encuentra. Aquí se eligen 5 de unas
 > 15 variables **reales, con señal genuina**: hay poco margen para que el azar produzca falsos
 > hallazgos, y las que el selector elige son las que de verdad importan tanto dentro como
-> fuera del pliegue.
+> fuera del fold.
 
 La regla general que debe quedar: **el riesgo de esta fuga crece con la relación $p/n$**. Con
 pocas variables y muchas observaciones, es menor; con más variables que observaciones —datos
@@ -129,10 +129,10 @@ genómicos, texto, sensores— es devastador.
 ## Parte D — ¿Aportan las variables nuevas?
 
 **D.1–D.2** Las diferencias entre la versión con y sin variables nuevas son del orden de la
-desviación entre pliegues (±0.031). **No se puede afirmar que ayuden.**
+desviación entre folds (±0.031). **No se puede afirmar que ayuden.**
 
 Respuesta correcta esperada: *"la diferencia observada es menor que la variabilidad entre
-pliegues, así que no hay evidencia de mejora"*. Se penaliza afirmar una mejora a partir de una
+folds, así que no hay evidencia de mejora"*. Se penaliza afirmar una mejora a partir de una
 diferencia en la tercera cifra decimal.
 
 De las cuatro variables:

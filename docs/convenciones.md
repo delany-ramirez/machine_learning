@@ -42,6 +42,10 @@ Usar estos emojis de forma consistente en títulos y tablas de contenido.
 - Reservar los bloques de código para Python; las tablas de resultados en Markdown.
 - Idioma: **español**. Términos técnicos en inglés entre paréntesis la primera vez que
   aparecen (p. ej. "fuga de datos (data leakage)"), y en redonda a partir de ahí.
+- Cuando la traducción no es la que se usa en la práctica, se deja el término en inglés sin
+  traducir: *odds*, *log-odds*, *odds ratio*, *stump*, *scraping*, *fold*, *batch*,
+  *mini-batch*, *hard margin* y *soft margin* (no "momios", "tocón", "raspar", "pliegue",
+  "lote" ni "margen blando").
 
 ## 4. Notebooks ejecutables
 

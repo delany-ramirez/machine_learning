@@ -52,7 +52,7 @@ Explica por qué esta función **puede** aplicarse antes de partir sin causar fu
 - Categóricas: imputar con la moda + one-hot con `handle_unknown="ignore"` y `drop="first"`.
 
 **A.5** Móntalo todo en un `Pipeline` con una regresión logística y evalúalo con validación
-cruzada de 5 pliegues sobre el conjunto de entrenamiento. Compara contra la **referencia
+cruzada de 5 folds sobre el conjunto de entrenamiento. Compara contra la **referencia
 trivial** (predecir siempre la clase mayoritaria).
 
 ## Parte B — La fuga evidente (10 min)
@@ -90,7 +90,7 @@ hay en cada caso?).
 **D.1** Evalúa con validación cruzada dos pipelines: uno con las variables originales y otro
 con las cuatro que creaste en A.3.
 
-**D.2** ¿La diferencia supera a la desviación entre pliegues? ¿Puedes afirmar que las
+**D.2** ¿La diferencia supera a la desviación entre folds? ¿Puedes afirmar que las
 variables nuevas ayudan?
 
 **D.3** Propón **una** variable adicional que creas que sí puede aportar, con una justificación

@@ -11,7 +11,7 @@
 ## Contexto
 
 `adult-census.csv` (`python datos/descargar-adult-census.py` en el módulo 4 o 5 si no lo
-tienes), misma partición 80/20 estratificada y CV de 5 pliegues (`random_state=42`).
+tienes), misma partición 80/20 estratificada y CV de 5 folds (`random_state=42`).
 Reutiliza `registrar` y `medir_tamano_y_latencia` de `01-mlflow-aplicado.ipynb`,
 adaptadas. Tracking en `sqlite:///mlflow.db` en la carpeta donde trabajes; experimento
 `adult-ingreso-alto`.
@@ -33,7 +33,7 @@ métricas de calidad (AP y AUC en CV, con error estándar) y métricas de despli
   `mlflow.lightgbm`.
 
 **A.2** Registra como artefacto de cada corrida la curva precisión-recall y una tabla con
-la AP por pliegue. Registra el modelo con firma y ejemplo de entrada. ¿Qué archivos
+la AP por fold. Registra el modelo con firma y ejemplo de entrada. ¿Qué archivos
 aparecen en la carpeta `modelo/` de la corrida? ¿Para qué sirve cada uno?
 
 ## Parte B — Comparar y elegir (15 min)

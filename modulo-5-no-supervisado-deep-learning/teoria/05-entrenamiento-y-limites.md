@@ -5,7 +5,7 @@
 ## Objetivos
 
 - Conocer las piezas de un entrenamiento en PyTorch y las decisiones que hay que tomar:
-  mini-lotes, optimizador, tasa de aprendizaje, épocas, *early stopping*.
+  mini-batches, optimizador, tasa de aprendizaje, épocas, *early stopping*.
 - Entender las tres formas de regularizar una red —*early stopping*, *weight decay*,
   *dropout*— y qué mide cada una.
 - Tener un criterio **medido** para decidir cuándo un problema tabular no necesita deep
@@ -13,7 +13,7 @@
 
 ## 1. El bucle de entrenamiento
 
-Entrenar una red es el descenso del gradiente por mini-lotes de la S6, con la
+Entrenar una red es el descenso del gradiente por mini-batches de la S6, con la
 retropropagación calculando el gradiente. En PyTorch, las piezas
 (`06-mlp-pytorch-aplicado.ipynb`, sección 2):
 
@@ -23,15 +23,15 @@ retropropagación calculando el gradiente. En PyTorch, las piezas
 | Modelo | `nn.Sequential(nn.Linear, nn.ReLU, nn.Dropout, …)` | Anchura y profundidad; para tabular, 1–3 capas de 32–256 |
 | Pérdida | `BCEWithLogitsLoss` (binaria), `CrossEntropyLoss` (multiclase), `MSELoss` | La última capa devuelve *logits*; la sigmoide/softmax va en la pérdida por estabilidad numérica |
 | Optimizador | `torch.optim.Adam`, `SGD` | Adam con $\eta = 10^{-3}$ es el punto de partida |
-| Bucle | por época: barajar; por lote: `zero_grad()` → adelante → pérdida → `backward()` → `step()` | Tamaño del lote (32–256), número de épocas |
+| Bucle | por época: barajar; por batch: `zero_grad()` → adelante → pérdida → `backward()` → `step()` | Tamaño del batch (32–256), número de épocas |
 | Validación | al final de cada época, en modo `eval()` | Guardar el mejor estado; parar con paciencia |
 
-### Mini-lotes y épocas
+### Mini-batches y épocas
 
-Una **época** es una pasada por todos los datos; un **lote** (*batch*) es el subconjunto
-con el que se calcula cada gradiente. Lotes pequeños dan gradientes ruidosos pero muchos
-pasos por época (S6: mini-batch llega en una época a donde batch tarda veinte); lotes
-grandes aprovechan mejor el hardware. 32–256 es el rango habitual; el ruido del lote
+Una **época** es una pasada por todos los datos; un **batch** es el subconjunto
+con el que se calcula cada gradiente. Batches pequeños dan gradientes ruidosos pero muchos
+pasos por época (S6: mini-batch llega en una época a donde batch tarda veinte); batches
+grandes aprovechan mejor el hardware. 32–256 es el rango habitual; el ruido del batch
 pequeño actúa además como regularizador suave.
 
 ### Optimizadores
@@ -77,7 +77,7 @@ cosa incluye el ruido (`04-redes-neuronales.md`, §5). Tres controles, que se co
   muchas sub-redes, como un ensamble. En evaluación (`model.eval()`) se usan todas las
   neuronas con las activaciones escaladas.
 
-Medido sobre Wine Quality en CV de 5 pliegues (`06-mlp-pytorch-aplicado.ipynb`, sección
+Medido sobre Wine Quality en CV de 5 folds (`06-mlp-pytorch-aplicado.ipynb`, sección
 3): con early stopping en todos los casos, añadir weight decay, dropout, ambos, o cambiar
 el tamaño de la red (32 a 256-128) mueve la AP entre 0.55 y 0.57, con error estándar
 0.013 — nada detectable. El early stopping hace casi todo el trabajo en un dataset
@@ -86,8 +86,8 @@ fracción de segundo para la logística).
 
 ### Una fuga que conviene conocer
 
-Si el early stopping elige la época mirando el **mismo** pliegue sobre el que se reporta
-la métrica, esa métrica es optimista: se eligió la época con la mejor AP *de ese pliegue*.
+Si el early stopping elige la época mirando el **mismo** fold sobre el que se reporta
+la métrica, esa métrica es optimista: se eligió la época con la mejor AP *de ese fold*.
 En Wine Quality el sesgo es de casi dos centésimas (AP 0.565 frente a 0.548 cuando la
 validación del early stopping sale de un 15 % apartado del entrenamiento). Es la fuga de
 selección del módulo 3 (S8, CV anidada), otra vez. La regla: el conjunto de validación
@@ -96,10 +96,10 @@ que decide cuándo parar es parte del entrenamiento, no de la evaluación.
 ## 3. Cuándo no usar deep learning: la comparación
 
 La pregunta central de la sesión, respondida con la comparación pareada del módulo 3
-sobre los mismos pliegues que los notebooks del módulo 4 (`06-mlp-pytorch-aplicado.ipynb`,
+sobre los mismos folds que los notebooks del módulo 4 (`06-mlp-pytorch-aplicado.ipynb`,
 secciones 4 y 5):
 
-| Dataset | Modelo | AP (CV) | Tiempo por pliegue |
+| Dataset | Modelo | AP (CV) | Tiempo por fold |
 |---|---|---|---|
 | Wine Quality (4256 filas, 12 variables) | Regresión logística | 0.525 ± 0.006 | 0.01 s |
 | | LightGBM por defecto | 0.555 ± 0.009 | 0.04 s |
@@ -156,7 +156,7 @@ inductivo adecuado:
 Y el criterio, en una frase: **gana el modelo cuyo sesgo inductivo encaja con la
 estructura de los datos**. Árboles para tablas, convoluciones para imágenes, atención
 para texto. Cuando la estructura no está clara, se mide — con la comparación pareada,
-sobre los mismos pliegues, con error estándar y con el tiempo al lado.
+sobre los mismos folds, con error estándar y con el tiempo al lado.
 
 ## Referencias
 

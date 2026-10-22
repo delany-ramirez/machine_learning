@@ -136,7 +136,7 @@ directa sobre el objetivo.
 `y` en esas 300 observaciones concretas. `SelectKBest` las encuentra —es su función—, pero al
 mirar el dataset completo, esas coincidencias incluyen las filas que después harán de
 validación. La validación cruzada ya no evalúa nada: las variables se eligieron *sabiendo* las
-respuestas de los pliegues de validación.
+respuestas de los folds de validación.
 
 Es el problema de las comparaciones múltiples convertido en fuga: con 8.000 pruebas al 1 %,
 unas 80 salen "significativas" solo por azar.
@@ -152,7 +152,7 @@ flujo = Pipeline([
 puntajes = cross_val_score(flujo, X, y, cv=5)
 ```
 
-Ahora ambos pasos se ajustan **por separado en cada pliegue**, con sus datos de entrenamiento.
+Ahora ambos pasos se ajustan **por separado en cada fold**, con sus datos de entrenamiento.
 
 > Punto extra si el estudiante anticipa que la accuracy real caerá drásticamente, o si señala
 > que con $p \gg n$ este es exactamente el escenario donde la fuga es devastadora.
@@ -182,7 +182,7 @@ Ahora ambos pasos se ajustan **por separado en cada pliegue**, con sus datos de 
   escalado, las categorías del codificador y las variables seleccionadas.
 - Al llamar a **`.predict(X)`**, cada paso ejecuta solo `transform`, aplicando lo que aprendió
   antes. No vuelve a aprender nada.
-- Dentro de `cross_val_score`, todo ese ciclo ocurre **por separado en cada pliegue**, lo que
+- Dentro de `cross_val_score`, todo ese ciclo ocurre **por separado en cada fold**, lo que
   hace que la evaluación sea honesta.
 
 Aplicar los pasos por separado no garantiza nada de eso: hay que acordarse de aplicar

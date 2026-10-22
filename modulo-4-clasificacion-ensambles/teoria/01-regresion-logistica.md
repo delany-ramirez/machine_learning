@@ -7,7 +7,7 @@
 - Entender por qué la regresión lineal no sirve para predecir una variable 0/1 y qué
   problema exacto resuelve la función sigmoide.
 - Leer el modelo logístico como lo que es: **una regresión lineal sobre el logaritmo de los
-  momios** (*log-odds*), y por tanto interpretar sus coeficientes como razones de momios.
+  odds** (*log-odds*), y por tanto interpretar sus coeficientes como odds ratios.
 - Derivar la función de costo desde la **máxima verosimilitud**, y ver que su gradiente
   tiene la misma forma que el de la regresión lineal del módulo 3.
 - Extender el modelo a $K$ clases con **softmax**.
@@ -27,7 +27,7 @@ dos frentes:
    cercano a la frontera que en uno lejano donde el modelo ya "acertó de sobra", y arrastra
    la recta hacia los puntos bien clasificados que están lejos.
 
-## 2. Sigmoide, momios y log-momios
+## 2. Sigmoide, odds y log-odds
 
 La solución es modelar la **probabilidad** $p = P(y = 1 \mid \mathbf{x})$ pasando la
 combinación lineal por una función que la lleve a $(0, 1)$:
@@ -36,7 +36,7 @@ $$
 p = \sigma(\mathbf{x}^\top\boldsymbol{\beta}) = \frac{1}{1 + e^{-\mathbf{x}^\top\boldsymbol{\beta}}}
 $$
 
-La sigmoide $\sigma$ no es una elección arbitraria. Los **momios** (*odds*) de un evento son
+La sigmoide $\sigma$ no es una elección arbitraria. Los **odds** de un evento son
 $p / (1-p)$: "3 a 1" significa $p = 0.75$. Su logaritmo, el **logit**, va de $-\infty$ a
 $+\infty$ — y la regresión logística es simplemente una regresión lineal sobre él:
 
@@ -49,12 +49,12 @@ Esta lectura es la que importa para interpretar:
 
 | Escala | Cambio al subir $x_j$ una unidad | Interpretación |
 |---|---|---|
-| Log-momios | $+\beta_j$ (aditivo) | Poco intuitivo |
-| Momios | $\times e^{\beta_j}$ (multiplicativo) | **Razón de momios** (*odds ratio*) |
+| Log-odds | $+\beta_j$ (aditivo) | Poco intuitivo |
+| Odds | $\times e^{\beta_j}$ (multiplicativo) | **Odds ratio** |
 | Probabilidad | Depende de dónde se esté en la curva | No es constante: ese es el punto de la sigmoide |
 
-En el notebook 01, subir el promedio anterior una desviación estándar multiplica los momios
-de aprobar por 5.7, y trabajar los multiplica por 0.72. Una razón de momios de 1 significa
+En el notebook 01, subir el promedio anterior una desviación estándar multiplica los odds
+de aprobar por 5.7, y trabajar los multiplica por 0.72. Un odds ratio de 1 significa
 "no hay efecto"; por eso los coeficientes cercanos a cero de `edad` y `estrato` (razones
 1.09 y 1.07) son coherentes con que el proceso generador no las use.
 
@@ -177,7 +177,7 @@ separables. La consecuencia práctica:
   finita. Un `C` muy grande (o `penalty=None`) sobre datos separables produce la advertencia
   "*lbfgs failed to converge*" y coeficientes enormes.
 - Los coeficientes de una logística regularizada están **encogidos**. Para interpretarlos
-  como razones de momios "puras" hay que ser consciente de cuánta regularización se aplicó, y
+  como odds ratios "puros" hay que ser consciente de cuánta regularización se aplicó, y
   para compararlos con un descenso del gradiente sin penalización (notebook 01) hay que usar
   `penalty=None`.
 - La regularización $L_1$/$L_2$ funciona igual que en Ridge y Lasso (`04-regularizacion.md`):
@@ -189,8 +189,8 @@ separables. La consecuencia práctica:
 
 | Concepto | Idea | Dónde reaparece |
 |---|---|---|
-| Sigmoide = inversa del logit | Regresión lineal sobre log-momios | Última capa de cualquier red neuronal binaria (S13) |
-| Razón de momios $e^{\beta_j}$ | Efecto multiplicativo sobre los momios | Interpretación de modelos lineales en el proyecto |
+| Sigmoide = inversa del logit | Regresión lineal sobre log-odds | Última capa de cualquier red neuronal binaria (S13) |
+| Odds ratio $e^{\beta_j}$ | Efecto multiplicativo sobre los odds | Interpretación de modelos lineales en el proyecto |
 | Entropía cruzada = $-$log-verosimilitud | Convexa; castiga la confianza equivocada | Función de pérdida de gradient boosting para clasificación (S11) y de las redes (S13) |
 | Gradiente $\mathbf{X}^\top(\hat{\mathbf{p}} - \mathbf{y})/n$ | Mismo patrón que regresión lineal | El residual $y - \hat{p}$ que boosting ajusta en cada ronda (S11) |
 | Softmax | Sigmoide para $K$ clases; fronteras lineales | Capa de salida multiclase (S13) |

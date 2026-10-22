@@ -68,7 +68,7 @@ La **validación cruzada anidada** (*nested cross-validation*) separa las dos pr
 
 - **Bucle interno**: sobre cada partición de entrenamiento del bucle externo, hace su propia
   validación cruzada para elegir el mejor hiperparámetro.
-- **Bucle externo**: evalúa el modelo —ya con su hiperparámetro elegido— sobre un pliegue que
+- **Bucle externo**: evalúa el modelo —ya con su hiperparámetro elegido— sobre un fold que
   el bucle interno **nunca vio**, ni para entrenar ni para elegir $\lambda$.
 
 $$
@@ -76,7 +76,7 @@ $$
 \left(\underbrace{\text{CV interno}}_{\text{elige el hiperparámetro}}\right)
 $$
 
-El costo es computacional: si el bucle externo tiene 5 pliegues y el interno otros 5, el
+El costo es computacional: si el bucle externo tiene 5 folds y el interno otros 5, el
 modelo se entrena $5 \times 5 \times (\text{tamaño de la rejilla})$ veces. Se paga esa factura
 cuando lo que importa es reportar un número de desempeño defendible (el proyecto integrador,
 un artículo, una decisión de negocio). Para simplemente elegir el mejor $\lambda$ y seguir

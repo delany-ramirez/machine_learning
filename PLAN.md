@@ -272,10 +272,10 @@ distintos entre sí (Ridge reacciona con $\lambda$ mucho menor que Lasso).
   con el RMSE sobre el conjunto de prueba.
 
 **Hallazgo del notebook 06.** Ridge y Lasso, cada uno afinado por CV y comparados sobre los
-mismos 10 pliegues, dan **conclusiones distintas según cómo se elija $\lambda$**. Con un
-$\lambda$ elegido una sola vez sobre todo `X_train` y evaluado en pliegues de ese mismo
+mismos 10 folds, dan **conclusiones distintas según cómo se elija $\lambda$**. Con un
+$\lambda$ elegido una sola vez sobre todo `X_train` y evaluado en folds de ese mismo
 `X_train` —la fuga que el notebook mide en su sección 4—, la diferencia es −\$10 ± \$35
-(cociente 0.29): "no hay diferencia detectable". Con $\lambda$ elegido dentro de cada pliegue,
+(cociente 0.29): "no hay diferencia detectable". Con $\lambda$ elegido dentro de cada fold,
 es −\$41 ± \$17 (cociente 2.36): detectable, apenas por encima de la regla de dos errores
 estándar. Corregir la fuga no solo movió el número, cambió la respuesta. Y aun así \$41 sobre
 un RMSE de \$33,460 es 0.12 %: el notebook cierra distinguiendo **detectable** de **relevante
@@ -336,14 +336,14 @@ ejercicios y los hallazgos de los notebooks 02, 03 y 04 se reprodujeron exactos.
   a 5. (b) La sección 3 concluía superioridad de un método sobre otro a partir de diferencias
   de \$1.5 sobre \$34,377; se reencuadró hacia el costo de la búsqueda, que es lo que sí
   distingue a los métodos aquí. (c) La comparación pareada elegía $\lambda$ con todo `X_train`
-  y evaluaba en pliegues de ese mismo `X_train` — la fuga que la sección 4 acababa de enseñar;
+  y evaluaba en folds de ese mismo `X_train` — la fuga que la sección 4 acababa de enseñar;
   ahora se presentan las dos versiones y se muestra que la conclusión cambia. (d) `X_test` se
   creaba y nunca se usaba: el notebook que cierra el módulo no reportaba ningún número sobre
   datos intocados. Ahora sí (\$37,966, contra \$34,450 de la CV anidada).
 - **Fuera de los notebooks.** `04-regularizacion.md` afirmaba que OLS no tiene solución cerrada
   (el contraste correcto es con Lasso); se añadió la advertencia sobre los nombres `alpha`/
   `l1_ratio` de `ElasticNet`. `05-sesgo-varianza-validacion.md` ahora aclara que el ee de
-  k-fold subestima la incertidumbre porque los pliegues comparten datos.
+  k-fold subestima la incertidumbre porque los folds comparten datos.
   `ej03-validacion-cruzada-sol.md` reportaba $\lambda=7.85$, que sale de una rejilla de 20
   puntos y no de la de 15 que sugiere el
   enunciado (7.20); se recalcularon también los números de CV anidada. `environment.yml`
@@ -395,12 +395,12 @@ Producido:
   `rendimiento-estudiantes.csv` (`sample(n=20, random_state=42)`, que resulta linealmente
   separable con 3 vectores de soporte). KNN: celdas de Voronoi, escalado como elipse (razón
   de desviaciones 10.7 en los 400), ruido que lo lleva de 0.82 a 0.74 (clase mayoritaria).
-  SVM: margen duro y blando resueltos con `scipy.optimize.minimize` (SLSQP) e iguales a
+  SVM: hard margin y soft margin resueltos con `scipy.optimize.minimize` (SLSQP) e iguales a
   `SVC`, bisagra vs. entropía cruzada, levantamiento a $(x, x^2)$ y al paraboloide, RBF
   reconstruida a mano desde `dual_coef_`. Árboles: el primer corte de los 20 es por horas,
   no por promedio; invariancia a transformaciones monótonas (99 % de predicciones iguales en
   CV frente a 85–88 % de KNN); en el XOR el voraz de profundidad 2 acierta 0.50 y el de mano
-  0.97; 🔵 tocón de regresión con los 10 estudiantes de M3 (SSE 0.93 frente a 1.49 de la
+  0.97; 🔵 stump de regresión con los 10 estudiantes de M3 (SSE 0.93 frente a 1.49 de la
   recta, pero empatan sobre los otros 390). Numerados con sufijo de letra para no renumerar
   las referencias existentes a los notebooks 02–07.
 
@@ -454,7 +454,7 @@ xgboost 2.1.4, lightgbm 4.6.0, shap 0.49.1, imbalanced-learn 0.12.4.
 
 **Detalles de implementación que conviene conservar:**
 
-- `evaluar_cv()` reporta la AP como **promedio de la AP por pliegue** (con error estándar);
+- `evaluar_cv()` reporta la AP como **promedio de la AP por fold** (con error estándar);
   el notebook 02 la calculaba sobre las probabilidades de `cross_val_predict` juntas (0.517
   vs. 0.526 para la logística). La diferencia está explicada en el notebook 04; no mezclar.
 - `shap.plots.scatter(..., color=explicacion)` falla con columnas categóricas (`dtype=
@@ -538,7 +538,7 @@ Producido:
    logística, 6× el tiempo de Extra-Trees. Adult: −0.047 ± 0.001 contra LightGBM, y una red
    256-128 no mejora a una de 64 (ejercicio 03). Sobre `rendimiento-estudiantes` (proceso
    lineal), el MLP **pierde** contra la regresión lineal (+0.015 ± 0.005 de RMSE). Hacer el
-   early stopping sobre el pliegue evaluado infla la AP 0.017 en Wine y 0.004 en Adult: el
+   early stopping sobre el fold evaluado infla la AP 0.017 en Wine y 0.004 en Adult: el
    envoltorio `MLPClasificador` aparta un 15 % del entrenamiento para eso.
 10. **La CNN sobre dígitos de 8 × 8 gana poco en accuracy (97.9 % frente a 97.0 % de la
     logística) y mucho en robustez**: con los dígitos corridos un píxel, 0.62 frente a
@@ -551,7 +551,7 @@ primero como `.py` percent con las figuras revisadas una a una y después como `
 `nbconvert --execute` en el `.venv` de `uv`; todos los números de teoría, README, ejercicios
 y quiz provienen de esas ejecuciones y de los tres scripts de solución. Tiempos: los
 notebooks 01–03 y 05 corren en segundos; 04 en ~50 s (UMAP compila con `numba`); 06 en
-~2 min (20 pliegues del MLP en CPU).
+~2 min (20 folds del MLP en CPU).
 
 **Nota de entorno.** Primera fase verificada con el entorno oficial del curso (`uv sync`,
 Python 3.11.15, `uv.lock`): scikit-learn 1.9.1, pandas 3.0.5, numpy 2.4.6, torch 2.14.0+cpu,

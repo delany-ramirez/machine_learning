@@ -13,7 +13,7 @@
 Misma partición del ejercicio 01, categóricas nativas (`dtype="category"`) como en C.1 del
 ejercicio 02, y el modelo `LGBMClassifier(n_estimators=335, learning_rate=0.03)` de C.2.
 Para la permutación y SHAP se necesita un conjunto no visto que no sea el de prueba: usa el
-primer pliegue de la CV como validación (ajusta sobre los otros cuatro), igual que
+primer fold de la CV como validación (ajusta sobre los otros cuatro), igual que
 `07-interpretabilidad-aplicado.ipynb`.
 
 ```python
@@ -25,13 +25,13 @@ Entrega un notebook `ej03-<tu-apellido>.ipynb` que corra de principio a fin.
 
 ## Parte A — Tres importancias, dos ganancias (20 min)
 
-**A.1** Para el modelo ajustado sobre cuatro pliegues, calcula y tabula, normalizadas para
+**A.1** Para el modelo ajustado sobre cuatro folds, calcula y tabula, normalizadas para
 que sumen 1 donde aplique:
 
 - la importancia por **ganancia** (`booster_.feature_importance("gain")`),
 - la importancia por **número de particiones** (`"split"`),
-- la importancia por **permutación** sobre el pliegue de validación (AP, `n_repeats=5`),
-- la media de $|\phi_j|$ de **SHAP** (`shap.TreeExplainer`) sobre el mismo pliegue.
+- la importancia por **permutación** sobre el fold de validación (AP, `n_repeats=5`),
+- la media de $|\phi_j|$ de **SHAP** (`shap.TreeExplainer`) sobre el mismo fold.
 
 **A.2** `fnlwgt` es el peso muestral del censo: un número con decenas de miles de valores
 distintos y sin relación causal con el ingreso. ¿En qué posición queda en cada una de las
@@ -58,14 +58,14 @@ principales, en qué dirección empujan los valores altos.
 selección automática de la variable de color falla con columnas categóricas). Resume la
 contribución media de `edad` por tramos de edad. ¿El efecto es monótono?
 
-**B.3** Localiza, en el pliegue de validación, al positivo con menor probabilidad predicha
+**B.3** Localiza, en el fold de validación, al positivo con menor probabilidad predicha
 (el falso negativo más claro). Muestra su cascada (*waterfall*) y explica, con sus cuatro
 contribuciones más negativas, por qué el modelo no tenía forma de acertar.
 
 ## Parte C — `sexo`: qué hace el modelo y qué pasa si se quita (35 min)
 
 **C.1** Reporta la contribución SHAP media de `sexo` para hombres y para mujeres. Con el
-umbral de mínimo costo del ejercicio 02 (0.15), calcula sobre el pliegue de validación, por
+umbral de mínimo costo del ejercicio 02 (0.15), calcula sobre el fold de validación, por
 sexo: prevalencia real, fracción de personas predichas como positivas, recall y precisión.
 
 **C.2** Reentrena el mismo modelo **sin** la columna `sexo` y repite C.1. ¿Cuánto cambia la

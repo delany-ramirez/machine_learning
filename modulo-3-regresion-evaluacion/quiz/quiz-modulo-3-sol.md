@@ -115,18 +115,18 @@ polinomio — eso empeoraría la varianza, no la mejoraría.
 **9. Reportar el RMSE de la misma CV que eligió $\lambda$**
 
 **a)** Es una estimación **optimista** del desempeño real: el $\lambda$ se eligió precisamente
-porque minimizaba ese número sobre esos pliegues, así que reportarlo como si fuera una medición
+porque minimizaba ese número sobre esos folds, así que reportarlo como si fuera una medición
 independiente sobredimensiona el desempeño esperado — el mismo problema, en espíritu, que
 seleccionar variables mirando los datos de validación (módulo 2).
 
-**b)** Un bucle **externo** de $k$ pliegues estima el error de generalización; dentro de cada
-uno de esos pliegues de entrenamiento, un bucle **interno** de CV elige el mejor $\lambda$.
-El modelo final de cada iteración externa se evalúa sobre un pliegue que el bucle interno
+**b)** Un bucle **externo** de $k$ folds estima el error de generalización; dentro de cada
+uno de esos folds de entrenamiento, un bucle **interno** de CV elige el mejor $\lambda$.
+El modelo final de cada iteración externa se evalúa sobre un fold que el bucle interno
 **nunca vio**, ni para entrenar ni para elegir el hiperparámetro.
 
 **c)** Cuando el dataset es pequeño y/o el número de hiperparámetros (y el tamaño de la
 rejilla) es grande: más oportunidades de que la búsqueda "encuentre" una combinación que
-funciona bien por azar en esos pliegues específicos.
+funciona bien por azar en esos folds específicos.
 
 ---
 

@@ -187,9 +187,9 @@ Este es el paso que se salta casi siempre.
 1. Establecer una **línea base** con las variables originales.
 2. Añadir la variable nueva.
 3. Comparar con **validación cruzada**, no con una sola partición.
-4. Mirar la mejora **frente a la variabilidad entre pliegues**.
+4. Mirar la mejora **frente a la variabilidad entre folds**.
 
-Si la diferencia es menor que la desviación entre pliegues, **no hay mejora demostrada**. Es
+Si la diferencia es menor que la desviación entre folds, **no hay mejora demostrada**. Es
 ruido, y reportarlo como mejora es una forma sutil de engañarse.
 
 En el notebook 04, cuatro variables nuevas sobre el Titanic —construidas con buen criterio a

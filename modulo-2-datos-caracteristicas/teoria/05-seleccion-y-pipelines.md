@@ -96,7 +96,7 @@ Lo que garantiza:
 
 - `.fit()` ejecuta `fit_transform` en cada paso, **solo con los datos de entrenamiento**.
 - `.predict()` ejecuta únicamente `transform`, con lo aprendido antes.
-- Dentro de `cross_val_score`, todo eso ocurre **por separado en cada pliegue**.
+- Dentro de `cross_val_score`, todo eso ocurre **por separado en cada fold**.
 
 Es decir: el `Pipeline` no es una cuestión de elegancia, es **lo que hace honesta la
 evaluación**.

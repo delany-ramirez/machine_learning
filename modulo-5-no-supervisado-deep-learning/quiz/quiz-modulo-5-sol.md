@@ -157,7 +157,7 @@ atado a una posición, se desploman (0.62 frente a 0.42–0.51). No es cuestión
 parámetros": el MLP tiene diez veces más que la logística y no la mejora sobre los
 dígitos; la CNN gana por **dónde** pone los suyos, no por cuántos tiene.
 
-La comparación exigible: **pareada sobre los mismos pliegues**, contra la línea base
+La comparación exigible: **pareada sobre los mismos folds**, contra la línea base
 lineal y el mejor ensamble de árboles, con error estándar y cociente, con el early
 stopping sobre datos apartados del entrenamiento (pregunta 9), y con el tiempo de
 entrenamiento al lado; adoptar la red solo si la diferencia es detectable **y** relevante

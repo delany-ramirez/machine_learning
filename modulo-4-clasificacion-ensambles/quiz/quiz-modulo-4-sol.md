@@ -5,16 +5,16 @@
 
 ---
 
-**1. Razón de momios**
+**1. Odds ratio**
 
-**a)** $e^{\beta_j}$ es la **razón de momios** (*odds ratio*): por cada hora adicional de
-estudio, los **momios** de aprobar ($p / (1-p)$) se multiplican por 2. Se duplican los
-momios, no la probabilidad (`01-regresion-logistica.md`, sección 2).
+**a)** $e^{\beta_j}$ es el **odds ratio**: por cada hora adicional de
+estudio, los **odds** de aprobar ($p / (1-p)$) se multiplican por 2. Se duplican los
+odds, no la probabilidad (`01-regresion-logistica.md`, sección 2).
 
 **b)** **No.** El efecto sobre la probabilidad depende de dónde se esté en la sigmoide: de
-$p = 0.5$ (momios 1) se pasa a momios 2, $p = 0.67$ (+17 puntos); de $p = 0.9$ (momios 9) a
-momios 18, $p = 0.947$ (+5 puntos). El efecto es constante en log-momios, multiplicativo en
-momios, y **variable** en probabilidad. Error típico: leer $\beta$ como pendiente sobre $p$.
+$p = 0.5$ (odds 1) se pasa a odds 2, $p = 0.67$ (+17 puntos); de $p = 0.9$ (odds 9) a
+odds 18, $p = 0.947$ (+5 puntos). El efecto es constante en log-odds, multiplicativo en
+odds, y **variable** en probabilidad. Error típico: leer $\beta$ como pendiente sobre $p$.
 
 ---
 
@@ -75,7 +75,7 @@ debajo de 0.5.
 las decisiones ya tomadas; elegir el umbral sobre él es usar el test para seleccionar, y su
 número final quedaría optimista. Es la **fuga de selección** que
 `06-seleccion-modelos-aplicado.ipynb` midió al elegir $\lambda$ y evaluar sobre los mismos
-pliegues (CV anidada).
+folds (CV anidada).
 
 **c)** En una logística, `class_weight="balanced"` **sube el recall y el F1 en el umbral
 0.5** —porque desplaza las probabilidades— pero **no cambia** AUC-ROC, AP ni el mejor F1
@@ -150,7 +150,7 @@ ajusta **ruido**: el error de prueba tiene un mínimo y luego sube (notebook 05,
 El número de rondas es un hiperparámetro de complejidad, y se elige por early stopping.
 
 **b)** Al **gradiente negativo de la pérdida** respecto a la predicción actual. Con entropía
-cruzada y $F$ en log-momios, ese gradiente es $y - \hat{p}$: el mismo residual que aparece en
+cruzada y $F$ en log-odds, ese gradiente es $y - \hat{p}$: el mismo residual que aparece en
 $\mathbf{X}^\top(\hat{\mathbf{p}} - \mathbf{y})$ en la regresión logística. Boosting para
 clasificación es una logística donde los árboles hacen el papel de
 $\mathbf{X}\boldsymbol{\beta}$.
@@ -159,7 +159,7 @@ $\mathbf{X}\boldsymbol{\beta}$.
 39 000 filas, categóricas de alta cardinalidad, numéricas sesgadas), y necesita afinarse;
 los bosques funcionan casi sin afinar y pueden ganar en datasets pequeños y ruidosos
 (Wine: 4 000 filas, techo de ruido alto). "XGBoost gana siempre" no es una ley: la única
-forma de saberlo es medir con comparación pareada sobre los mismos pliegues.
+forma de saberlo es medir con comparación pareada sobre los mismos folds.
 
 ---
 

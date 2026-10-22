@@ -55,7 +55,7 @@ o preferible cuando:
 - **$p$ es grande.** Invertir $\mathbf{X}^{\top}\mathbf{X}$ cuesta $O(p^3)$; un paso de
   descenso cuesta $O(np)$.
 - **$n$ es demasiado grande para caber en memoria.** La ecuación normal necesita todos los
-  datos a la vez; el descenso puede procesar los datos por lotes (sección 3).
+  datos a la vez; el descenso puede procesar los datos por mini-batches (sección 3).
 - **El modelo no tiene solución cerrada.** Regresión logística (módulo 4), redes neuronales
   (módulo 5) y las versiones regularizadas con penalización $L_1$ (sesión 7) no siempre la
   tienen. El descenso del gradiente —o variantes como Adam— es el método general que funciona

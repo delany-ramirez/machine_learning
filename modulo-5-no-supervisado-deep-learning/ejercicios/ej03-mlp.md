@@ -61,22 +61,22 @@ módulo 1 generó los datos con ruido conocido; si no lo recuerdas, razona con e
 
 ## Parte C — Adult Census: ¿más red ayuda? (30 min)
 
-Misma partición 80/20 estratificada y CV de 5 pliegues del ejercicio 01 del módulo 4.
+Misma partición 80/20 estratificada y CV de 5 folds del ejercicio 01 del módulo 4.
 Categóricas en *one-hot* para la red y la logística; nativas para LightGBM.
 
 **C.1** Dos MLP con early stopping sobre un 15 % interno: (a) una capa de 64 con dropout
-0.1; (b) 256-128 con dropout 0.3. AP media ± ee y segundos por pliegue, junto a LightGBM
+0.1; (b) 256-128 con dropout 0.3. AP media ± ee y segundos por fold, junto a LightGBM
 por defecto y la regresión logística.
 
 **C.2** Comparación pareada de cada MLP contra LightGBM. ¿La red grande mejora a la
 pequeña? ¿Alguna se acerca a LightGBM?
 
-**C.3** Repite el MLP (b) haciendo el early stopping **sobre el pliegue de validación
+**C.3** Repite el MLP (b) haciendo el early stopping **sobre el fold de validación
 de la CV** (el mismo sobre el que se calcula la AP), como hacía la sección 3 del notebook
 06 antes de corregirlo. Reporta la diferencia pareada con la versión correcta. ¿Cuánto
 infla la fuga la AP? ¿Es relevante frente a la distancia con LightGBM?
 
-**C.4** Anota las épocas en las que paró cada pliegue del MLP (b). ¿Por qué para tan
+**C.4** Anota las épocas en las que paró cada fold del MLP (b). ¿Por qué para tan
 pronto con 39 000 filas? ¿Qué diría eso sobre entrenar 100 épocas fijas sin validación?
 
 ## Entrega

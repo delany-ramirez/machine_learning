@@ -51,14 +51,14 @@ $2L$, aproximadamente — por cada capa, uno para el gradiente del peso
 ($\boldsymbol{\Delta}_l\mathbf{W}_l^\top$). El costo es del mismo orden que la pasada hacia
 adelante (unas 2×). Hay que guardar **las activaciones de cada capa**
 ($\mathbf{H}_1, \dots, \mathbf{H}_L$, o las $\mathbf{Z}_l$): es la memoria que consume el
-entrenamiento, proporcional al tamaño del lote por la anchura de la red, y la razón de que
-el lote no pueda ser arbitrariamente grande.
+entrenamiento, proporcional al tamaño del batch por la anchura de la red, y la razón de que
+el batch no pueda ser arbitrariamente grande.
 
 ## Parte B — Cuando la verdad es lineal
 
 **B.1**
 
-| Modelo | RMSE (10 pliegues) |
+| Modelo | RMSE (10 folds) |
 |---|---|
 | Regresión lineal | **0.342 ± 0.007** |
 | Extra-Trees (300) | 0.392 ± 0.007 |
@@ -69,7 +69,7 @@ el lote no pueda ser arbitrariamente grande.
 poder ganar porque el proceso generador es exactamente lineal: el modelo lineal es el
 correcto y el mejor estimador insesgado posible con 400 datos. Y pierden en vez de
 empatar porque un modelo flexible **paga varianza** por su flexibilidad (S8): ajusta parte
-del ruido de los 320 puntos de entrenamiento de cada pliegue. Extra-Trees lo paga más
+del ruido de los 320 puntos de entrenamiento de cada fold. Extra-Trees lo paga más
 (escalones sobre una recta); el MLP con early stopping y weight decay se acerca a la
 lineal pero no la alcanza. Cuando la forma verdadera es simple, el modelo simple gana —
 y la única forma de saber la forma verdadera es medir.
@@ -84,7 +84,7 @@ nuevos; un RMSE de entrenamiento menor que eso es sobreajuste.
 
 **C.1**
 
-| Modelo | AP (CV 5) | Segundos por pliegue |
+| Modelo | AP (CV 5) | Segundos por fold |
 |---|---|---|
 | Regresión logística | 0.766 ± 0.002 | 0.2 |
 | **LightGBM** (categóricas nativas) | **0.828 ± 0.002** | 0.2 |
@@ -97,15 +97,15 @@ y tarda más. Ninguna se acerca a LightGBM: la distancia es de casi cinco centé
 un error estándar de una milésima. Más capacidad no es lo que falta; es el sesgo
 inductivo (`05-entrenamiento-y-limites.md`, §3).
 
-**C.3** Con el early stopping sobre el pliegue evaluado, el MLP 256-128 sube a 0.783: la
+**C.3** Con el early stopping sobre el fold evaluado, el MLP 256-128 sube a 0.783: la
 fuga infla la AP en $+0.004 \pm 0.001$. Es detectable (cociente 4) e irrelevante frente a
 los 0.049 que lo separan de LightGBM: aquí corregir la fuga no cambia la conclusión. En
 Wine Quality (notebook 06, sección 4) la misma fuga valía 0.017 — con menos datos, elegir
 la época sobre el conjunto evaluado se aprovecha más del azar. La regla es la misma en
 los dos casos; el tamaño del daño depende de $n$.
 
-**C.4** Épocas de parada del MLP 256-128 en los cinco pliegues: 13, 19, 8, 8, 5. Con
-39 000 filas y lotes de 256, una época son ~130 pasos de gradiente; en 5–20 épocas la red
+**C.4** Épocas de parada del MLP 256-128 en los cinco folds: 13, 19, 8, 8, 5. Con
+39 000 filas y batches de 256, una época son ~130 pasos de gradiente; en 5–20 épocas la red
 ya recorrió los datos suficientes veces para llegar a su mejor AP de validación, y a
 partir de ahí memoriza (dropout 0.3 incluido). Entrenar 100 épocas fijas sin validación
 daría un modelo peor —sobreajustado— y tardaría 5–20 veces más. El número de épocas no
@@ -118,6 +118,6 @@ Sobre datos tabulares como los del proyecto, la red neuronal no es el modelo por
 la línea base es la logística/lineal y el modelo fuerte es un ensamble de árboles. Solo
 probaría un MLP si (a) hay muchos datos, (b) sobra tiempo después de afinar el ensamble,
 y (c) hay interacciones que el ensamble no captura. Y antes de adoptarlo exigiría la
-comparación pareada sobre los mismos pliegues, con error estándar, con el early stopping
+comparación pareada sobre los mismos folds, con error estándar, con el early stopping
 sobre datos apartados del entrenamiento, y con el tiempo de entrenamiento al lado — y
 que la diferencia sea detectable **y** relevante para la decisión del proyecto.

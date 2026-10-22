@@ -65,7 +65,7 @@ split sin repetir el experimento.
 
 **K-fold** reparte los datos en $k$ partes (*folds*) del mismo tamaño. Se entrena $k$ veces,
 cada vez usando $k-1$ partes para entrenar y la restante para validar, rotando cuál parte se
-deja fuera. El resultado no es un número: son $k$ números, uno por pliegue, de los que se
+deja fuera. El resultado no es un número: son $k$ números, uno por fold, de los que se
 puede calcular una media y una desviación estándar.
 
 $$
@@ -73,12 +73,12 @@ $$
 \text{ee} = \frac{\text{desviación estándar de los } k \text{ errores}}{\sqrt{k}}
 $$
 
-$k=5$ o $k=10$ son las opciones habituales: suficientes pliegues para estimar la variabilidad
+$k=5$ o $k=10$ son las opciones habituales: suficientes folds para estimar la variabilidad
 sin que cada uno se quede con muy pocos datos.
 
 > **Una advertencia sobre ese error estándar.** La fórmula $\text{ee} = s/\sqrt{k}$ supone que
 > los $k$ errores son independientes entre sí, y no lo son: los conjuntos de entrenamiento de
-> dos pliegues cualesquiera comparten la mayoría de sus datos. En consecuencia, el ee así
+> dos folds cualesquiera comparten la mayoría de sus datos. En consecuencia, el ee así
 > calculado **subestima** la incertidumbre real. Se usa igual en este curso porque es simple y
 > el orden de magnitud es informativo — pero conviene leerlo como una cota optimista, no como
 > un intervalo exacto.
@@ -86,12 +86,12 @@ sin que cada uno se quede con muy pocos datos.
 ### Variantes
 
 - **K-fold estratificado**: para clasificación (módulo 4), conserva la proporción de cada
-  clase en cada pliegue. Sin esto, un pliegue podría quedarse casi sin ejemplos de la clase
+  clase en cada fold. Sin esto, un fold podría quedarse casi sin ejemplos de la clase
   minoritaria por azar.
 - **K-fold temporal** (o *walk-forward*): cuando los datos tienen orden cronológico, los
-  pliegues aleatorios entrenan con el futuro y validan con el pasado — exactamente la fuga
+  folds aleatorios entrenan con el futuro y validan con el pasado — exactamente la fuga
   temporal que `03-fuga-de-datos-intuicion.ipynb` (módulo 2) advirtió. La versión correcta
-  siempre valida con datos posteriores a los de entrenamiento de ese pliegue.
+  siempre valida con datos posteriores a los de entrenamiento de ese fold.
 
 ### K-fold repetido: de un número a una distribución
 
@@ -106,21 +106,21 @@ vez de esconderla detrás de una sola partición afortunada".
 ## 3. Comparar dos modelos con honestidad
 
 `04-pipeline-caracteristicas-aplicado.ipynb` (módulo 2) ya usó, sin nombrarla formalmente,
-la herramienta que resuelve esto: comparar dos modelos **sobre los mismos pliegues** (no en
-particiones independientes) y mirar la diferencia pliegue por pliegue, no solo el promedio.
+la herramienta que resuelve esto: comparar dos modelos **sobre los mismos folds** (no en
+particiones independientes) y mirar la diferencia fold por fold, no solo el promedio.
 
 $$
 d_i = \text{error}_i(\text{modelo A}) - \text{error}_i(\text{modelo B}), \qquad i=1,\dots,k
 $$
 
 La comparación pareada tiene una ventaja clave sobre comparar promedios sueltos: si ambos
-modelos son igual de sensibles a qué datos caen en cada pliegue, esa sensibilidad se cancela
+modelos son igual de sensibles a qué datos caen en cada fold, esa sensibilidad se cancela
 en la resta $d_i$, y lo que queda aísla mejor la diferencia real entre A y B. Con la media
 $\bar{d}$ y el error estándar de los $d_i$, una regla práctica y suficiente para este curso:
 
 > Si $|\bar{d}|$ es menor a, aproximadamente, dos errores estándar, la diferencia observada es
 > indistinguible del ruido de muestreo — exactamente lo que concluyó el módulo 2: "la
-> desviación entre pliegues es cinco veces mayor que la diferencia: lo único que se puede
+> desviación entre folds es cinco veces mayor que la diferencia: lo único que se puede
 > concluir es que no hay diferencia detectable".
 
 Esta no es una prueba de hipótesis formal (eso pertenece a un curso de estadística inferencial), pero
@@ -150,5 +150,5 @@ Dos diagnósticos visuales, con ejes distintos:
 |---|---|---|
 | Sesgo² + varianza + ruido | Marco para diagnosticar sub/sobreajuste | Se ve directamente en las curvas de validación de la sección 4 |
 | K-fold repetido | Un número → una distribución | Selección de hiperparámetros (`06-seleccion-hiperparametros.md`) |
-| Comparación pareada por pliegue | Formaliza lo que el módulo 2 hizo de manera informal | Notebook 06, comparación final de modelos |
+| Comparación pareada por fold | Formaliza lo que el módulo 2 hizo de manera informal | Notebook 06, comparación final de modelos |
 | Curva de aprendizaje vs. de validación | Ejes distintos: tamaño de muestra vs. complejidad | Diagnóstico estándar en el proyecto integrador |

@@ -23,7 +23,7 @@ Un ensamble de 300 árboles no se lee. Pero "interpretar" no es una sola cosa:
 | ¿Cómo cambia la predicción al cambiar una variable? | Global, por variable | Dependencia parcial (PDP), curvas ICE, dependencia SHAP |
 | ¿Por qué esta predicción? | Local | SHAP por observación (cascada), LIME |
 
-Un modelo lineal responde las tres con sus coeficientes (una razón de momios por variable,
+Un modelo lineal responde las tres con sus coeficientes (un odds ratio por variable,
 `01-regresion-logistica.md`). Para árboles y ensambles hacen falta herramientas
 *post hoc*, y ninguna es gratis.
 
@@ -108,7 +108,7 @@ $$
 Las contribuciones **suman exactamente** la predicción. Ninguna de las otras dos
 importancias tiene esa propiedad, y es lo que permite pasar de "qué importa" a "cuánto aportó
 aquí". `07-interpretabilidad-aplicado.ipynb` lo verifica: la diferencia entre
-$\phi_0 + \sum_j \phi_{ij}$ y el log-momio del modelo es de $10^{-14}$.
+$\phi_0 + \sum_j \phi_{ij}$ y el log-odds del modelo es de $10^{-14}$.
 
 ### Cómo se calcula
 
@@ -119,8 +119,8 @@ arbitrarios, **KernelExplainer** la aproxima por muestreo, y es lento. En la pr�
 es la herramienta de los ensambles de árboles y de las redes (DeepExplainer); para modelos
 lineales, los coeficientes ya son valores de Shapley.
 
-En clasificación, los $\phi$ están en la escala de **log-momios** (la salida cruda del
-modelo antes de la sigmoide), no de probabilidades. Un $\phi = +1.7$ multiplica los momios
+En clasificación, los $\phi$ están en la escala de **log-odds** (la salida cruda del
+modelo antes de la sigmoide), no de probabilidades. Un $\phi = +1.7$ multiplica los odds
 por 5.5, sea cual sea el punto de partida; en probabilidad, ese mismo $\phi$ mueve más o
 menos según dónde se esté en la sigmoide (`01-regresion-logistica.md`, sección 2).
 
@@ -134,10 +134,10 @@ menos según dónde se esté en la sigmoide (`01-regresion-logistica.md`, secci�
 | Cascada (*waterfall*) | Los $\phi_{ij}$ de una observación, de la base a la predicción | ¿Por qué **este** caso? |
 
 Lo que el notebook 07 lee en ellos sobre Wine Quality: `alcohol` domina, con un cruce por
-cero cerca de 10.7 % y una contribución casi lineal en log-momios entre 9.5 y 13 %; para el
+cero cerca de 10.7 % y una contribución casi lineal en log-odds entre 9.5 y 13 %; para el
 mismo alcohol, los vinos más densos reciben menos — una interacción `alcohol × density` que
 un modelo lineal necesitaría como término explícito. Y en el falso negativo más claro —un
-vino bueno para los catadores con 9.3 % de alcohol—, `alcohol` resta 1.7 log-momios y
+vino bueno para los catadores con 9.3 % de alcohol—, `alcohol` resta 1.7 log-odds y
 `chlorides` otro 1.0: la explicación local no arregla el error, pero dice qué tendría que ser
 distinto para que la predicción cambiara.
 
@@ -180,7 +180,7 @@ interpretación.
 |---|---|---|---|
 | MDI | Uso de cada variable al entrenar | Premia la cardinalidad: ruido continuo por encima de 4 variables reales | Primera mirada; nunca para descartar |
 | Permutación | Caída de la métrica de validación al barajar | Reparte mal entre variables casi redundantes (copia de `alcohol`: 0.104 → 0.017) | Importancia global honesta; por grupos si hay correlación |
-| SHAP | Contribución de cada variable a cada predicción; suma exacta | Escala de log-momios; costoso fuera de los árboles | Global con dirección, dependencia con interacción, explicación local |
+| SHAP | Contribución de cada variable a cada predicción; suma exacta | Escala de log-odds; costoso fuera de los árboles | Global con dirección, dependencia con interacción, explicación local |
 | PDP / ICE | Predicción promedio (o individual) al mover una variable | Combinaciones imposibles; el promedio puede no describir a nadie | Complemento rápido; las ICE delatan interacciones |
 
 **Notebook:** `07-interpretabilidad-aplicado.ipynb`.

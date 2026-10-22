@@ -32,7 +32,7 @@ sobreajustan y los estabiliza; boosting toma modelos que subajustan y los va cor
 ## 2. AdaBoost
 
 *Adaptive Boosting* (Freund y Schapire, 1997). Con etiquetas $y_i \in \{-1, +1\}$ y un
-modelo base débil —típicamente un **tocón** (*stump*), un árbol de profundidad 1—, se
+modelo base débil —típicamente un **stump**, un árbol de profundidad 1—, se
 mantiene un peso $w_i$ por observación, inicialmente $1/n$, y en cada ronda
 $m = 1, \dots, M$:
 
@@ -48,11 +48,11 @@ $$
    $w_i \leftarrow w_i \exp(-\alpha_m y_i h_m(x_i))$, y se normalizan.
 
 La predicción es el voto ponderado $\text{signo}\left(\sum_m \alpha_m h_m(x)\right)$. Un
-tocón con $\varepsilon_m = 0.5$ (aleatorio) recibe $\alpha_m = 0$; uno con $\varepsilon_m$
+stump con $\varepsilon_m = 0.5$ (aleatorio) recibe $\alpha_m = 0$; uno con $\varepsilon_m$
 cerca de 0, mucho peso. Las observaciones difíciles acumulan peso ronda tras ronda, y los
-tocones siguientes se ven obligados a atenderlas.
+stumps siguientes se ven obligados a atenderlas.
 
-`05-boosting-intuicion.ipynb` lo implementa en 15 líneas: 200 tocones —cada uno una línea
+`05-boosting-intuicion.ipynb` lo implementa en 15 líneas: 200 stumps —cada uno una línea
 vertical u horizontal— dibujan las dos medias lunas del notebook 03, con el mismo error de
 prueba (0.12) que bagging con árboles profundos. `AdaBoostClassifier` (algoritmo SAMME, su
 generalización multiclase) produce predicciones idénticas.
@@ -90,10 +90,10 @@ función (un árbol) que apunta en la dirección de máximo descenso. $\nu \in (
 | Entropía cruzada (clasificación) | $-y\log\sigma(F) - (1-y)\log(1-\sigma(F))$ | $y - \sigma(F)$ | $y - \hat{p}$ |
 
 El segundo caso conecta con `01-regresion-logistica.md`: el gradiente de la entropía cruzada
-respecto al log-momio es $y - \hat{p}$, exactamente el residual que la regresión logística
+respecto al log-odds es $y - \hat{p}$, exactamente el residual que la regresión logística
 usaba en $\mathbf{X}^\top(\hat{\mathbf{p}} - \mathbf{y})$. Gradient boosting para
 clasificación es una regresión logística **en la que los árboles hacen el papel de**
-$\mathbf{X}\boldsymbol{\beta}$: $F(x)$ son log-momios, $\hat{p} = \sigma(F(x))$, y por eso sus
+$\mathbf{X}\boldsymbol{\beta}$: $F(x)$ son log-odds, $\hat{p} = \sigma(F(x))$, y por eso sus
 probabilidades salen razonablemente calibradas, a diferencia de las de Random Forest.
 
 `05-boosting-intuicion.ipynb` implementa ambos casos en ~12 líneas. La versión de regresión
@@ -159,7 +159,7 @@ misma AP. Esa diferencia de dos órdenes de magnitud es lo que hace viable afina
 
 ### Lo que dice la medición sobre Wine Quality
 
-`06-boosting-aplicado.ipynb` compara todos sobre los mismos pliegues que la sesión 10:
+`06-boosting-aplicado.ipynb` compara todos sobre los mismos folds que la sesión 10:
 
 | Modelo | AP (CV) |
 |---|---|
@@ -208,7 +208,7 @@ que explicar.
 | Concepto | Idea | Dónde reaparece |
 |---|---|---|
 | Boosting vs. bagging | Secuencial, reduce sesgo, sobreajusta con las rondas | — |
-| AdaBoost | Repesar fallos; voto ponderado de tocones | Caso particular de gradient boosting con pérdida exponencial |
+| AdaBoost | Repesar fallos; voto ponderado de stumps | Caso particular de gradient boosting con pérdida exponencial |
 | Gradient boosting | Cada árbol ajusta el gradiente negativo de la pérdida | Cualquier pérdida diferenciable: cuantiles, Poisson, *ranking* |
 | $y - \hat{p}$ | El gradiente de la entropía cruzada, otra vez | Conecta S9 (logística) con S11 y con las redes (S13) |
 | Tasa baja + early stopping | La receta para el número de rondas | Todo boosting del proyecto integrador |

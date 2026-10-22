@@ -40,7 +40,7 @@ modelo de caja negra — sabiendo dónde se equivoca cada herramienta de explica
 
 | # | Documento | Sesión | Tema |
 |---|---|---|---|
-| 01 | [`teoria/01-regresion-logistica.md`](teoria/01-regresion-logistica.md) | S9 | Sigmoide y logit, razón de momios, entropía cruzada, softmax, separación perfecta |
+| 01 | [`teoria/01-regresion-logistica.md`](teoria/01-regresion-logistica.md) | S9 | Sigmoide y logit, odds ratio, entropía cruzada, softmax, separación perfecta |
 | 02 | [`teoria/02-knn-y-svm.md`](teoria/02-knn-y-svm.md) | S9 | KNN y su $k$; margen, vectores de soporte, $C$, truco del kernel |
 | 03 | [`teoria/03-metricas-clasificacion.md`](teoria/03-metricas-clasificacion.md) | S9 | Matriz de confusión, ROC vs. PR, umbral con costos, desbalance, multiclase |
 | 04 | [`teoria/04-arboles-y-bagging.md`](teoria/04-arboles-y-bagging.md) | S10 | Impureza, partición voraz, poda, inestabilidad, bagging, OOB, Random Forest, MDI |
@@ -53,7 +53,7 @@ modelo de caja negra — sabiendo dónde se equivoca cada herramienta de explica
 |---|---|---|---|---|
 | 01 | [`notebooks/01-logistica-intuicion.ipynb`](notebooks/01-logistica-intuicion.ipynb) | S9 | intuición | Extiende el descenso del gradiente del módulo 3 a clasificación: sigmoide, entropía cruzada, mismo gradiente; validado contra `scikit-learn`; softmax; separación perfecta |
 | 01b | [`notebooks/01b-knn-intuicion.ipynb`](notebooks/01b-knn-intuicion.ipynb) | S9 | intuición | KNN con 20 estudiantes: inflar un círculo hasta encerrar $k$ vecinos, KNN a mano (validado), celdas de Voronoi y mediatrices con $k=1$, $k$ como perilla y probabilidades en escalones, el círculo que sin escalar es una elipse, columnas de ruido que lo hunden; 🔵 concentración de distancias en alta dimensión |
-| 01c | [`notebooks/01c-svm-intuicion.ipynb`](notebooks/01c-svm-intuicion.ipynb) | S9 | intuición | Muchas rectas separan y cada una deja una "calle"; margen máximo a mano con `scipy` (validado), vectores de soporte, margen blando y pérdida bisagra frente a la entropía cruzada, $C$; truco del kernel (levantar a $(x, x^2)$ y al paraboloide), RBF como suma de campanas reconstruida a mano, $\gamma$ |
+| 01c | [`notebooks/01c-svm-intuicion.ipynb`](notebooks/01c-svm-intuicion.ipynb) | S9 | intuición | Muchas rectas separan y cada una deja una "calle"; margen máximo a mano con `scipy` (validado), vectores de soporte, soft margin y pérdida bisagra frente a la entropía cruzada, $C$; truco del kernel (levantar a $(x, x^2)$ y al paraboloide), RBF como suma de campanas reconstruida a mano, $\gamma$ |
 | 02 | [`notebooks/02-clasificacion-aplicado.ipynb`](notebooks/02-clasificacion-aplicado.ipynb) | S9 | aplicado | Wine Quality: duplicados como fuga, logística/KNN/SVM, matriz de confusión, ROC vs. PR, umbral con costos, pesos vs. SMOTE, softmax sobre 7 clases, conjunto de prueba |
 | 02b | [`notebooks/02b-arboles-geometria-intuicion.ipynb`](notebooks/02b-arboles-geometria-intuicion.ipynb) | S10 | intuición | Un corte es una curva de Gini escalonada; el árbol como rectángulos y su probabilidad como terrazas (frente a la rampa logística); invariancia a transformaciones monótonas, medida contra KNN; la diagonal como escalera y rotada como un corte; miopía voraz en un XOR; 🔵 árbol de regresión con los cuadrados del módulo 3 |
 | 03 | [`notebooks/03-arboles-intuicion.ipynb`](notebooks/03-arboles-intuicion.ipynb) | S10 | intuición | Árbol recursivo a mano (coincide con `DecisionTreeClassifier`), profundidad y poda, inestabilidad por bootstrap, bagging a mano con medición de varianza, cuándo Random Forest no gana |
@@ -128,7 +128,7 @@ columna no quita la información.
 ## Entrega del proyecto integrador
 
 **E4 — Modelos avanzados.** Ensambles ajustados sobre el caso, comparados contra la línea
-base de E3 con comparación pareada sobre los mismos pliegues, umbral elegido con costos
+base de E3 con comparación pareada sobre los mismos folds, umbral elegido con costos
 explícitos, e interpretación de las variables que más pesan — incluida la pregunta de si
 alguna de ellas es una fuga o un proxy de una variable sensible. Ver
 [`../proyecto-integrador/`](../proyecto-integrador/).

@@ -8,7 +8,7 @@
 
 **A.1**
 
-| Corrida | AP (CV) | AUC (CV) | Tamaño | Latencia por fila | Ajuste (5 pliegues) |
+| Corrida | AP (CV) | AUC (CV) | Tamaño | Latencia por fila | Ajuste (5 folds) |
 |---|---|---|---|---|---|
 | logistica | 0.766 ± 0.002 | 0.906 | 0.00 MB | 0.005 ms | 0.7 s |
 | random_forest_300_hoja5 | 0.797 ± 0.002 | 0.918 | **11.6 MB** | 0.041 ms | 5.6 s |

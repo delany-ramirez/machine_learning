@@ -85,7 +85,7 @@ La solución depende **solo** de los puntos que quedan exactamente sobre el marg
 la diferencia estructural con la regresión logística, donde todos los puntos contribuyen al
 gradiente (menos los que ya están muy bien clasificados, que contribuyen poco).
 
-### Margen blando y el hiperparámetro $C$
+### Soft margin y el hiperparámetro $C$
 
 Con datos no separables (todos los reales), se permite que algunos puntos violen el margen,
 pagando una penalización $\xi_i \geq 0$ por cada uno:
@@ -152,7 +152,7 @@ o directamente boosting (S11).
 | Parámetros aprendidos | $p+1$ coeficientes | Ninguno (memoriza) | Vectores de soporte y sus pesos |
 | Hiperparámetros | $C$ (regularización) | $k$, distancia | $C$, $\gamma$, kernel |
 | Probabilidades | Sí, nativas | Sí (fracción de vecinos, granular) | No; Platt opcional |
-| Interpretación | Razones de momios | Ninguna directa | Ninguna directa |
+| Interpretación | Odds ratios | Ninguna directa | Ninguna directa |
 | Exige escalado | Sí (por la regularización) | Sí (por la distancia) | Sí (por la distancia) |
 | Costo de predicción | $O(p)$ | $O(np)$ | $O(\#\text{soporte} \cdot p)$ |
 | Costo de entrenamiento | Bajo | Nulo | Alto ($O(n^2)$–$O(n^3)$) |
@@ -174,5 +174,5 @@ explicará qué encuentran en las variables que estos tres no.
 | Truco del kernel | Frontera no lineal sin construir el espacio | PCA con kernel (S12, 🔵) |
 
 **Notebooks:** `01b-knn-intuicion.ipynb` (KNN a mano, Voronoi, escalado, ruido) ·
-`01c-svm-intuicion.ipynb` (margen máximo y blando a mano, bisagra, kernels) ·
+`01c-svm-intuicion.ipynb` (hard y soft margin a mano, bisagra, kernels) ·
 `02-clasificacion-aplicado.ipynb` (los tres clasificadores sobre Wine Quality).

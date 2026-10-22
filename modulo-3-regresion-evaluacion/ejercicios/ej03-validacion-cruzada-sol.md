@@ -43,7 +43,7 @@ suave, no hace falta cubrir la rejilla completa.
 
 ## Parte C — Validación cruzada anidada
 
-**C.1** RMSE de CV anidada: **\$40,814 ± \$3,663** (error estándar sobre los 5 pliegues
+**C.1** RMSE de CV anidada: **\$40,814 ± \$3,663** (error estándar sobre los 5 folds
 externos).
 
 **C.2** RMSE ingenuo (parte A): \$40,764. Optimismo medido: **\$50** — minúsculo, y muy por
@@ -57,7 +57,7 @@ hiperparámetro produzca una estimación sesgada.
 
 **D.1–D.2**
 
-| Comparación pareada (10 pliegues) | Valor |
+| Comparación pareada (10 folds) | Valor |
 |---|---|
 | Diferencia media (sin `foundation` − con `foundation`) | **+\$961** |
 | Error estándar de la diferencia | \$211 |
@@ -81,8 +81,8 @@ una variable de relleno — vale la pena mantenerla.
 |---|---|
 | A: `GridSearchCV` con `KFold` bien construido; compara contra el ejercicio 02 | 1.0 |
 | B: comparación grid/random con tiempos y conclusión correcta | 1.0 |
-| C: CV anidada implementada correctamente (el interno nunca ve el pliegue externo) | 1.0 |
-| D.2: comparación pareada sobre los mismos 10 pliegues para ambos modelos | 1.0 |
+| C: CV anidada implementada correctamente (el interno nunca ve el fold externo) | 1.0 |
+| D.2: comparación pareada sobre los mismos 10 folds para ambos modelos | 1.0 |
 | D.3: interpreta correctamente que aquí SÍ hay diferencia detectable, y por qué contrasta con el notebook 06 | 1.0 |
 | **Total** | **5.0** |
 
